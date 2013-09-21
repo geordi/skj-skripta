@@ -1,0 +1,142 @@
+\documentclass[10pt,oneside]{book}
+\usepackage{amssymb}
+\usepackage{url}
+\usepackage[czech]{babel}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{a4wide}
+%\global\language=5
+
+\usepackage{color}
+\usepackage{listings}
+\usepackage{textcomp}
+\usepackage{setspace}
+\usepackage{palatino}
+
+\renewcommand{\lstlistlistingname}{Code Listings}
+\renewcommand{\lstlistingname}{Code Listing}
+\definecolor{gray}{gray}{0.5}
+\definecolor{green}{rgb}{0,0.5,0}
+
+\lstnewenvironment{python}[1][]{
+\lstset{
+language=python,
+basicstyle=\ttfamily\small\setstretch{1},
+stringstyle=\color{red},
+showstringspaces=false,
+alsoletter={1234567890},
+otherkeywords={\ , \}, \{},
+keywordstyle=\color{blue},
+emph={access,and,break,class,continue,def,del,elif ,else,%
+except,exec,finally,for,from,global,if,import,in,i s,%
+lambda,not,or,pass,print,raise,return,try,while},
+emphstyle=\color{black}\bfseries,
+emph={[2]True, False, None, self},
+emphstyle=[2]\color{green},
+emph={[3]from, import, as},
+emphstyle=[3]\color{blue},
+upquote=true,
+morecomment=[s]{"""}{"""},
+commentstyle=\color{gray}\slshape,
+emph={[4]1, 2, 3, 4, 5, 6, 7, 8, 9, 0},
+emphstyle=[4]\color{blue},
+literate=*{:}{{\textcolor{blue}:}}{1}%
+{=}{{\textcolor{blue}=}}{1}%
+{-}{{\textcolor{blue}-}}{1}%
+{+}{{\textcolor{blue}+}}{1}%
+{*}{{\textcolor{blue}*}}{1}%
+{!}{{\textcolor{blue}!}}{1}%
+{(}{{\textcolor{blue}(}}{1}%
+{)}{{\textcolor{blue})}}{1}%
+{[}{{\textcolor{blue}[}}{1}%
+{]}{{\textcolor{blue}]}}{1}%
+{<}{{\textcolor{blue}<}}{1}%
+{>}{{\textcolor{blue}>}}{1},%
+%framexleftmargin=1mm, framextopmargin=1mm, frame=shadowbox, rulesepcolor=\color{gray},#1
+framexleftmargin=1mm, framextopmargin=1mm, frame=single, rulesepcolor=\color{gray},#1
+}}{}
+
+
+\usepackage{index}
+\usepackage[nottoc,numbib]{tocbibind}
+
+% inicializace rejstříků
+\newindex{default}{idx}{ind}{Rejstřík}
+\newindex{cmnd}{cdx}{cnd}{Rejstřík příkazů}
+
+% pomocné příkazy
+\def\cindex{\index*[cmnd]}        % zařazení do rejstříku příkazů
+\newcommand{\hla}[1]{\textit{#1}} % pro vysvětlení pojmu
+
+
+\usepackage{graphicx}
+\usepackage{verbatim}
+%\pagestyle{empty}
+\pagenumbering{arabic}
+\pagestyle{plain}
+
+
+
+\def\mtitle{Studijní opora k předmětu Skriptovací programovací jazyky a~jejich aplikace}
+\def\mauthor{Jan Gaura}
+\title{Studijní opora k předmětu Skriptovací programovací jazyky a~jejich aplikace}
+\author{Jan Gaura}
+
+%\hyphenation{speciál\-ním}
+
+\begin{document}
+
+\newcommand{\rdk}[1]{\texttt{#1}}
+\newcommand{\kod}[1]{\textbf{\texttt{#1}}}
+
+%\pagestyle{empty}
+
+%\maketitle
+\begin{titlepage}
+   \vspace*{\stretch{1.0}}
+   \begin{center}
+      \huge\textbf{\mtitle}
+      \vskip0.8cm
+      \Large\textit{\mauthor}
+      \vskip1.cm
+      \normalsize{\today}
+   \end{center}
+   \vspace*{\stretch{2.0}}
+
+   \begin{center}
+        \includegraphics{img/by-nc-sa}
+    \end{center}
+
+\end{titlepage}
+
+\newpage
+
+
+\tableofcontents
+
+\newpage
+
+\input uvod
+
+\input promenne_a_typy
+
+\input rizeni_toku
+
+\input funkce
+
+\input oop2
+
+\input stdlib
+
+\input stdlibxmlrpc
+
+%\input db
+
+%\input gui
+
+\input reference
+
+\printindex       % vytiskne defaultní rejstřík
+\printindex[cmnd] % tisk rejstříku příkazů
+
+\end{document}

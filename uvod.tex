@@ -1,0 +1,170 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Úvod}% do programování v Pythonu}
+
+Tento text vznikl pro potřeby výuky předmětu Skriptovací programovací jazyky a jejich aplikace. Studentům by měl sloužit
+pro získání nutného minima znalostí ke zvládnutí programování v jazyce kurzu
+-- tedy jazyka Python\footnote{http://www.python.org}. V žádném případě
+však není text plnohodnotnou náhradou za poslechy přednášek a návštěvy cvičení. Studentům je tudíž velmi doporučeno, aby
+přednášky a cvičení navštěvovali.
+
+
+%V úvodu se seznámíme s principy skriptovacích jazyků. Dále se seznámíme s vývojovým prostředím skriptovacího jazyka Python. V další části bude ukázáno jak vytvářet jednoduché skripty v prostředí jazyka Python. Nakonec se seznámíme s vytvářením funkcí, předávání parametrů funkcím a jejich voláním.
+
+Tento text si též neklade za cíl vytvořit kompletního průvodce jazykem Python. Pro takovýto účel lze doporučit některý knižní titul, např.: \cite{harms-mcdonald}.
+
+\section{Úvod do skriptovacích jazyků}
+Skriptovací programovací jazyky tvoří protiváhu tzv. kompilovaným programovacím jazykům. Jednotlivé programy jsou tvořeny zdrojovými kódy (skripty), které jsou tzv. interpretovány, tj. čteny a spouštěny za běhu spe\-ciál\-ním programem, tzv. interpretem.
+
+Typický skript těží z výhody, že se nemusí překládat, a často tvoří rozšiřitelnou (parametrickou) část nějakého softwarového projektu, která se může měnit, aniž by bylo potřeba pokaždé rekompilovat hlavní spustitelný soubor. Skripty tak najdeme u her (Quake), grafických uživatelských rozhraní (XULRunner v produktech Mozilla), složitějších softwarových řešení nebo jako hlavní součást dynamických webových stránek (YouTube, Instagram) a podobně.
+
+\newpage
+
+\noindent
+{\textbf{Výhody:}}
+\begin{itemize}
+
+\item Není nutné provádět po každé změně kódu kompilaci,
+\item snadnější údržba, vývoj a správa kódu,
+\item některé skripty umožňují interpretaci kódu z řetězce (jako například funkce eval() v Pythonu nebo PHP). Něco takového překládané programy bez použití speciálních technik nedokáží.
+%\item interpret obvykle poskytuje programátorovi zabudovaný abstraktní datový typ asociativního pole.
+\end{itemize}
+
+\noindent
+{\textbf{Nevýhody:}}
+\begin{itemize}
+
+\item Rychlost. Interpretace stojí určitý strojový čas a většinou nebývá tak rychlá jako běh přeloženého (a optimalizovaného) programu,
+\item vyšší paměťová náročnost. Interpret musí být spuštěn a tedy zabírá určitou část operační paměti,
+\item skriptovací jazyky mají většinou větší omezení než překládané programovací jazyky (např. co do přístupu do paměti, ovládání tzv. handlerů procesů, kontextových zařízení, apod.).
+\end{itemize}
+
+%\subsection{Typické znaky skriptů}
+
+%Návrh skriptovacího jazyka často zohledňuje rychlý vývoj programu a tak umožňují některé prvky, které v překládaných jazycích nenajdeme.
+%\\
+%\\
+%\noindent
+%{\textbf{Jedná se například o:}}
+
+%\begin{itemize}
+
+%\item netypové proměnné,
+%\item automatické nastavení hodnot u nedefinovaných proměnných a konstant,
+%\item zotavení z chyb, které neústí v ukončení skriptu.
+
+%\end{itemize}
+
+
+\section{Programovací jazyk Python}
+Python je interpretovaný procedurální, objektově orientovaný a funkcio\-nál\-ní programovací jazyk, který v roce 1990 navrhl Guido van Rossum. Python je vyvíjen jako open source projekt, který zdarma nabízí instalační balíky pro většinu běžných platforem (Unix, Windows, Mac OS); ve většině distribucí systému GNU/Linux je Python součástí základní instalace.
+
+Python je dynamický interpretovaný jazyk a také jej zařazujeme mezi skriptovací jazyky. Python byl navržen tak, aby umožňoval tvorbu roz\-sáhlých, plnohodnotných aplikací (včetně grafického uživatelského rozhraní).
+
+Python je hybridní jazyk (nebo také víceparadigmatický), to znamená, že umožňuje při psaní programů používat nejen objektově orientované paradigma, ale i procedurální a v omezené míře i funkcionální, podle toho komu co vyhovuje nebo co se pro danou úlohu nejlépe hodí. Python má díky tomu vynikající vyjadřovací schopnosti. Kód programu je ve srovnání s jinými jazyky krátký a dobře čitelný.
+
+K význačným vlastnostem jazyka Python patří jeho jednoduchost z hlediska učení a proto se jím budeme primárně zabývat v rámci našeho kurzu. Bývá dokonce považován za jeden z nejvhodnějších programovacích jazyků pro začátečníky. Python ale současně bourá zažitou před\-stavu, že jazyk vhodný pro výuku není vhodný pro praxi a naopak. Podstatnou měrou k tomu přispívá čistota a jednoduchost syntaxe, na kterou se při vývoji jazyka hodně dbá.
+
+Význačnou vlastností jazyka Python je produktivita z hlediska rychlosti psaní programů. Týká se to jak nejjednodušších programů, tak aplikací velmi rozsáhlých. U jednoduchých programů se tato vlastnost projevuje především stručností zápisu. U velkých aplikací je produktivita podpořena rysy, které se používají při programování ve velkém, jako jsou například přirozená podpora prostorů jmen, používání výjimek, standard\-ně dodávané prostředky pro psaní testů (unit testing) a dalšími. S vysokou produktivitou souvisí dostupnost a snadná použitelnost široké škály knihovních modulů, umožňujících snadné řešení úloh z řady oblastí.
+V poslední době je Python též oblíben u komunity zabývající se výpočty na superpočítačích (HPC). K tomuto účelu vznikla
+speciální sada knihoven, která je protiváhou dobře známemu MATLABu -- SciPy\footnote{http://www.scipy.org/}.
+
+\section{Vývojové prostředí jazyka Python}
+Pro práci v s jazykem Python je doporučováno mít nainstalován Python ve verzi 2.5, 2.6 nebo 2.7. Uživatelé Linuxových distribucí již mají Python nainstalován ve standardní instalaci. Uživatelé Windows si mohou stáhnout instalátor Pythonu z domovské stránky projektu \cite{python-web}, sekce Download.
+
+Skriptovací jazyky mají většinou tu vlastnost, že dovolují spouštění skriptů dvojím způsobem a to v \textbf{interaktivním režimu} a nebo spuštění skriptu ze souboru se zdrojovým kódem (\textbf{dávkový režim}).
+
+{\textbf{Interaktivní režim}}\index{interaktivní režim} lze spustit jednoduše spuštěním interpretu Pythonu z příkazové řádky nebo z programové nabídky. Tento režim slouží většinou k testování funkcionality kódu. Po spuštění interaktivního režimu se na obrazovce objeví následující výpis:
+
+\newpage
+\noindent
+{\texttt{Python 2.5.2 (r252:60911, Jan  4 2009, 17:40:26) \\
+GCC 4.3.2 on linux2\\
+Type "help", "copyright", "credits" or "license"\\
+for more information.\\
+$>>>$
+}}
+\\
+\\
+\noindent
+Řádek se znaky {\texttt{$>>>$}} je tzv. \textbf{prompt}\index{prompt} (výzva). Tam již můžeme zadávat příkazy jazyka a pomocí klávesy Enter je spustit.
+Nyní tedy stačí do promptu napsat {\texttt{print "Ahoj svete!"}} a objeví se nám:
+
+\begin{python}
+>>> print "Ahoj svete"
+Ahoj svete
+>>> 
+\end{python}
+
+\noindent
+Příkaz {\texttt{print}} slouží pro tisk zadaných informaci na výstup. Po zadaní toho to příkazu vidíme výsledek na dalším řádku.
+\\
+\\
+\noindent
+{\textbf{Dávkový režim}} slouží ke spouštění složitějších skriptů. Takovýto skript spustíme jednoduše na příkazové řádce pomocí příkazu (\$ je promptem shellu operačního systému):
+\\
+\\
+\noindent
+{\texttt{\$ python muj\_skript.py}}
+\\
+\\
+\noindent
+{\textbf{Cvičení:}}
+Vytvořte si jednoduchý skript, který vypíše na výstup řetězec ``Ahoj svete'' a ověřte jeho funkcionalitu.
+\\
+\\
+\noindent
+{\textbf{Cvičení:}}
+V interaktivním režimu si vyzkoušejte jednoduché počítání. Provádějte operace s čísly jako na kalkulátoru. Pokuste se použít proměnné a závorky.
+\\
+\\
+\noindent
+{\textbf{Cvičení:}}
+V interaktivním režimu si vyzkoušejte práci s řetězci. Použijte znaky pro uvození řetězců '' a ' a sledujte jak se od sebe liší popřípadě, zda je možné je do sebe zanořit. Přistupujte k jednotlivým prvkům a podřetězcům řetězců pomocí indexů mezi znaky $[$ a $]$. Řetězce spojujte.
+\\
+\\
+\noindent
+{\textbf{Cvičení:}}
+V interaktivním režimu si vyzkoušejte práci s seznamy a n-ticemi (jsou popsány v 6. kapitole knihy). Opět přistupujte k jednotlivým prvkům seznamů a n-tic. Přidávejte prvky do již existujících seznamů.
+
+\section{Syntaxe\index{syntaxe}} \label{sec:syntax}
+
+Jazyk Python má relativně jednoduchou syntaxi nez množství různých ,,kudrlinek'' (Anglicky je toto nazýváno pojmem
+,,boilerplate''). Hlavní rysy, se kterými mají někdy začátečníci problémy, by se daly shrnout do následujících bodů:
+
+\begin{itemize}
+    \item nepoužívají se složené závorky \kod{\{} \kod{\}} pro označení bloku,
+          používá se \textbf{odsazení}\index{odsazení}, který je uvozen dvojtečkou \kod{:},
+    \item u podmínek příkazů \kod{if} a \kod{while} se nepoužívají kulaté závorky \kod{(} \kod{)},
+    \item pro ukončení příkazu nepoužíváme středník \kod{;}, ale jednoduše přejdeme na nový řádek a vložíme další příkaz.
+\end{itemize}
+
+Uveďme si nyní jednoduchý příklad, který shrnuje obě vlastnosti.
+
+\begin{python}
+if a > 0:
+    print "Positive"
+elif a < 0:
+    print "Negative"
+else:
+    print "Zero"
+\end{python}
+Na příkladu můžeme vidět, že bloky jednotlivých větví příkazu \kod{if}\index{if} jsou uvozeny dvojtečkou a jejich tělo (blok) je
+odsazen o 4 mezery doprava oproti korespondující větvi. Samozřejmě můžeme do bloku umístit více příkazů tak, že
+je postupně řadíme pod sebe se stejným odsazením. Též si povšimněme, že není použit znak středníku.
+Speciálně odsazení bloků je někdy problematické. V jazycích jako je C nebo Java však také běžně bloky odsazujeme
+proto, abychom je jednoduše vizuálně odlišili. Proto je v jazyce Python této dobře známé praktiky využito s tím,
+že není nutné psát označení bloků složenými závorkami. Také si povšimněme, že blok je uvozen dvojtečkou.
+Pro srovnání je ještě zobrazena stejná situace v~jazyce~C.
+
+\begin{python}
+if (a > 0) {
+    printf( "Positive\n" );
+}
+else if (a < 0) {
+    printf( "Negative\n" );
+}
+else {
+    printf( "Zero\n" );
+}
+\end{python}
+

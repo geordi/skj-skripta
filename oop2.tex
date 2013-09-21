@@ -1,0 +1,635 @@
+\chapter{Objektově orientované programování (OOP)}
+
+Naši cestu za objektově orientovaným programováním započneme citátem Alana Kaye, spoluautora jednoho
+z prvních objektově orientovaných programovacích jazyků jménem Smalltalk:
+\vskip0.5cm
+\noindent
+``Actually I made up the term `object-oriented', and I can tell
+you I did not have C++ in mind.''
+\vskip0.3cm
+\noindent
+The Computer Revolution hasn’t happend yet -- Keynote, OOPSLA 1997
+
+\vskip0.5cm
+
+V této kapitole si představíme objektově orientované programovaní (OOP) v jazyce Python.
+Objektově orientované programování není v programování novým pojmem, stále však je přechod
+od procedurálního programování k objektovému někdy obtížný. Někdy může být na překážku statická typovost
+některých jazyků. My si ukážeme, že je OOP velmi jednoduchý a příjemný způsob programování. Nepodlehněme
+však představě, že je OOP vše řešící technika.
+
+
+\section{Co jsou objekty}
+
+Z dosavadní práce v jazyce by nám již mělo být dostatečně jasné, že vše v jazyce Python je objektem.
+Např. listy obsahující prvky jsou objekty a také elementy v nich jsou samy objekty. I přes tuto skutečnost
+nám není jazykem objektový model nějak extrémně vnucován. Můžeme se de facto setkat pouze s klasickou
+tečkovou notací pro volání metod objektů, např. \kod{lst.append(1)} pro přidání objektu typu
+\kod{int} do objektu typu \kod{list} (proměnná \kod{lst}). Tak, jak jsme zvyklí z jazyka C++, i v Pythonu
+můžeme volání metod nebo atributů zřetězit, např. \\ \kod{instance\_tridy.metoda().atribut}. Tečková notace
+také nerozlišuje mezi voláním metod nebo přístupu k atributům. Toto je rozlišeno pouze kulatými
+závorkami u volání metod.
+
+
+\section{Motivace k zavedení objektů}
+
+Pokud jste programovali v jazyce C, většina programů nejprve využívala funkce, které měly parametry.
+Jak program nabýval na složitosti, parametrů u funkcí mohlo přibývat. Takovýto proces je více, či méně
+nevyhnutelný. Pokud jste pracovali dále, možná jste se rozhodli, že si vytvoříte jednoduchou strukturu,
+do které si uložíte hodnoty parametrů. Tímto způsobem jste dosáhli toho, že jste nahradili mnoho parametrů
+jedním. Díky tomu jste byli schopni centralizovat data. Kolem těchto dat jste vytvořili funkce, které
+např. přijímaly danou strukturu jako svůj argument a vracely vám hodnotu, popřípadě upravovaly danou
+strukturu.
+
+Toto je již docela zajímavý způsob, jak si zjednodušit práci s daty v jazyce C. Problém však nastává
+v situaci, kdy bychom chtěli mít jednu funkci (myšleno z pohledu API), která by se chovala pouze podle
+toho, jakou strukturu jí pošleme jako argument. V takovém případě musíme nejprve v takové funkci zjistit
+o jakou strukturu se jedná a podle toho patřičně reagovat (spustit patřičný kód). Ukázka takového přístupu
+je se zjednodušeními ukázána níže (poznámka: nejedná se o konkrétní programovací jazyk).
+
+\begin{python}
+struct {
+    name = '';
+} Dog;
+
+struct {
+    name = '';
+} Cat;
+
+make_sound( struct ) {
+    if type( struct ) == Dog {
+        print struct.name + 'Haf!';
+    }
+    else if type( struct ) == Cat {
+        print struct.name + 'Minau!';
+    }
+}
+
+struct dog = Dog( "Lassie" );
+struct cat = Cat( "Tom" );
+
+make_sound( dog ); // 'Lassie: Haf!'
+make_sound( cat ); // 'Tom: Minau!'
+\end{python}
+
+V příkladu jsme vytvořili funkci \kod{make\_sound}, která přijímá jeden argument v podobě struktury.
+Danou strukturou může být buď struktura \kod{Dog} nebo \kod{Cat}. Evidentně po funkci \kod{make\_sound}
+chceme, aby vytiskla typický zvuk pro dané zvíře. Toho docílíme tak, že se zeptáme, jakého typu je
+argument a podle něj již patřičně zareagujeme. Tento přístup není obecně špatný, avšak při větším množství
+struktur se stává značně nepřehledným. Výše popsaný příklad se také snaží o to, aby jedna funkce byla
+schopna reagovat na více datových typů. Zde bychom již měli vidět, že to, co po funkci požadujeme, je
+de facto polymorfismus (samozřejmě ještě stále zjednodušený).
+
+
+\section{Objektový přístup k motivačnímu problému}
+
+Z předchozích kurzů víte, že OOP se skládá ze tří pilířů, kterými jsou:
+polymorfismus, dědičnost a zapouzdření.
+Věnujme se nyní primárně nejpodstatnějšímu pojmu, kterým je polymorfismus. V předchozím příkladu 
+chceme funkčnost, kterou bychom mohli vágně popsat následovně: ,,Jakémukoli objektu pošleme zprávu
+a dostaneme adekvátní odpověď''. Toto je hodně obecný koncept, který je třeba si přiblížit. Zasílání
+zpráv je v moderním konceptu OOP jen voláním metod objektu, který je nám již důvěrně znám pomocí
+tečkové notace. OOP za nás zajistí vše ostatní. Ukažme si tedy předchozí příklad v jazyce Python.
+
+\begin{python}
+class Dog(object):
+    def __init__(self, name):
+        self.name = name
+
+    def make_sound(self):
+        print "{0}: Haf!".format(self.name)
+
+
+class Cat(object):
+    def __init__(self, name):
+        self.name = name
+
+    def make_sound(self):
+        print "{0}: Minau!".format(self.name)
+
+animals = [ Dog("Lassie"), Cat("Tom") ]
+
+for animal in animals:
+     animal.make_sound()
+
+# Lassie: Haf!
+# Tom: Minau!
+\end{python}
+
+Na chvíli ještě pomiňme syntaxi pro tvorbu tříd. Vidíme však, že oproti předchozímu příkladu je funkce
+\kod{make\_sound} přítomna v obou třídách a je implementována podle toho, ke které třídě patří.
+
+Dále vidíme, že jsme si vytvořili list \kod{animals}, který obsahuje instance tříd \kod{Dog} a \kod{Cat}.
+Nakonec projdeme tento list a na každém jeho prvku zavoláme metodu \kod{make\_sound}.
+
+Vidíme, že při volání metody \kod{make\_sound} již do ní neposíláme žádný parametr (jako v předchozím případě
+strukturu, \kod{self} teď nepočítejme).
+Posun od procedurálního programování k OOP je tedy již docela markantní. V cyklu \kod{for}
+pak voláme na jednotlivých instancích metodu 
+\\
+\kod{make\_sound} bez toho, aniž bychom primárně věděli, o který
+typ se jedná. Toto je také nejdůležitějším prvkem OOP -- volání metod na objektech a nestarání se o jejich
+vnitřní implementaci.
+
+Dále si v příkladu všimněme, že list \kod{animals} obsahuje instance tříd \kod{Dog} a \kod{Cat}. Na rozdíl
+od jazyka C++ nebo Java jsme však nemuseli vytvářet společnou nadtřídu, popřípadě interface. Toto je dáno
+dynamickou typovostí jazyka, se kterou jsme se setkali již dříve. List mohl obsahovat integery, floaty,
+stringy, apod. Není tedy problém, aby obsahoval i instance námi vytvořených tříd. V dynamicky typovaných
+jazycích také můžeme volat jakoukoli metodu na jakémkoli objektu. Pokud však objekt neumí na metodu reagovat
+(metoda není vůbec implementována), je vyhozena výjimka, kterou musíme zpracovat.
+
+
+\section{Třídy a instance}
+
+Jazyk Python pracuje s objektovým modelem podobně jako C++ nebo Java. Třídy jsou obecným předpisem pro
+popis objektů světa. Instance jsou pak konkrétními objekty, které mají svou třídu jako předpis.
+Toto bychom si mohli představit i tak, že automobilka produkuje auta podle předpisu (výrobního postupu).
+Automobilka má tedy sadu tříd, podle kterých se ve výrobě vytvářejí automobily, které jsou již instancemi
+tříd.
+
+
+\section{Definice třídy a konstrukce objektu}
+
+Rozeberme si na příkladu vytvoření objektu, speciálně syntaxi konstruktoru, která je lehce odlišná
+od C++ nebo Javy.
+
+\begin{python}
+class Battlestar(object):
+    
+    def __init__(self, name, commander): # constructor
+        self.name = name                 # instance variable
+        self.commander = commander
+
+    def identify(self):                  # method
+        return 'This is Battlestar {0}, \
+                commanded by {1}.'.format(self.name, \
+                self.commander)
+
+galactica = Battlestar('Galactica', 'Bill Adama')
+pegasus = Battlestar('Pegasus', 'Helena Cain')
+
+print galactica.identify()
+# This is Battlestar Galactica, commanded by Bill Adama.
+
+print pegasus.identify()
+# This is Battlestar Pegasus, commanded by Helena Cain.
+\end{python}
+
+    Definice přídy je uvozena klíčovým slovem \kod{class}\index{class} následována jménem.
+Pokud chce definovaná třída
+dědit z jiných tříd, je toto uvedeno v kulatých závorkách. Naše třídy budou vždy dědit z třídy reprezentující
+objekt (\kod{object}\index{object}).
+
+Konstruktor třídy je vždy metoda s názvem \kod{\_\_init\_\_}\index{\_\_init\_\_},
+která přijímá jako svůj první argument proměnnou,
+která je tradičně nazývána \kod{self}\index{self}.
+Pak následuje seznam argumentů, které chceme konstruktoru předat.
+Proměnná \kod{self} nám reprezentuje instanci podobně, jako je tomu v jazyce C++ nebo Java slovem \kod{this}.
+Instanční proměnné jsou vytvořeny tak, že je přidáme do instance pomocí tečkové notace. Dostatečný příklad
+je uveden v konstruktoru.
+Pokud se nám zdá syntaxe metod nepříjemná v tom smyslu, že musíme uvádět proměnnou \kod{self}, tak se
+zamysleme nad tím, kde se vezme v C++ nebo Javě proměnná \kod{this}. Tato proměnná je ve skutečnosti
+do zdrojového kódu ,,vpašována'' překladačem daného jazyka.
+
+Metody třídy obdobně přijímají první argument v podobě proměnné \kod{self}. Přístup k instančním proměnným
+je možný opět pouze s použitím oné proměnné.
+
+Vytvoření objektu je velmi podobné jako v jiných jazycích, které známe. Jediným rozdílem je to, že
+nepoužíváme klíčového slova \kod{new}\index{new}. Jazyk Python (stejně jako téměř ve všech případech Java)
+totiž na rozdíl od jazyka C++ neumožňuje
+vytvořit instanci objektu na zásobníku, ale pouze na haldě.
+
+\section{Třídní proměnné}
+
+Instanční proměnné by pro nás již neměly být problémem.
+Každá instance třídy si udržuje své vlastní hodnoty v instančních proměnný.
+Existují však i jiné proměnné, které nazýváme třídní proměnné a ty jsou pro všechny instance společné.
+Tyto proměnné jsou dosti podobné globálním proměnným, na které jsme zvyklí ať už z jazyka C nebo z Pythonu.
+Otázkou však je, jak takové proměnné v Pythonu deklarovat a využít.
+
+Představme si, že bychom chtěli vytvořit internetový vyhledávač. Pomiňme nyní relativně velkou složitost
+tohoto problému a soustřeďme se na to, jak bychom reprezentovali jednotlivé webové stránky v našem systému.
+
+\begin{python}
+class Document(object):
+    
+    def __init__(self, content):
+        self.content = content
+
+    def index(self, db):
+        pass
+\end{python}
+
+Třída \kod{Document} tedy reprezentuje stránku pomocí instanční proměnné \kod{content}. Metoda \kod{index}
+pak danou stránku zaindexuje do databáze \kod{db}. Její implementaci však nebudeme řešit.
+Dříve nebo později bychom však chtěli vědět, kolik dokumentů v našem systému je. Jednou z možností je zeptat
+se databáze. Druhou možností je pak využít třídní proměnné tak, jak je ukázáno na následujícím příkladu.
+
+\begin{python}
+class Document(object):
+    
+    no_of_documents = 0
+
+    def __init__(self, content):
+        self.content = content
+        Document.no_of_documents += 1
+
+    def index(self, db):
+        pass
+
+d1 = Document("Text")
+print d1.no_of_documents # 1
+
+d2 = Document("Another text")
+print d1.no_of_documents # 2
+print d2.no_of_documents # 2
+
+print Document.no_of_documents # 2
+\end{python}
+
+Pokaždé, kdy vytvoříme novou instanci dokumentu, je třídní proměnná \kod{no\_of\_documents} inkrementována.
+Na počet dokumentů se tak můžeme zeptat jakékoli instance, protože je třídní proměnná sdílená.
+K třídní proměnné přistupujeme přes jméno třídy. Nemůžeme tak použít notaci přes \kod{self},
+poněvadž \kod{self} referuje na instanci a nikoli na třídu.
+Nakonec k třídní proměnné můžeme přistoupit i tak, že se zeptáme přímo třídy samotné.
+V naší ukázce je to poslední řádek kódu.
+
+\section{Statické metody}
+
+Již dříve jsme si řekli, že v OOP reprezentujeme objekty reálného světa. Jejich atributy jsou instanční
+proměnné a pro jejich manipulaci máme metody, které jsou svázány s objekty, což je zajištěno tím, že
+jsou definovány u dané třídy. Někdy však potřebujeme to, abychom byli schopni volat metodu aniž bychom
+měli k dispozici konkrétní instanci. Chceme však využít toho, že metoda má implementovánu funkcionalitu,
+která se nějakým způsobem váže k dané třídě. Využijme tedy opět našeho příkladu pro vyhledávač.
+Nyní bychom chtěli vědět průměrnou délku stránek, které indexujeme.
+
+\begin{python}
+class Document(object):
+    
+    no_of_documents = 0
+    total_length = 0
+
+    def __init__(self, content):
+        self.content = content
+        Document.no_of_documents += 1
+        Document.total_length += len(self.content)
+
+    def index(self, db):
+        pass
+
+    @staticmethod
+    def get_average_length():
+        return Document.total_length / Document.no_of_documents
+
+d1 = Document("Text")
+d2 = Document("Another text")
+
+print Document.get_average_length() # 8
+print d1.get_average_length() # 8
+\end{python}
+
+Na první pohled vidíme oproti běžné metodě dva rozdíly. Prvním je to, že metoda je uvozena
+dekorátorem\index{dekorátor} \kod{@staticmethod}\index{@staticmethod}. Tento dekorátor nám nezajistí ani tak
+to, že bude metoda statická, jako spíše to, že ji jako statickou bude možno volat na intanci, což je
+v jiných jazycích problematické. Toto je ukázáno na posledním řádku příkladu.
+\textbf{Podstatným rozdílem} je však to, že metoda nemá jako svůj první
+argument proměnnou \kod{self}. Je tedy explicitně řečeno, že metoda nemůže být volána na objektu (již
+víme, že objekt je předán jako argument metody v podobě proměnné \kod{self}). Dále je samozřejmé, že
+statická metoda nemůže přistupovat k instančním proměnný. Logiku tohoto tvrzení ponechme na čtenáři.
+\\
+\\
+\noindent
+{\textbf{Cvičení:}}
+Zkuste odstranit dekorátor a spustit příklad, případně proveďte další úpravy.
+
+
+\section{Vlastnosti (Properties)\index{properties}}
+
+Další vlastností OOP je zapouzdření\index{zapouzdření}. Jazyk Python nepodporuje skrývání instančních
+proměnný tak, jak to například dovoluje Java pomocí modifikátorů \kod{private} nebo \kod{protected}.
+Naproti tomu je v Pythonu sada doporučení, jak se k zapouzdření zachovat. S takovýmto přístupem se můžeme
+setkat i u jiných jazyků. Vzpomeňme si, že je třeba při ředění kyseliny nalévat kyselinu do vody
+a nikoli opačně. Toto je také doporučení a nikdo nám nebrání to udělat obráceně.
+Následky však mohou být dosti nepříjemné.
+
+Přímá manipulace s atributy třídy je sice možná, ale pokud nejsme přímými autory těchto tříd, je dosti
+pravděpodobné, že takovouto neopatrnou manipulací způsobíme nekonzistenci dat. Standardní způsob
+manipulace s atributy tříd je přes metody, které jsou přímo určeny k zápisu nebo čtení hodnot těchto
+atributů. Způsob práce je podobný jako v jazyce C++ nebo Java. Ukažme si tedy příklad.
+
+\begin{python}
+class Document(object):
+    
+    no_of_documents = 0
+    total_length = 0
+
+    def __init__(self, content):
+        self.content = content
+        Document.no_of_documents += 1
+        Document.total_length += len(self.content)
+
+    def set_content(self, content):
+        Document.total_length -= len(self.content)
+        self.content = content
+        Document.total_length += len(self.content)
+
+    def get_content(self):
+        return self.content
+
+    def index(self, db):
+        pass
+
+    @staticmethod
+    def get_average_length():
+        return Document.total_length / Document.no_of_documents
+
+d1 = Document("Text")
+d2 = Document("Another text")
+
+print Document.get_average_length() # 8
+
+d2.set_content("This is a bit longer text")
+
+print Document.get_average_length() # 14
+\end{python}
+
+V metodě \kod{set\_content} do instanční proměnné \kod{content} uložíme nový obsah stránky.
+Je však také nutné přepočítat průměrnou délku dokumentů, které máme v našem systému. Toto nám metoda
+\kod{set\_content} zajistí. Pokud bychom však přímo manipulovali s obsahem proměnné \kod{content},
+toto by zajisté zajištěno nebylo. Metoda \kod{get\_content} pak jen vrací obsah proměnné \kod{content}.
+Na tomto příkladu bychom měli jasně vidět proč je vhodné používat tzv. setry a getry.
+\\
+\\
+\noindent
+{\textbf{Cvičení:}}
+Jako cvičení si zkuste přímou manipulaci s proměnnými a zjistěte, kdy nastává nekonzistence dat a jak
+se projevuje.
+\\
+\\
+V Pythonu však můžeme ještě využít tzv. \textbf{properties}\index{properties}. Ty se používají u atributů, které jsou pro
+nás zajímavé a vytvářejí iluzi přímé manipulace. Následující ukázka ilustruje jejich použití.
+
+\begin{python}
+class Document(object):
+    
+    no_of_documents = 0
+    total_length = 0
+
+    def __init__(self, content):
+        self._content = content
+        Document.no_of_documents += 1
+        Document.total_length += len(self.content)
+
+    def set_content(self, content):
+        Document.total_length -= len(self._content)
+        self._content = content
+        Document.total_length += len(self._content)
+
+    def get_content(self):
+        return self._content
+
+    def index(self, db):
+        pass
+
+    @staticmethod
+    def get_average_length():
+        return Document.total_length / Document.no_of_documents
+
+    content = property(get_content, set_content)
+
+d1 = Document("Text")
+d2 = Document("Another text")
+
+print Document.get_average_length() # 8
+
+d2.content = "This is a bit longer text"
+
+print d2.content # "This is a bit longer text"
+print Document.get_average_length() # 14
+\end{python}
+
+Naši původní proměnnou \kod{content} jsme přejmenovali na \kod{\_content}, což výsledek nijak neovlivňuje
+(toto jsme museli udělat proto, že jinak by docházelo ke kolizi jmen mezi property a proměnnou, která by
+vyústila v nekonečnou rekurzi, o čemž se můžete přesvědčit, pokud si příklad náležitě upravíte).
+Nakonec jsme pomocí funkce \kod{property} řekli, že chceme zpřístupnit data pod názvem \kod{content},
+která se čtou a nastavují pomocí
+funkcí \kod{get\_content} a \kod{set\_content}.
+Ve výsledku můžeme jakoby přímo zapisovat do proměnné \kod{content} a přitom je zajištěna konzistence dat.
+Další výhodou je to, že pokud později změníme set nebo get metody, kód který používá properties se nemusí
+měnit. Tím máme pěkně zajištěnu dopřednou kompatibilitu.
+
+
+\section{Operátory}
+
+V průběhu naší práce jsme se setkali s operátory a nepřišlo nám to nijak složité. Např. jsme mohli sčítat
+čísla pomocí operátoru \kod{+} nebo spojovat řetězce tím samým operátorem. Problémem těchto operátorů však
+je to, že je tvůrci naučili pracovat pouze s vestavěnými typy, např. \kod{int}, \kod{str}, apod.
+
+Pokud vytvoříme svou vlastní třídu, ta se stává novým datovým typem (toto obecně nazýváme abstraktní datové
+typy). Problém však je, že nyní standardní operátory nemohou tušit, jak s našimi vlastními typy pracovat.
+A právě k tomu nám slouží přetěžování operátorů. Seznam operátorů, které můžeme přetížit je relativně dlouhý,
+a proto se odkážeme na dokumentaci \cite{python-operator-overloading}. Nám aktuálně postačí to, že operátory
+jsou v třídách realizovány jako metody, které vždy začínají a končí znaky dvou podtržítek \kod{\_\_}.
+Mezi nimi je pak jméno operátoru. Pozorný čtenář již tuší, že konstruktor je také jen operátorem.
+
+Jako příklad přetížení operátoru si ukážeme, jak naimplementovat třídu \kod{Vector}, která reprezentuje
+vektor libovolné délky. Budeme chtít sčítat dva různé vektory a také budeme chtít tisknout jejich obsah
+pomocí příkazu \kod{print}.
+
+\begin{python}
+class Vector(object):
+    def __init__(self, vec):
+        #warning: vec will be tuple, immutable
+        self.vec = vec
+
+    def __add__(self, other):
+        vec = []
+        for no, item in enumerate(self.vec):
+            vec.append(item + other.vec[no])
+
+        return Vector(tuple(vec))
+
+    def __str__(self):
+        #content = ", ".join([str(i) for i in self.vec])
+        #return "({})".format(content)
+        return str(self.vec)
+
+v1 = Vector((1, 2, 3, 4))
+print v1
+
+v2 = Vector((5, 6, 7, 8))
+print v2
+
+v3 = v1 + v2
+print v3
+\end{python}
+
+V ukázce vidíme, že operátor \kod{+} je realizován metodou \kod{\_\_add\_\_}.
+%, která pracuje s instancí a dalším
+%vektorem, který je obsažen v argumentu \kod{other}.
+ Chceme přeci realizovat operaci \kod{x + y}, proto \kod{x}
+bude instance \kod{self} a \kod{y} bude argument \kod{other.}
+V této metodě provedeme příslušnou operaci sečtení dvou vektorů a vrátíme novou instanci třídy \kod{Vector},
+která obsahuje výsledek.
+
+Dalším přetíženým operátorem je \kod{\_\_str\_\_}, který nám vrací řetězec. Podrobně jako jsme používali
+funkci \kod{int} nebo \kod{float} pro získání příslušné hodnoty, i funkce \kod{str} nám vrátí řetězec,
+který reprezentuje daný objekt. Pro náš typ vektoru chceme, aby se nám vrátily hodnoty vektoru v kulatých
+závorkách. Toho jsme docílili relativně jednoduchým trikem, kdy naše interní reprezentace vektoru je tuple,
+který již odpovídá naší zvolené reprezentaci. Pro jistotu však ještě v komentáři uvádíme plnou implementaci
+cílového chování metody. Tento operátor je vždy zavolán funkcí \kod{str} a tato funkce je vždy volána
+při volání příkazu \kod{print}. Proto není přímé použití na první pohled plně viditelné.
+
+Pomocí operátorů je možno značně ovlivnit chování našich typů. Na rozdíl od jiných jazyků jsme schopni
+ovlivňovat i průběh volání metod nebo průběh konstrukce objektů. Toto je však již docela pokročilé téma,
+které si necháme jako domácí cvičení.
+
+\section{Kompozice}
+
+Vytváření samotných abstraktních datových typů (tříd) bez návaznosti na okolí by asi nebylo příliš zajímavé.
+Podívejme se tedy na to, jakým způsobem provádět kompozici a hlavně, kdy ji nahradit dědičností. Častokrát
+se totiž stává, že se rozhodneme špatně, což pak nese neblahé následky.
+
+Kompozici používáme pro spojení několika komponent do jednoho celku. Pokud si nejsme zcela jisti,
+zdali máme použít kompozici, stačí se zeptat: \textbf{Je X součástí Y?} Pokud je odpověď kladná, jedná
+se problém kompozice. Zkusme si tedy opět vylepšit náš vyhledávač reprezentovaný třídou \kod{SearchEngine}.
+Tentokráte bychom chtěli vytvořit
+systém, ve kterém budou obsaženy dokumenty, které jsou reprezentovány třídou \kod{Document}, kterou jsme si
+již uvedli. V příkladu opět pomiňme extrémní zjednodušení, která musíme zavést.
+
+\begin{python}
+class SearchEngine(object):
+
+    def __init__(self):
+        self.documents = []
+
+    def add_document(self, document):
+        self.documents.append(document)
+
+    def get_documents(self):
+        return self.documents
+
+    def search(self, query):
+        for doc in self.documents:
+            if doc.content.find(query) > 0:
+                return doc
+
+se = SearchEngine()
+se.add_document(Document("Text"))
+se.add_document(Document("Another text"))
+
+for doc in se.get_documents():
+    print doc.get_content()
+
+print se.search("text").content
+\end{python}
+
+Na začátku jsme si řekli, že chceme modelovat systém, který obsahuje dokumenty. Dokumenty jsou tedy součástí
+většího celku. Je tedy na místě využít kompozice.
+V konstruktoru třídy \kod{SearchEngine} si vytvoříme instanční proměnnou typu \kod{list}, která bude
+obsahovat všechny dokumenty, které bude náš vyhledávač indexovat. V metodě \kod{add\_document} pak do
+interního listu přidáme referenci na předaný dokument. Metoda \kod{search} pak vyhledá patřičný dokument
+podle zadaného obsahu (samozřejmě je to naivní implementace, která navíc neošetřuje chybové stavy).
+
+Na tomto příkladu tedy vidíme, jak provést kompozici dvou komponent. Nic nám samozřejmě nebrání komponovat
+více systémů do sebe. Nezapomeňme však, že je třeba dodržovat jistá pravidla, o kterých se dozvíte v dalších
+předmětech jako je Softwarové inženýrství.
+
+\section{Dědičnost}
+
+Poslední základní vlastností OOP je dědičnost, kterou také často nazýváme specializací. Podobně jako
+u kompozice, pokud si nejsme jisti, zda máme problém implementovat pomocí dědičnosti, můžeme se zeptat:
+\textbf{X je Y?} Je-li odpověď kladná, jedná se o dědičnost. Častokrát také dědičnost používáme
+pro převzetí kódu z nadtřídy, což je ovšem opět specializací.
+
+Ukažme si tedy příklad, kdy chceme implementovat informační systém obsahující studenty. Entita studenta
+je člověkem, tedy můžeme vytvořit nejprve obecnou třídu \kod{Person}, ze které bude
+třída \kod{Student} dědit.
+
+\begin{python}
+class Person(object):
+
+    def __init__(self, firstname, surname):
+        self.firstname = firstname
+        self.surname = surname
+
+    def get_firstname(self):
+        return self.firstname
+
+    def get_surname(self):
+        return self.surname
+
+    def __str__(self):
+        return " ".join((self.firstname, self.surname))
+
+
+class Student(Person):
+
+    next_id = 0
+
+    def __init__(self, firstname, surname):
+        Person.__init__(self, firstname, surname)
+        Student.next_id += 1
+        self.edison_id = Student.next_id
+
+    def get_id(self):
+        return self.edison_id
+
+
+s1 = Student("Sean", "Connery")
+print "ID:", s1.get_id(), "Student name:", s1
+# ID: 1 Student name: Sean Connery
+print s1.get_firstname(), s1.get_surname() # Sean Connery
+
+s2 = Student("James", "Bond")
+print "ID:", s2.get_id(), "Student name:", s2
+# ID: 2 Student name: James Bond
+\end{python}
+
+Ve třídě \kod{Person} jsme naimplementovali základní funkcionalitu. Třída \kod{Student} dědí z \kod{Person}.
+Navíc přidává to, že je každé instanci přiřazeno jednoznačné \kod{edison\_id}, kterým se identifikuje
+v našem univerzitním IS. Také je implementována metoda \kod{get\_id}, která daný identifikátor vrací. Třída
+\kod{Student} je tedy specializovanou třídou odvozenou z třídy \kod{Person}. Důležitým prvkem je
+konstruktor odvozené třídy. Ten jako první vždy volá konstruktor třídy nadřazené jako statickou metodu,
+kde jako instanci vloží sebe sama. Toto je jedno z mála míst, kde přímo voláme operátor, jinak se
+tohoto volání snažíme vyvarovat.
+\\
+\\
+\noindent
+{\textbf{Cvičení:}}
+Do třídy \kod{Person} doplňte metody pro práci s věkem člověka pomocí modulu \kod{datetime}.
+Poté přetěžte takový oprátor, abyste mohli jednoduše zjistit, zda je člověk nebo student starší než nějaký
+jiný. Také zkuste mezi sebou porovnat instance studenta a člověka.
+
+
+
+
+%\section{Dědění vs. kompozice}
+
+%Poucka:
+%X je Y ---> X dedi z Y
+%X je soucasti Y --> kompozice
+%Casta chyba: X je soucasti Y --> dedicnost (Typicky spatny priklad: Usecka dedi z bodu, pritom "Usecka neni bod")
+
+%častokrát zaměňujeme kompozici za dědičnost. Uveďme si príklad špatně zvolené implementace. Mějme
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
