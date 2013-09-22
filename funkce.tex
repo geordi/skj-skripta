@@ -9,7 +9,7 @@ Toto by nám však vystačilo na velmi krátké programy, poněvadž bychom jina
 znovupoužitelný kód psát znovu a znovu.
 %
 Základní vlastností funkcí je jejich znovupoužitelnost. Pokud tedy máme úlohu,
-kterou víme, že budeme požívat více než jednou, je vhodné ji umísti do funkce. Takovýto
+kterou víme, že budeme požívat více než jednou, je vhodné ji umístit do funkce. Takovýto
 blok kódu by též měl fungovat pokud možno co nejvíce samostatně. %Toto by nám
 %jako vágní define mělo stačit.
 
@@ -35,7 +35,7 @@ def sqr(number):
 sqr(3) #9
 \end{python}
 
-Pokud pomineme to, že v jazyce Python máme pro mocninu syntaxi operátoru \kod{**}, mel by nám být
+Pokud pomineme to, že v jazyce Python máme pro mocninu operátr \kod{**}, měl by nám být
 zápis funkce celkem jasný. Definice funkce je uvozena klíčovým slovem \kod{def} následovaným
 jménem funkce a v závorce uvedeným seznamem argumentů oddělených čárkou, což si za chvíli ukážeme.
 Volání funkce je pak provedeno jménem funkce s parametry uvedenými v kulatých závorkách tak,
@@ -60,7 +60,7 @@ zadán parametrem funkce. Máme tak zobecněný (generalizovaný) kód pro výpo
 \section{Parametry funkcí}
 
 Z jazyka C znáte využití defaultního parametru funkce. I v jazyce Python je tato možnost zachována.
-Syntaxe je opět podobná jazyku C, kdy parametr funkce, který může nabývat defaultní hodnoty má
+Syntaxe je opět podobná jazyku C, kdy parametr funkce, který může nabývat defaultní hodnoty, má
 tuto hodnotu v definici funkce nastavenou pomocí rovnítka.
 \textbf{Poznamenejme}, že takovýchto parametrů
 může být více, ale musí být vždy uvedeny na konci seznamu argumentů funkce, jinak by interpret
@@ -118,7 +118,7 @@ Na této ukázce vidíme, jak se tuple v argumentu \kod{b} postupně zaplňuje v
 jak jich přibývá při volání funkce. Také si všimněme, že je argument použit bez znaku \kod{*}.
 
 Pokusme se nyní vytvořit funkci \kod{super\_print}, která bude akceptovat proměnlivý počet argumentů
-(předpokládejme typ \kod{string}). Ty argumenty budou vytištěny a jejich výpis bude ohraničen
+(předpokládejme typ \kod{str}). Tyto argumenty budou vytištěny a jejich výpis bude ohraničen
 nahoře a dole znakem \kod{=} v délce celé sekvence. V kódu jsme využili metodu \kod{join}
 na objektu \kod{str}\footnote{http://docs.python.org/library/stdtypes.html\#str.join}.
 
@@ -169,8 +169,7 @@ def filtruj_mesta(mesta, **kw):
     """Funkce vrati seznam mest, ktere odpovidani svym
     poctem obyvatel zadanym omezenim.
     V **kw bude mozno predat argument:
-     'gt': jen mesta s poctem obyvatel vetsim nez hodnota
-           argumentu.
+     'gt': jen mesta s poctem obyvatel vetsim nez hodnota argumentu.
     Je mozne zadat zadny nebo jeden parametr.
     Pokud nezadame zadny parametr, vrati se prazdny seznam.
     """
@@ -196,10 +195,8 @@ def filtruj_mesta(mesta, **kw):
     """Funkce vrati seznam mest, ktere odpovidani svym
     poctem obyvatel zadanym omezenim.
     V **kw bude mozno predat argument:
-     'gt': jen mesta s poctem obyvatel vetsim nez hodnota
-           argumentu,
-     'lt': jen mesta s poctem obyvatel mensim nez hodnota
-           argumentu.
+     'gt': jen mesta s poctem obyvatel vetsim nez hodnota argumentu,
+     'lt': jen mesta s poctem obyvatel mensim nez hodnota argumentu.
     Je mozne zadat zadny, jeden nebo oba parametry nejednou.
     Pokud nezadame zadny parametr, vrati se prazdny seznam.
     """
@@ -226,7 +223,7 @@ pokud je zavolána jen s původním argumentem \kod{gt}.
 \\
 \noindent
 {\textbf{Poznámka:}}
-V kódu jsme použili list comprehension\footnote{http://docs.python.org/tutorial/datastructures.html\#list-comprehensions}.
+V kódu jsme použili list comprehension\footnote{http://docs.python.org/tutorial/datastructures.html\#list-comprehensions}, který je popsán v kapitole \ref{sec:list-comprehension}.
 \\
 \\
 \noindent
@@ -269,7 +266,7 @@ sqr_lst(sqr, [1, 2, 3])
 
 V ukázce jsme využili již naprogramované funkce \kod{sqr}. Funkce \kod{sqr\_lst}
 dostane dva parametry. Prvním parametrem je funkce, která se bude aplikovat na každý prvek ze seznamu,
-který je předán jako druhý argument. Vevnitř funkce je tedy smyčka \kod{for}, která postupně
+který je předán jako druhý argument. Uvnitř funkce je tedy smyčka \kod{for}, která postupně
 vybírá prvky ze seznamu s čísly a každé takové číslo pošle jako argument funkce \kod{fun}. Výsledek každého volání je pak přidán do výstupního seznamu. V našem případě jsme funkci \kod{sqr\_lst} předali
 funkci \kod{sqr}, která nám z každého čísla vrátí jeho druhou mocninu. 
 
@@ -278,7 +275,7 @@ prvky jakékoli sekvence aplikovat funkci, kterou předáme v parametru. Samozř
 nyní nevymysleli nic nového. Pouze jsme se relativně nenáročnou cestou dostali k dobře známému
 konceptu funkce \kod{map}\index{map}.
 
-Poznamenejme, že v jazycích C a C\# je funkci také možno použít jako argument funkce.
+Poznamenejme, že v jazycích C/C++ a C\# je funkci také možno použít jako argument funkce.
 
 \section{Funkce \kod{map}\index{map}}
 
@@ -341,6 +338,7 @@ map(lambda x: x.upper(), ["ahoj", "svete"])
 
 
 \section{List comprehension\index{list comprehension}}
+\label{sec:list-comprehension}
 
 List comprehension je způsob jak vytvářet nové listy. Doposud jsme je byli schopni vytvářet pomocí
 funkce \kod{map}. List comprehension navíc umožňuje aplikovat na prvky vstupní sekvence predikát.
