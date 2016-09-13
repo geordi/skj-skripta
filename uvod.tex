@@ -87,16 +87,16 @@ $>>>$
 \\
 \noindent
 Řádek se znaky {\texttt{$>>>$}} je tzv. \textbf{prompt}\index{prompt} (výzva). Tam již můžeme zadávat příkazy jazyka a pomocí klávesy Enter je spustit.
-Nyní tedy stačí do promptu napsat {\texttt{print "Ahoj svete!"}} a objeví se nám:
+Nyní tedy stačí do promptu napsat {\texttt{print("Ahoj svete!")}} a objeví se nám:
 
 \begin{python}
->>> print "Ahoj svete"
+>>> print("Ahoj svete")
 Ahoj svete
 >>> 
 \end{python}
 
 \noindent
-Příkaz {\texttt{print}} slouží pro tisk zadaných informaci na výstup. Po zadaní toho to příkazu vidíme výsledek na dalším řádku.
+Funkce {\texttt{print}} slouží pro tisk zadaných informací na výstup. Po volání této funkce vidíme výsledek na dalším řádku.
 \\
 \\
 \noindent
@@ -142,11 +142,11 @@ Uveďme si nyní jednoduchý příklad, který shrnuje obě vlastnosti.
 
 \begin{python}
 if a > 0:
-    print "Positive"
+    print("Positive")
 elif a < 0:
-    print "Negative"
+    print("Negative")
 else:
-    print "Zero"
+    print("Zero")
 \end{python}
 Na příkladu můžeme vidět, že bloky jednotlivých větví příkazu \kod{if}\index{if} jsou uvozeny dvojtečkou a jejich tělo (blok) je
 odsazen o 4 mezery doprava oproti korespondující větvi. Samozřejmě můžeme do bloku umístit více příkazů tak, že

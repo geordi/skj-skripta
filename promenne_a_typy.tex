@@ -137,7 +137,7 @@ Jedním z důležitých prvků programovacích jazyků je práce s kolekcemi dat
 
 \begin{python}
 >>> ret = "Ahoj"
->>> print ret[0], ret[1], ret[2], ret[3]
+>>> print(ret[0], ret[1], ret[2], ret[3])
 A h o j
 \end{python}
 
@@ -149,8 +149,8 @@ Seznamy v jazyce Python jsou však univerzálnější. Mohou ve svých prvcích 
 
 \begin{python}
 >>> sez = ["Ahoj", 1, 2, [1, 2, 3]]
->>> print sez[0], sez[1], sez[2], sez[3]
-["Ahoj", 1, 2, [1, 2, 3]]
+>>> print(sez[0], sez[1], sez[2], sez[3])
+"Ahoj" 1 2 [1, 2, 3]
 \end{python}
 
 \subsubsection{Indexování seznamu}
@@ -158,8 +158,8 @@ S poli v jazyce C bychom byli hotovi, v Pythonu však nikoli. Indexovat seznam m
 
 \begin{python}
 >>> sez = ["Ahoj", 1, 2, [1, 2, 3]]
->>> print sez[-1], sez[-2], sez[-3], sez[-4]
-[ 1, 2, 3], 2, 1, "Ahoj"]
+>>> print(sez[-1], sez[-2], sez[-3], sez[-4])
+[ 1, 2, 3] 2 1 "Ahoj"
 \end{python}
 
 Poslední prvek seznamu má index -1, předposlední -2, atd.
@@ -181,33 +181,33 @@ Seznam můžeme též modifikovat. Nejjednodušeji lze modifikovat určitý prve
 
 \begin{python}
 >>> sez = ["Ahoj", 1, 2, [1, 2, 3]]
->>> print sez
-["Ahoj", 1, 2, [1, 2, 3]]
+>>> print(sez)
+['Ahoj', 1, 2, [1, 2, 3]]
 >>> sez[1] = 5 # 2. prvek bude nahrazen cislem 5
->>> print sez
-["Ahoj", 5, 2, [1, 2, 3]]
+>>> print(sez)
+['Ahoj', 5, 2, [1, 2, 3]]
 \end{python}
 
 Přidání prvku na konec seznamu se provede jednoduše zavoláním funk\-ce \kod{append} na objektu seznamu. Parametr této funkce je objekt, který se vloží na konec seznamu.
 
 \begin{python}
 >>> sez = ["Ahoj", 1, 2, [1, 2, 3]]
->>> print sez
-["Ahoj", 1, 2, [1, 2, 3]]
+>>> print(sez)
+['Ahoj', 1, 2, [1, 2, 3]]
 >>> sez.append(5)
->>> print sez
-["Ahoj", 1, 2, [1, 2, 3], 5]
+>>> print(sez)
+['Ahoj', 1, 2, [1, 2, 3], 5]
 \end{python}
 
 Samozřejmě přidávání prvků na konec seznamu není jedinou možností jak přidat do seznamu prvek. Pokud chceme na partikulární pozici v seznamu umístit nějaký objekt, použijeme funkci \kod{insert}, která přijímá dva parametry. Prvním parametrem je pozice, na kterou se prvek vloží, druhým je prvek samotný. Opět si ukažme příklad:
 
 \begin{python}
 >>> sez = ["Ahoj", 1, 2, [1, 2, 3]]
->>> print sez
-["Ahoj", 1, 2, [1, 2, 3]]
+>>> print(sez)
+['Ahoj', 1, 2, [1, 2, 3]]
 >>> sez.insert(0, 5)
->>> print sez
-[5, "Ahoj", 1, 2, [1, 2, 3]]
+>>> print(sez)
+[5, 'Ahoj', 1, 2, [1, 2, 3]]
 \end{python}
 
 Metoda \kod{insert} tedy vloží prvek na zadanou pozici a ostatní prvky za ní o jednu posune.
@@ -216,13 +216,13 @@ Odstranění prvku ze seznamu můžeme provézt dvěma různými způsoby. Pokud
 
 \begin{python}
 >>> sez = ["Ahoj", 1, 2, [1, 2, 3]]
->>> print sez
-["Ahoj", 1, 2, [1, 2, 3]]
+>>> print(sez)
+['Ahoj', 1, 2, [1, 2, 3]]
 >>> del sez[1]
->>> print sez
-["Ahoj", 2, [1, 2, 3]]
+>>> print(sez)
+['Ahoj', 2, [1, 2, 3]]
 >>> sez.remove("Ahoj")
->>> print sez
+>>> print(sez)
 [2, [1, 2, 3]]
 \end{python}
 
@@ -233,8 +233,8 @@ Velice často se setkáváme s požadavkem, zda seznam obsahuje nějaký prvek �
 
 \begin{python}
 >>> sez = ["Ahoj", 1, 2, [1, 2, 3]]
->>> print sez
-["Ahoj", 1, 2, [1, 2, 3]]
+>>> print(sez)
+['Ahoj', 1, 2, [1, 2, 3]]
 >>> "Ahoj" in sez
 True
 >>> "Cau" in sez
@@ -388,7 +388,7 @@ Out[4]: {460: 'Katedra informatiky',
          'SPJA': 'Skriptovaci jazyky'}
 
 In [5]: for klic in slovnik:
-   ...:     print "Klic:", klic, "Hodnota:", slovnik[klic]
+   ...:     print("Klic:", klic, "Hodnota:", slovnik[klic])
    ...:     
 
 Klic: 460 Hodnota: Katedra informatiky
