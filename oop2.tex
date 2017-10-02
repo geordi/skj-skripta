@@ -97,7 +97,7 @@ class Dog(object):
         self.name = name
 
     def make_sound(self):
-        print "{0}: Haf!".format(self.name)
+        print("{0}: Haf!".format(self.name))
 
 
 class Cat(object):
@@ -105,7 +105,7 @@ class Cat(object):
         self.name = name
 
     def make_sound(self):
-        print "{0}: Minau!".format(self.name)
+        print("{0}: Minau!".format(self.name))
 
 animals = [ Dog("Lassie"), Cat("Tom") ]
 
@@ -238,13 +238,13 @@ class Document(object):
         pass
 
 d1 = Document("Text")
-print d1.no_of_documents # 1
+print(d1.no_of_documents) # 1
 
 d2 = Document("Another text")
-print d1.no_of_documents # 2
-print d2.no_of_documents # 2
+print(d1.no_of_documents) # 2
+print(d2.no_of_documents) # 2
 
-print Document.no_of_documents # 2
+print(Document.no_of_documents) # 2
 \end{python}
 
 Pokaždé, kdy vytvoříme novou instanci dokumentu, je třídní proměnná \kod{no\_of\_documents} inkrementována.
@@ -284,8 +284,8 @@ class Document(object):
 d1 = Document("Text")
 d2 = Document("Another text")
 
-print Document.get_average_length() # 8
-print d1.get_average_length() # 8
+print(Document.get_average_length()) # 8
+print(d1.get_average_length()) # 8
 \end{python}
 
 Na první pohled vidíme oproti běžné metodě dva rozdíly. Prvním je to, že metoda je uvozena
@@ -346,11 +346,11 @@ class Document(object):
 d1 = Document("Text")
 d2 = Document("Another text")
 
-print Document.get_average_length() # 8
+print(Document.get_average_length()) # 8
 
 d2.set_content("This is a bit longer text")
 
-print Document.get_average_length() # 14
+print(Document.get_average_length()) # 14
 \end{python}
 
 V metodě \kod{set\_content} do instanční proměnné \kod{content} uložíme nový obsah stránky.
@@ -400,12 +400,12 @@ class Document(object):
 d1 = Document("Text")
 d2 = Document("Another text")
 
-print Document.get_average_length() # 8
+print(Document.get_average_length()) # 8
 
 d2.content = "This is a bit longer text"
 
-print d2.content # "This is a bit longer text"
-print Document.get_average_length() # 14
+print(d2.content) # "This is a bit longer text"
+print(Document.get_average_length()) # 14
 \end{python}
 
 Naši původní proměnnou \kod{content} jsme přejmenovali na \kod{\_content}, což výsledek nijak neovlivňuje
@@ -455,13 +455,13 @@ class Vector(object):
         return str(self.vec)
 
 v1 = Vector((1, 2, 3, 4))
-print v1
+print(v1)
 
 v2 = Vector((5, 6, 7, 8))
-print v2
+print(v2)
 
 v3 = v1 + v2
-print v3
+print(v3)
 \end{python}
 
 V ukázce vidíme, že operátor \kod{+} je realizován metodou \kod{\_\_add\_\_}.
@@ -521,7 +521,7 @@ se.add_document(Document("Another text"))
 for doc in se.get_documents():
     print doc.get_content()
 
-print se.search("text").content
+print(se.search("text").content)
 \end{python}
 
 Na začátku jsme si řekli, že chceme modelovat systém, který obsahuje dokumenty. Dokumenty jsou tedy součástí
@@ -577,12 +577,12 @@ class Student(Person):
 
 
 s1 = Student("Sean", "Connery")
-print "ID:", s1.get_id(), "Student name:", s1
+print("ID:", s1.get_id(), "Student name:", s1)
 # ID: 1 Student name: Sean Connery
-print s1.get_firstname(), s1.get_surname() # Sean Connery
+print(s1.get_firstname(), s1.get_surname()) # Sean Connery
 
 s2 = Student("James", "Bond")
-print "ID:", s2.get_id(), "Student name:", s2
+print("ID:", s2.get_id(), "Student name:", s2)
 # ID: 2 Student name: James Bond
 \end{python}
 
