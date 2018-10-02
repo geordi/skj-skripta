@@ -511,7 +511,7 @@ class SearchEngine(object):
 
     def search(self, query):
         for doc in self.documents:
-            if doc.content.find(query) > 0:
+            if doc.content.find(query) >= 0:
                 return doc
 
 se = SearchEngine()
