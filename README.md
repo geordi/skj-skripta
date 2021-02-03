@@ -1,4 +1,3 @@
-spja-skripta
-============
+# skj-skripta
 
-Studijní opora k předmětu SPJA s vlastním [Git repozitářem](http://github.com/geordi/spja-course)
+Studijní opora k předmětu [Skriptovací jazyky (SKJ)](http://github.com/geordi/skj-course).
