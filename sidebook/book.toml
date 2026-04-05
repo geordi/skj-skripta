@@ -1,0 +1,11 @@
+[book]
+authors = ["Jan Gaura"]
+language = "en"
+multilingual = false
+src = "src"
+title = "Sidebook"
+
+[output.html]
+additional-css = ["src/tufte.css"]
+
+[preprocessor.sidenote]

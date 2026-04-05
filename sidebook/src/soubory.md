@@ -1,0 +1,27 @@
+# Práce se soubory
+
+V této kapitolo se ukážeme, jak je možno soubory číst a zapisovat. Práce se soubory je, co se týče otevírání a uzavírání, velmi podobná té, s níž jste se již seznámili v jazyce C.
+
+Mějme soubor, který obsahuje následující řádky:
+
+```python
+First line.
+Second line.
+Third line.
+```
+
+```python
+my_file = open('soubor.txt', 'rt')
+
+for line in my_file:
+    print line
+
+my_file.close()
+
+#First line.
+#
+#Second line.
+#
+#Third line.
+#
+```
