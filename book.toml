@@ -1,11 +1,11 @@
 [book]
 authors = ["Jan Gaura"]
 language = "en"
-multilingual = false
 src = "src"
-title = "Sidebook"
+title = "SKJ Skripta"
 
 [output.html]
 additional-css = ["src/tufte.css"]
 
 [preprocessor.sidenote]
+command = "mdbook-sidenote"

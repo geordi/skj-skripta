@@ -1,0 +1,70 @@
+name: Deploy
+
+on:
+  push:
+    branches:
+      - master
+  workflow_dispatch:   # enable manual run
+
+jobs:
+  deploy:
+    concurrency: deploy
+    runs-on: ubuntu-24.04
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v5
+        with:
+          persist-credentials: false
+
+      - name: Set up Rust
+        uses: dtolnay/rust-toolchain@stable
+
+      - name: Install mdBook
+        run: cargo install mdbook --version "^0.4"
+
+      - name: Install mdBook-sidenote
+        run: |
+          wget -q "https://github.com/geordi/mdbook-sidenote/releases/download/release/mdbook-sidenote"
+          chmod +x mdbook-sidenote
+          mkdir -p ~/bin
+          mv mdbook-sidenote ~/bin/
+          echo "$HOME/bin" >> $GITHUB_PATH
+
+      - name: Cache cargo
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cargo/bin
+            ~/.cargo/registry
+            ~/.cargo/git
+          key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
+    
+      #- name: Cache mdbook plugins
+      #  uses: actions/cache@v4
+      #  with:
+      #    path: |
+      #      ~/.cargo/bin/mdbook-plantuml
+      #      ~/.cargo/bin/mdbook-linkcheck
+      #      ~/.cargo/.crates.toml
+      #      ~/.cargo/.crates2.json
+      #    key: ${{ runner.os }}-cache-mdbook-${{ github.run_id }}
+      #    restore-keys: |
+      #      ${{ runner.os }}-cache-mdbook-
+
+      #- name: Install mdbook plugins
+      #  run: |
+      #    cargo install mdbook-plantuml
+      #    cargo install mdbook-linkcheck
+
+      - name: Build
+        run: mdbook build
+        env:
+          MDBOOK_OUTPUT__HTML__SITE_URL: /skj-skripta/
+
+      - name: Deploy
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          branch: gh-pages
+          folder: book
+          clean: true

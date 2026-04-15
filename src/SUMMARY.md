@@ -8,6 +8,7 @@
 - [Standardní knihovna jazyka Python](./stdlib.md)
   - [Vzdálené volání funkcí pomocí XML-RPC](./stdlibxmlrpc.md)
   - [Vestavěný webový server](./stdlibweb.md)
-- [Reference](./reference.md)
 - [Grafická uživatelská rozhraní](./gui.md)
 - [Práce se soubory](./soubory.md)
+- [Reference](./reference.md)
+
