@@ -1,0 +1,1434 @@
+<!DOCTYPE HTML>
+<html lang="en" class="light sidebar-visible" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>SKJ Skripta</title>
+        <meta name="robots" content="noindex">
+
+
+        <!-- Custom HTML head -->
+
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" id="highlight-css" href="highlight.css">
+        <link rel="stylesheet" id="tomorrow-night-css" href="tomorrow-night.css">
+        <link rel="stylesheet" id="ayu-highlight-css" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="src/tufte.css">
+
+
+        <!-- Provide site root and default themes to javascript -->
+        <script>
+            const path_to_root = "";
+            const default_light_theme = "light";
+            const default_dark_theme = "navy";
+            window.path_to_searchindex_js = "searchindex.js";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="toc.js"></script>
+    </head>
+    <body>
+    <div id="mdbook-help-container">
+        <div id="mdbook-help-popup">
+            <h2 class="mdbook-help-title">Keyboard shortcuts</h2>
+            <div>
+                <p>Press <kbd>←</kbd> or <kbd>→</kbd> to navigate between chapters</p>
+                <p>Press <kbd>S</kbd> or <kbd>/</kbd> to search in the book</p>
+                <p>Press <kbd>?</kbd> to show this help</p>
+                <p>Press <kbd>Esc</kbd> to hide this help</p>
+            </div>
+        </div>
+    </div>
+    <div id="body-container">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                let theme = localStorage.getItem('mdbook-theme');
+                let sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
+            let theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            const html = document.documentElement;
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add("js");
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            let sidebar = null;
+            const sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+                sidebar_toggle.checked = false;
+            }
+            if (sidebar === 'visible') {
+                sidebar_toggle.checked = true;
+            } else {
+                html.classList.remove('sidebar-visible');
+            }
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="toc.html"></iframe>
+            </noscript>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="default_theme">Auto</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search (`/`)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="/ s" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">SKJ Skripta</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <div class="search-wrapper">
+                            <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                            <div class="spinner-wrapper">
+                                <i class="fa fa-spinner fa-spin"></i>
+                            </div>
+                        </div>
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="Úvod"><a class="header" href="#Úvod">Úvod</a></h1>
+<p>Tento text vznikl pro potřeby výuky předmětu Skriptovací jazyky. Studentům by měl sloužit pro získání nutného minima znalostí ke zvládnutí programování v jazyce kurzu – tedy jazyka Python<label for="sn-úvod-1" class="margin-toggle"><sup>1</sup></label><input type="checkbox" id="sn-úvod-1" class="margin-toggle"/><span class="sidenote"><sup class="sidenote-number">1</sup> http://www.python.org</span>. V žádném případě však není text plnohodnotnou náhradou za poslechy přednášek a návštěvy cvičení. Studentům je tudíž velmi doporučeno, aby přednášky a cvičení navštěvovali.</p>
+<p>Tento text si též neklade za cíl vytvořit kompletního průvodce jazykem Python. Pro takovýto účel lze doporučit některý knižní titul, např.: <a href="reference.html#harms-mcdonald">Harms, McDonald</a>.</p>
+<h2 id="Úvod-do-skriptovacích-jazyků"><a class="header" href="#Úvod-do-skriptovacích-jazyků">Úvod do skriptovacích jazyků</a></h2>
+<p>Skriptovací programovací jazyky tvoří protiváhu tzv. kompilovaným programovacím jazykům. Jednotlivé programy jsou tvořeny zdrojovými kódy (skripty), které jsou tzv. interpretovány, tj. čteny a spouštěny za běhu speciálním programem, tzv. interpretem.</p>
+<p>Typický skript těží z výhody, že se nemusí překládat, a často tvoří rozšiřitelnou (parametrickou) část nějakého softwarového projektu, která se může měnit, aniž by bylo potřeba pokaždé rekompilovat hlavní spustitelný soubor. Skripty tak najdeme u her (Quake), grafických uživatelských rozhraní (XULRunner v produktech Mozilla), složitějších softwarových řešení nebo jako hlavní součást dynamických webových stránek (YouTube, Instagram) a podobně.</p>
+<p><strong>Výhody:</strong></p>
+<ul>
+<li>Není nutné provádět po každé změně kódu kompilaci,</li>
+<li>snadnější údržba, vývoj a správa kódu,</li>
+<li>některé skripty umožňují interpretaci kódu z řetězce (jako například funkce eval() v Pythonu nebo PHP). Něco takového překládané programy bez použití speciálních technik nedokáží.</li>
+</ul>
+<p><strong>Nevýhody:</strong></p>
+<ul>
+<li>
+<p>Rychlost. Interpretace stojí určitý strojový čas a většinou nebývá tak rychlá jako běh přeloženého (a optimalizovaného) programu,</p>
+</li>
+<li>
+<p>vyšší paměťová náročnost. Interpret musí být spuštěn a tedy zabírá určitou část operační paměti,</p>
+</li>
+<li>
+<p>skriptovací jazyky mají většinou větší omezení než překládané programovací jazyky (např. co do přístupu do paměti, ovládání tzv. handlerů procesů, kontextových zařízení, apod.).</p>
+</li>
+</ul>
+<h2 id="programovací-jazyk-python"><a class="header" href="#programovací-jazyk-python">Programovací jazyk Python</a></h2>
+<p>Python je interpretovaný procedurální, objektově orientovaný a funkcionální programovací jazyk, který v roce 1990 navrhl Guido van Rossum. Python je vyvíjen jako open source projekt, který zdarma nabízí instalační balíky pro většinu běžných platforem (Unix, Windows, Mac OS); ve většině distribucí systému GNU/Linux je Python součástí základní instalace.</p>
+<p>Python je dynamický interpretovaný jazyk a také jej zařazujeme mezi skriptovací jazyky. Python byl navržen tak, aby umožňoval tvorbu rozsáhlých, plnohodnotných aplikací (včetně grafického uživatelského rozhraní).</p>
+<p>Python je hybridní jazyk (nebo také víceparadigmatický), to znamená, že umožňuje při psaní programů používat nejen objektově orientované paradigma, ale i procedurální a v omezené míře i funkcionální, podle toho komu co vyhovuje nebo co se pro danou úlohu nejlépe hodí. Python má díky tomu vynikající vyjadřovací schopnosti. Kód programu je ve srovnání s jinými jazyky krátký a dobře čitelný.</p>
+<p>K význačným vlastnostem jazyka Python patří jeho jednoduchost z hlediska učení a proto se jím budeme primárně zabývat v rámci našeho kurzu. Bývá dokonce považován za jeden z nejvhodnějších programovacích jazyků pro začátečníky. Python ale současně bourá zažitou představu, že jazyk vhodný pro výuku není vhodný pro praxi a naopak. Podstatnou měrou k tomu přispívá čistota a jednoduchost syntaxe, na kterou se při vývoji jazyka hodně dbá.</p>
+<p>Význačnou vlastností jazyka Python je produktivita z hlediska rychlosti psaní programů. Týká se to jak nejjednodušších programů, tak aplikací velmi rozsáhlých. U jednoduchých programů se tato vlastnost projevuje především stručností zápisu. U velkých aplikací je produktivita podpořena rysy, které se používají při programování ve velkém, jako jsou například přirozená podpora prostorů jmen, používání výjimek, standardně dodávané prostředky pro psaní testů (unit testing) a dalšími. S vysokou produktivitou souvisí dostupnost a snadná použitelnost široké škály knihovních modulů, umožňujících snadné řešení úloh z řady oblastí. V poslední době je Python též oblíben u komunity zabývající se výpočty na superpočítačích (HPC). K tomuto účelu vznikla speciální sada knihoven, která je protiváhou dobře známemu MATLABu – SciPy<label for="sn-úvod-2" class="margin-toggle"><sup>2</sup></label><input type="checkbox" id="sn-úvod-2" class="margin-toggle"/><span class="sidenote"><sup class="sidenote-number">2</sup> http://www.scipy.org/</span>.</p>
+<h2 id="vývojové-prostředí-jazyka-python"><a class="header" href="#vývojové-prostředí-jazyka-python">Vývojové prostředí jazyka Python</a></h2>
+<p>Pro práci v s jazykem Python je doporučováno mít nainstalován Python ve verzi 2.5, 2.6 nebo 2.7. Uživatelé Linuxových distribucí již mají Python nainstalován ve standardní instalaci. Uživatelé Windows si mohou stáhnout instalátor Pythonu z domovské stránky projektu <a href="reference.html#python-web">Oficiální webová stránka jazyka Python</a>, sekce Download.</p>
+<p>Skriptovací jazyky mají většinou tu vlastnost, že dovolují spouštění skriptů dvojím způsobem a to v <strong>interaktivním režimu</strong> a nebo spuštění skriptu ze souboru se zdrojovým kódem (<strong>dávkový režim</strong>).</p>
+<p><strong>Interaktivní režim</strong> lze spustit jednoduše spuštěním interpretu Pythonu z příkazové řádky nebo z programové nabídky. Tento režim slouží většinou k testování funkcionality kódu. Po spuštění interaktivního režimu se na obrazovce objeví následující výpis:</p>
+<pre><code class="language-text">Python 3.4.2 (default, Oct  8 2014, 10:45:20)
+GCC 4.9.1 on linux
+Type "help", "copyright", "credits" or "license"
+for more information.
+$&gt;&gt;&gt;$
+</code></pre>
+<p>Řádek se znaky <code>&gt;&gt;&gt;</code> je tzv. <strong>prompt</strong> (výzva). Tam již můžeme zadávat příkazy jazyka a pomocí klávesy Enter je spustit. Nyní tedy stačí do promptu napsat <code>print("Ahoj svete!")</code> a objeví se nám:</p>
+<pre><code class="language-python">&gt;&gt;&gt; print("Ahoj svete")
+Ahoj svete
+&gt;&gt;&gt;
+</code></pre>
+<p>Funkce <code>print</code> slouží pro tisk zadaných informací na výstup. Po volání této funkce vidíme výsledek na dalším řádku.</p>
+<p><strong>Dávkový režim</strong> slouží ke spouštění složitějších skriptů. Takovýto skript spustíme jednoduše na příkazové řádce pomocí příkazu ($ je promptem shellu operačního systému):</p>
+<pre><code class="language-text">$ python muj_skript.py
+</code></pre>
+<p><strong>Cvičení:</strong></p>
+<p>Vytvořte si jednoduchý skript, který vypíše na výstup řetězec "Ahoj svete" a ověřte jeho funkcionalitu.</p>
+<p><strong>Cvičení:</strong></p>
+<p>V interaktivním režimu si vyzkoušejte jednoduché počítání. Provádějte operace s čísly jako na kalkulátoru. Pokuste se použít proměnné a závorky.</p>
+<p><strong>Cvičení:</strong></p>
+<p>V interaktivním režimu si vyzkoušejte práci s řetězci. Použijte znaky pro uvození řetězců " a ' a sledujte jak se od sebe liší popřípadě, zda je možné je do sebe zanořit. Přistupujte k jednotlivým prvkům a podřetězcům řetězců pomocí indexů mezi znaky $[$ a $]$. Řetězce spojujte.</p>
+<p><strong>Cvičení:</strong></p>
+<p>V interaktivním režimu si vyzkoušejte práci s seznamy a n-ticemi (jsou popsány v 6. kapitole knihy). Opět přistupujte k jednotlivým prvkům seznamů a n-tic. Přidávejte prvky do již existujících seznamů.</p>
+<p><a id="sec:syntax"></a></p>
+<h2 id="syntaxe"><a class="header" href="#syntaxe">Syntaxe</a></h2>
+<p>Jazyk Python má relativně jednoduchou syntaxi nez množství různých "kudrlinek" (Anglicky je toto nazýváno pojmem "boilerplate"). Hlavní rysy, se kterými mají někdy začátečníci problémy, by se daly shrnout do následujících bodů:</p>
+<ul>
+<li>
+<p>nepoužívají se složené závorky <code>{}</code> pro označení bloku, používá se <strong>odsazení</strong>, který je uvozen dvojtečkou <code>:</code>,</p>
+</li>
+<li>
+<p>nepoužívají se složené závorky <code>{</code> a <code>}</code> pro označení bloku, používá se <strong>odsazení</strong>, který je uvozen dvojtečkou <code>:</code>,</p>
+</li>
+<li>
+<p>u podmínek příkazů <code>if</code> a <code>while</code> se nepoužívají kulaté závorky <code>(</code> a <code>)</code>,</p>
+</li>
+<li>
+<p>pro ukončení příkazu nepoužíváme středník <code>;</code>, ale jednoduše přejdeme na nový řádek a vložíme další příkaz.</p>
+</li>
+</ul>
+<p>Uveďme si nyní jednoduchý příklad, který shrnuje obě vlastnosti.</p>
+<pre><code class="language-python">if a &gt; 0:
+    print("Positive")
+elif a &lt; 0:
+    print("Negative")
+else:
+    print("Zero")
+</code></pre>
+<p>Na příkladu můžeme vidět, že bloky jednotlivých větví příkazu <code>if</code> jsou uvozeny dvojtečkou a jejich tělo (blok) je odsazen o 4 mezery doprava oproti korespondující větvi. Samozřejmě můžeme do bloku umístit více příkazů tak, že je postupně řadíme pod sebe se stejným odsazením. Též si povšimněme, že není použit znak středníku. Speciálně odsazení bloků je někdy problematické. V jazycích jako je C nebo Java však také běžně bloky odsazujeme proto, abychom je jednoduše vizuálně odlišili. Proto je v jazyce Python této dobře známé praktiky využito s tím, že není nutné psát označení bloků složenými závorkami. Také si povšimněme, že blok je uvozen dvojtečkou. Pro srovnání je ještě zobrazena stejná situace v jazyce C.</p>
+<pre><code class="language-python">if (a &gt; 0) {
+    printf( "Positive\n" );
+}
+else if (a &lt; 0) {
+    printf( "Negative\n" );
+}
+else {
+    printf( "Zero\n" );
+}
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="proměnné"><a class="header" href="#proměnné">Proměnné</a></h1>
+<p>V dynamicky typovaných jazycích nedeklarujeme typy použitých proměnných jako třeba v jazycích C/C++, Java, apod. Nebuďme však uvedeni v omyl, že by proměnné neměly svůj typ! Typy jednotlivých proměnných jsou rozlišeny za běhu. V jazyce Python není možné, aby proměnná neměla přiřazen nějaký typ.</p>
+<p>Proměnnou vytvoříme jednoduchým přiřazením nějaké hodnoty do jejího jména. Na následujícím výpisu kódu je ukázáno, jak vytvořit proměnnou, zjistit její datový typ a dále do ní přiřadit jinou hodnotu jiného datového typu.</p>
+<pre><code class="language-python">In [1]: promenna
+-----------------------------------------------------------
+NameError                 Traceback (most recent call last)
+&lt;ipython-input-2-4c4614e58bc8&gt; in &lt;module&gt;()
+----&gt; 1 promenna
+
+NameError: name 'promenna' is not defined
+
+In [2]: promenna = 1
+
+In [3]: promenna
+Out[3]: 1
+
+In [4]: type(promenna)
+Out[4]: int
+
+In [5]: promenna = 1.0
+
+In [6]: type(promenna)
+Out[6]: float
+
+In [7]: promenna = "Toto je text."
+
+In [8]: type(promenna)
+Out[8]: str
+
+In [9]: promenna = True
+
+In [10]: type(promenna)
+Out[10]: bool
+
+In [11]: promenna = False
+
+In [12]: type(promenna)
+Out[12]: bool
+</code></pre>
+<p>Na výše uvedeném výpisu je použit interpret <strong>iPython</strong><label for="sn-proměnné-1" class="margin-toggle"><sup>1</sup></label><input type="checkbox" id="sn-proměnné-1" class="margin-toggle"/><span class="sidenote"><sup class="sidenote-number">1</sup> http://ipython.org/</span>, který poskytuje větší uživatelský komfort než standardní interpret. Řádek <code>1</code> demonstruje, že pokud do proměnné <code>promenna</code> neuložíme nějakou hodnotu, její jméno neexistuje a ani jej nemůžeme referovat. Také můžeme vidět, že tento příkaz vyhodil výjimku <code>NameError</code>. Pro teď nám bude stačit konstatovat, že všechny chyby v jazyce Python budou interpretem vyhodnoceny jako výjimky. Díky tomu je také můžeme jednoduše ošetřit. Na řádku <code>2</code> vidíme přiřazení hodnoty <code>1</code> do proměnné <code>promenna</code>. Na řádku <code>3</code> vidíme, že pokud použijeme jméno proměnné, dostaneme její hodnotu. Na řádku <code>4</code> se ptáme na typ proměnné pomocí funkce <code>type</code>. Na řádku <code>5</code> jsme přiřadili do proměnné hodnotu typu <code>float</code> a na řádku <code>7</code> hodnotu typu <code>str</code>, která je zkratkou pro typ string. Na řádcích <code>9</code> a <code>11</code> vidíme použití pravdivostní hodnoty <code>True</code> a <code>False</code>, které jsou datového typu <code>bool</code>.</p>
+<p>Na výše uvedeném výpisu programu můžeme vidět první základní vlastnost dynamicky typovaných jazyků a to tu, že proměnná, která má přiřazenu nějakou hodnotu a s ní nějaký datový typ může v průběhu programu tento typ změnit. Samozřejmě to není vlastnost jediná, ale je to vlastnost, která je nejčastěji vidět.</p>
+<p>V interpretu můžeme provádět klasické operace s proměnnými tak, jak jsme zvyklí z běžných jazyků (tím myslíme operace sčítání, násobení, apod.). Nezapomeňme, že dělení dvou celých čísel je opět celé číslo. Dělení celých čísel se tedy chová stejně jako v jazyce C.</p>
+<p>To, že proměnné nemají předem určený typ však neznamená, že bychom mohli provádět nedefinované operace. Uveďme si jednoduchý příklad.</p>
+<pre><code class="language-python">In [13]: 123 + "Ahoj"
+----------------------------------------------------------
+TypeError                Traceback (most recent call last)
+&lt;ipython-input-13-4d72da21761a&gt; in &lt;module&gt;()
+----&gt; 1 123 + "Ahoj"
+
+TypeError: unsupported operand type(s) for +: 'int' and 'str'
+
+In [14]: a = 123
+
+In [15]: b = "Ahoj"
+
+In [16]: a + b
+----------------------------------------------------------
+TypeError                Traceback (most recent call last)
+&lt;ipython-input-16-f96fb8f649b6&gt; in &lt;module&gt;()
+----&gt; 1 a + b
+
+TypeError: unsupported operand type(s) for +: 'int' and 'str'
+</code></pre>
+<p>Na příkladu můžeme vidět, že interpret poznal, že se snažíme o sečtení celého čísla a řetězce. Při takovéto operaci nevíme, jaký má být výsledný datový typ, a proto interpret vyhodil výjimku <code>TypeError</code>. Ve výpisu je provedena ukázka s použitím proměnných i bez nich, aby bylo vidět, že i jednotlivé literály jsou v jazyce Python objekty. K tématu objektů se vrátíme později.</p>
+<h1 id="jednoduché-datové-typy"><a class="header" href="#jednoduché-datové-typy">Jednoduché datové typy</a></h1>
+<p>Nyní si ve stručnosti ukážeme základní datové typy.</p>
+<p><strong>Čísla:</strong> <code>int, long, float, complex</code></p>
+<ul>
+<li><code>23 2345837934346901268 0x17 3.4 5.6+7.8j</code></li>
+<li>operátory: <code>+ - * ** / // % ~ &amp; | &lt;&lt; &gt;&gt;</code></li>
+<li>build-in funkce: <code>abs min max pow round sum</code></li>
+</ul>
+<p><strong>Cvičení:</strong></p>
+<p>V interaktivním režimu si vyzkoušejte práci s čísly. Vyzkoušejte si operátory, speciálně operátor <code>**</code>. Také si zkuste použití build-in funkcí, které jsou často užitečné.</p>
+<p><strong>Řetězce:</strong> jednoduché a Unicode</p>
+<ul>
+<li><code>'apostrofy' "uvozovky" r'raw' u"unicode" \n</code></li>
+<li>operátory: <code>+</code> (spojení, konkatenace), <code>*</code> (opakovaní), <code>%</code> (format)</li>
+<li>formátování podobné jako v jazyce C</li>
+<li>jsou neměnitelné (immutable) sekvence: <code>len</code>, <code>[]</code> (index/slice), <code>for</code></li>
+<li>objekt řetězce má mnoho metod</li>
+</ul>
+<p><strong>Cvičení:</strong></p>
+<p>Vyzkoušejte práci s řetězci. Použijte znaky pro uvození řetězců " a ' a sledujte jak se od sebe liší popřípadě, zda je možné je do sebe zanořit. Přistupujte k jednotlivým prvkům a podřetězcům řetězců pomocí indexů mezi znaky <code>[</code> a <code>]</code>. Řetězce spojujte.</p>
+<h1 id="kolekce"><a class="header" href="#kolekce">Kolekce</a></h1>
+<p>Jedním z důležitých prvků programovacích jazyků je práce s kolekcemi dat. Pod pojmem kolekce si budeme představovat nějakou datovou strukturu, která nám umožní vkládat jednotlivé (třeba i různé) prvky do jedné proměnné. Takováto proměnná se pak bude nazývat kolekcí (shromažďuje v sobě jiné prvky). S kolekcí jsme se již setkali v podobě řetězců, kde je řetězec znaků tvořen jednotlivými znaky, které jsou uloženy v jednotlivých prvcích seznamu. K jednotlivým znakům řetězce též můžeme přistoupit pomocí hranatých závorek uvedených za seznamem. Ukažme si to na příkladu:</p>
+<pre><code class="language-python">&gt;&gt;&gt; ret = "Ahoj"
+&gt;&gt;&gt; print(ret[0], ret[1], ret[2], ret[3])
+A h o j
+</code></pre>
+<p>Z uvedeného příkladu vyplývá, že seznamy se do určité míry chovají jako pole v jazyce C.</p>
+<p><a id="sec:list"></a></p>
+<h2 id="seznam-list"><a class="header" href="#seznam-list">Seznam (<code>list</code>)</a></h2>
+<p>Seznamy v jazyce Python jsou však univerzálnější. Mohou ve svých prvcích obsahovat jakékoli další prvky bez ohledu na datový typ (toto je důsledek dynamického typování jazyka). Uveďme si tedy další příklad:</p>
+<pre><code class="language-python">&gt;&gt;&gt; sez = ["Ahoj", 1, 2, [1, 2, 3]]
+&gt;&gt;&gt; print(sez[0], sez[1], sez[2], sez[3])
+"Ahoj" 1 2 [1, 2, 3]
+</code></pre>
+<h3 id="indexování-seznamu"><a class="header" href="#indexování-seznamu">Indexování seznamu</a></h3>
+<p>S poli v jazyce C bychom byli hotovi, v Pythonu však nikoli. Indexovat seznam můžeme i od konce:</p>
+<pre><code class="language-python">&gt;&gt;&gt; sez = ["Ahoj", 1, 2, [1, 2, 3]]
+&gt;&gt;&gt; print(sez[-1], sez[-2], sez[-3], sez[-4])
+[ 1, 2, 3] 2 1 "Ahoj"
+</code></pre>
+<p>Poslední prvek seznamu má index -1, předposlední -2, atd.</p>
+<p>Z nějakého seznamu můžeme vytvořit podseznam (subsekvenci). Tu vytvoříme tak, že do hranatých závorek vložíme index prvního a posledního prvku (bez tohoto prvku), které chceme ve výsledném podseznamu mít. Počátek a konec oddělíme dvojtečkou. Často může nastat případ, kdy chceme podseznam od začátku do nějakého indexu, nebo od nějakého indexu do konce seznamu. V takovémto případě se začátek nebo konec v rozsahu vynechá. Ukažme si příklady:</p>
+<pre><code class="language-python">&gt;&gt;&gt; sez = ["Ahoj", 1, 2, [1, 2, 3]]
+&gt;&gt;&gt; sez[2:4] # od 2. do 3. prvku
+[2, [1, 2, 3]]
+&gt;&gt;&gt; sez[:2] # od zacatku do 2. prvku
+['Ahoj', 1]
+&gt;&gt;&gt; sez[2:] # od 3. prvku do konce
+[2, [1, 2, 3]]
+</code></pre>
+<h3 id="modifikace-seznamu"><a class="header" href="#modifikace-seznamu">Modifikace seznamu</a></h3>
+<p>Seznam můžeme též modifikovat. Nejjednodušeji lze modifikovat určitý prvek seznamu tak, že jej indexujeme a do takto indexovaného prvku přiřadíme požadovanou hodnotu. Stávající hodnota se v seznamu přepíše hodnotou novou.</p>
+<pre><code class="language-python">&gt;&gt;&gt; sez = ["Ahoj", 1, 2, [1, 2, 3]]
+&gt;&gt;&gt; print(sez)
+['Ahoj', 1, 2, [1, 2, 3]]
+&gt;&gt;&gt; sez[1] = 5 # 2. prvek bude nahrazen cislem 5
+&gt;&gt;&gt; print(sez)
+['Ahoj', 5, 2, [1, 2, 3]]
+</code></pre>
+<p>Přidání prvku na konec seznamu se provede jednoduše zavoláním funkce <code>append</code> na objektu seznamu. Parametr této funkce je objekt, který se vloží na konec seznamu.</p>
+<pre><code class="language-python">&gt;&gt;&gt; sez = ["Ahoj", 1, 2, [1, 2, 3]]
+&gt;&gt;&gt; print(sez)
+['Ahoj', 1, 2, [1, 2, 3]]
+&gt;&gt;&gt; sez.append(5)
+&gt;&gt;&gt; print(sez)
+['Ahoj', 1, 2, [1, 2, 3], 5]
+</code></pre>
+<p>Samozřejmě přidávání prvků na konec seznamu není jedinou možností jak přidat do seznamu prvek. Pokud chceme na partikulární pozici v seznamu umístit nějaký objekt, použijeme funkci <code>insert</code>, která přijímá dva parametry. Prvním parametrem je pozice, na kterou se prvek vloží, druhým je prvek samotný. Opět si ukažme příklad:</p>
+<pre><code class="language-python">&gt;&gt;&gt; sez = ["Ahoj", 1, 2, [1, 2, 3]]
+&gt;&gt;&gt; print(sez)
+['Ahoj', 1, 2, [1, 2, 3]]
+&gt;&gt;&gt; sez.insert(0, 5)
+&gt;&gt;&gt; print(sez)
+[5, 'Ahoj', 1, 2, [1, 2, 3]]
+</code></pre>
+<p>Metoda <code>insert</code> tedy vloží prvek na zadanou pozici a ostatní prvky za ní o jednu posune.</p>
+<p>Odstranění prvku ze seznamu můžeme provézt dvěma různými způsoby. Pokud víme, na které pozici se prvek který chceme odstranit nachází, můžeme použít příkazu <code>del</code> a zadat seznam s indexem prvku k odstranění. Druhá možnost je ta, kdy neznáme pozici prvku v seznamu, ale známe jeho hodnotu. V takovémto případě zavoláme metodu <code>remove</code> s argumentem prvku k odstranění na našem seznamu (pokud je v seznamu více prvků, které vyhovují zadanému argumentu, odstraní se první prvek zleva). Příklad ukazuje použití obou metod:</p>
+<pre><code class="language-python">&gt;&gt;&gt; sez = ["Ahoj", 1, 2, [1, 2, 3]]
+&gt;&gt;&gt; print(sez)
+['Ahoj', 1, 2, [1, 2, 3]]
+&gt;&gt;&gt; del sez[1]
+&gt;&gt;&gt; print(sez)
+['Ahoj', 2, [1, 2, 3]]
+&gt;&gt;&gt; sez.remove("Ahoj")
+&gt;&gt;&gt; print(sez)
+[2, [1, 2, 3]]
+</code></pre>
+<h3 id="práce-se-seznamem"><a class="header" href="#práce-se-seznamem">Práce se seznamem</a></h3>
+<p>Čisté přidávání nebo odebírání prvků ze seznamu není zcela užitečnou operací. Nyní si ukážeme několik jednoduchých, avšak užitečných operací nad seznamem.</p>
+<p>Velice často se setkáváme s požadavkem, zda seznam obsahuje nějaký prvek či nikoli. Python obsahuje klíčové slovo <code>in</code>, které lze ve spojení se seznamem k takovémuto účelu využít. Ukažme si tedy jednoduchý příklad, kdy se budeme snažit zjistit, zda je nějaký prvek v našem seznamu:</p>
+<pre><code class="language-python">&gt;&gt;&gt; sez = ["Ahoj", 1, 2, [1, 2, 3]]
+&gt;&gt;&gt; print(sez)
+['Ahoj', 1, 2, [1, 2, 3]]
+&gt;&gt;&gt; "Ahoj" in sez
+True
+&gt;&gt;&gt; "Cau" in sez
+False
+</code></pre>
+<p>Tento jednoduchý způsob zjišťování obsahu seznamu se často používá ve webových aplikacích, kde se snažíme zjistit, jestli je v URL předáván nějaký parametr. Ve spojení s podmínkou <code>if</code> se pak můžeme rozhodnout, jak se k přijatému HTTP požadavku zachovat.</p>
+<p>Pro zjištění maxima nebo minima v seznamu můžeme využít vestavěnou funkci <code>min</code> a <code>max</code>, které budou brát jako argument seznam.</p>
+<pre><code class="language-python">&gt;&gt;&gt; sez = [8, 1, 2, 5]
+&gt;&gt;&gt; max(sez)
+8
+&gt;&gt;&gt; min(sez)
+1
+</code></pre>
+<h2 id="n-tice-tuple"><a class="header" href="#n-tice-tuple">N-tice (<code>tuple</code>)</a></h2>
+<p>Seznam má v Pythonu také nemodifikovatelný ekvivalent v podobě n-tice. Význam slova nemodifikovatelný je třeba chápat tak, že jakmile je n-tice vytvořena, nelze její prvky přidávat ani mazat. Další práce s n-ticí je však stejná jako se seznamem. Můžeme jednoduše vytvářet podn-tice pomocí stejné notace jako u seznamu. Zjišťování obsahu n-tice probíhá obdobným způsobem.</p>
+<p>Jak tedy odlišit n-tici od seznamu? Odpověď je velice jednoduchá. Seznam je vytvořen pomocí hranatých závorek, n-tice pomocí závorek kulatých. Pro názornost si opět uveďme jednoduchý příklad:</p>
+<pre><code class="language-python">&gt;&gt;&gt; tup = (8, 1, 2, 5)
+&gt;&gt;&gt; tup[2:3]
+(2, 5)
+&gt;&gt;&gt; max(tup)
+8
+&gt;&gt;&gt; min(tup)
+1
+</code></pre>
+<p>N-tice používáme hlavně tam, kde víme, že nepotřebujeme měnit jejich obsah. Slouží též jako základ pro konstrukci slovníků.</p>
+<p><a id="sec:dict"></a></p>
+<h2 id="slovník-dict"><a class="header" href="#slovník-dict">Slovník (<code>dict</code>)</a></h2>
+<p>Pokud chceme v seznamu nebo n-tici, které jsou obecně nesetřízené, nalézt nějakou položku, její vyhledání je v čase <code>O(n)</code>, kde <code>n</code> je počet prvků uložených v seznamu nebo n-tici. Pro velké kolekce dat je toto samozřejmě značně problematické. Tento problém řeší datový typ slovník. Slovník mapuje klíč (key) na hodnotu (value) pomocí hašovací tabulky. Vyhledání hodnoty pro zadaný klíč je pomocí slovníku v konstantním čase <code>O(1)</code>.</p>
+<p>Příklady, jako mohou vypadat slovníky:</p>
+<ul>
+<li><code>{}</code></li>
+<li><code>{'key': 12}</code></li>
+<li><code>{1: 'value'}</code></li>
+<li><code>{'key': 'value'}</code></li>
+<li><code>{'Galactica': 75, 'Pegasus': 62}</code></li>
+<li><code>dict(one=1, two=2)</code></li>
+</ul>
+<p>Příklad práce se slovníkem:</p>
+<pre><code class="language-python">In [1]: slovnik = {}
+
+In [2]: slovnik
+Out[2]: {}
+
+#ulozeni hodnoty pod klic 'SPJA'
+In [3]: slovnik['SPJA'] = "Skriptovaci jazyky"
+
+#ziskani hodnoty pro klic 'SPJA'
+In [4]: slovnik['SPJA']
+Out[4]: 'Skriptovaci jazyky'
+</code></pre>
+<p>Je jasné, že pro neexistující klíč není ve slovníku hodnota. Pokud bychom se tedy zeptali na neexistující klíč, obdržíme výjimku <code>KeyError</code> tak, jak už jsme z jazyka zvyklí.</p>
+<pre><code class="language-python"># pokus o ziskani hodnoty pro klic 460
+In [6]: slovnik[460]
+------------------------------------------------------------
+KeyError                   Traceback (most recent call last)
+&lt;ipython-input-6-ef73e3cb1ba9&gt; in &lt;module&gt;()
+----&gt; 1 slovnik[460]
+
+KeyError: 460
+
+#ulozeni hodnoty pod klic 460
+In [7]: slovnik[460] = 'Katedra informatiky'
+
+#ziskani hodnoty pro klic 460
+In [8]: slovnik[460]
+Out[8]: 'Katedra informatiky'
+</code></pre>
+<p>Pro zjištění, zda-li slovní obsahuje daný klíč můžeme použít klíčového slova <code>in</code>. Díky tomu můžeme předejít vyhození výjimky neexistujícího klíče. Použití je ukázáno na následujícím příkladu.</p>
+<pre><code class="language-python">In [29]: slovnik
+Out[29]:
+{460: 'Katedra informatiky',
+ 'SPJA': 'Skriptovaci jazyky'}
+
+In [30]: 470 in slovnik
+Out[30]: False
+
+In [31]: slovnik[470] = "Katedra aplikovane matematiky"
+
+In [32]: slovnik
+Out[32]:
+{460: 'Katedra informatiky',
+ 470: 'Katedra aplikovane matematiky',
+ 'SPJA': 'Skriptovaci jazyky'}
+
+In [33]: 470 in slovnik
+Out[33]: True
+</code></pre>
+<p><a id="sec:sequnces"></a></p>
+<h1 id="sekvence"><a class="header" href="#sekvence">Sekvence</a></h1>
+<p>Z výše uvedených datových typů jsou sekvencemi: řetězce (string), seznamy a n-tice. Sekvence můžeme sčítat (<code>c1 + c2</code>), opakovat (<code>c*N</code>). Všechny sekvence je také možno indexovat pomocí jednotného rozhraní: <code>c[i]</code>, <code>'ciao'[2] == 'a'</code>. Ze sekvencí též můžeme vybírat různé podsekvence pomocí tzv. slicingu: <code>c[i:j]</code>, <code>c[i:j:k]</code>, <code>'ciao'[3:1:-1] == 'oa'</code>. Více příkladů na toto téma jsme si ukázali v části <a href="promenne_a_typy.html#sec:list">Seznam (<code>list</code>)</a>.</p>
+<p>Sekvence také můžeme jednoduše procházet pomocí cyklu <code>for</code>, kdy v jednotlivých průchodech dostáváme hodnotu na dané pozici ze sekvence v řídící proměnné.</p>
+<p>Slovník má tu vlastnost, že není sekvencí, ale je možné jej procházet cyklem <code>for</code>. Více ukáže následující příklad.</p>
+<pre><code class="language-python">In [1]: slovnik = {}
+
+In [2]: slovnik['SPJA'] = "Skriptovaci jazyky"
+
+In [3]: slovnik[460] = "Katedra informatiky"
+
+In [4]: slovnik
+Out[4]: {460: 'Katedra informatiky',
+         'SPJA': 'Skriptovaci jazyky'}
+
+In [5]: for klic in slovnik:
+   ...:     print("Klic:", klic, "Hodnota:", slovnik[klic])
+   ...:
+
+Klic: 460 Hodnota: Katedra informatiky
+Klic: SPJA Hodnota: Skriptovaci jazyky
+</code></pre>
+<h1 id="porovnání-testy-pravdivost"><a class="header" href="#porovnání-testy-pravdivost">Porovnání, testy, pravdivost</a></h1>
+<p>Pro porovnání hodnot v jazyce Python používáme operátory <code>==</code> a <code>!=</code>. Pro porovnání identity pak operátory <code>is</code> a <code>is not</code>. Operátor identity funguje jinak než např. metoda <code>equals</code> v jazyce Java. V principu operátor identity neporovnává obsah nějakých proměnných, ale porovnává, zda jednotlivé proměnné ukazují na stejný objekt v paměti. Více nám osvětlí následující příklad.</p>
+<pre><code class="language-python">In [36]: 123435 is 123435
+Out[36]: True
+
+In [37]: 123435 == 123435
+Out[37]: True
+
+In [38]: a = 123456
+
+In [39]: a == 123456
+Out[39]: True
+
+In [40]: a is 123456
+Out[40]: False
+</code></pre>
+<p>Na posledním řádku je zřejmé, že proměnná <code>a</code> ukazuje na nějaké místo v paměti, které je odlišné od místa v paměti, které reprezentuje objekt čísla <code>12345</code>.</p>
+<p>K porovnání pořadí nám slouží operátory <code>&lt;</code>, <code>&gt;</code>, <code>&lt;=</code> a <code>&gt;=</code>.</p>
+<p>Členství nějaké hodnoty v sekvenci obstarají operátory <code>in</code> a <code>not in</code>.</p>
+<p>Boolovské hodnoty nám repzentuji singletony <code>True</code> a <code>False</code>.</p>
+<p>Speciálním singletonem je též typ <code>None</code>, který je do jisté míry ekvivalentní s hodnotou <code>null</code> v jazyce C.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="Řízení-toku"><a class="header" href="#Řízení-toku">Řízení toku</a></h1>
+<p>Nejznámější příkaz pro řízeni toku <code>if</code>, jsme si již uvedli v kapitole <a href="uvod.html#sec:syntax">Syntaxe</a>. Schématicky si jej proto pouze připomeneme:</p>
+<ul>
+<li>
+<p><code>if</code> &lt;výraz&gt;: &lt;vnořený blok&gt;</p>
+<ul>
+<li>
+<p>0+ <code>elif</code> &lt;výraz&gt;: &lt;vnořený blok&gt;</p>
+</li>
+<li>
+<p>volitelně: <code>else:</code> &lt;vnořený blok&gt;</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>Pro vytvoření cyklů nám v jazyce Python slouží dvě konstrukce: <code>while</code> a <code>for</code>.</p>
+<h2 id="cyklus-while"><a class="header" href="#cyklus-while">Cyklus <code>while</code></a></h2>
+<p>Cyklus <code>while</code> funguje podobně jako jsme zvyklí z jazyka C. Na začátku máme dánu podmínku iterace. Je-li podmínka splněna, je vykonáno tělo cyklu, v opačném případě je cyklus přeskočen a pokračuje se dále v programu. V těle cyklu můžeme použít klíčová slova <code>break</code> a <code>continue</code>. Slovo <code>break</code> zapříčiní ukončení cyklu. Slovo <code>continue</code> zapříčiní přeskočení zbytku těla cyklu a tím pádem vykonání dalšího cyklu za předpokladu, že je splněna vstupní podmínka.</p>
+<pre><code class="language-python">In [1]: i = 0
+
+In [2]: while i &lt; 5:
+   ....:     print(i)
+   ....:     i += 1
+   ....:
+
+0
+1
+2
+3
+4
+</code></pre>
+<h2 id="cyklus-for"><a class="header" href="#cyklus-for">Cyklus <code>for</code></a></h2>
+<p>Cyklus <code>for</code> je v jazyce Python poněkud odlišný od svého ekvivalentu v jazyce C. Jeho sémantika je podobná jako u příkazu <code>foreach</code> v jazycích Java nebo C#. Cyklus <code>for</code> je schopen procházet pouze sekvence, o kterých jsme si něco řekli v části <a href="promenne_a_typy.html#sec:sequnces">Sekvence</a>. Podstatným rozdílem oproti cyklu <code>for</code> z jazyka C je to, že řídící proměnná cyklu postupně nabývá jednotlivých hodnot v zadané sekvenci. Odpadá tak nutnost přistupovat k prvkům sekvence pomocí nějaké jiné proměnné. Zápis je také podstatně jednodušší. Ukažme si proto jednoduchý příklad na součet prvků v seznamu.</p>
+<pre><code class="language-python">seznam = [1, 2, 5, 10, 100]
+
+sum = 0
+
+for prvek in seznam:
+    sum += prvek
+
+sum #118
+</code></pre>
+<p>I v cyklu <code>for</code> můžeme použít klíčová slova <code>break</code> a <code>continue</code>. Ukažme si tedy příklad, kdy jsou v seznamu uloženy i hodnoty jiného typu než <code>int</code> nebo <code>float</code>, a které samozřejmě spolu nemůžeme sčítat.</p>
+<pre><code class="language-python">seznam = [1.5, 2, 'Ahoj', 10, 3+5j]
+
+sum = 0
+
+for prvek in seznam:
+    if type(prvek) == int or type(prvek) == float:
+       sum += prvek
+
+sum # 13.5
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="funkce"><a class="header" href="#funkce">Funkce</a></h1>
+<p>V této kapitole si probereme funkce, které na rozdíl od jazyků C, Java a C# disponují v jazyce Python většími možnostmi použití a definic.</p>
+<p>Asi bychom byli schopni naše programy psát tak, abychom nepotřebovali použít funkce. Toto by nám však vystačilo na velmi krátké programy, poněvadž bychom jinak museli všechen znovupoužitelný kód psát znovu a znovu.</p>
+<p>Základní vlastností funkcí je jejich znovupoužitelnost. Pokud tedy máme úlohu, kterou víme, že budeme požívat více než jednou, je vhodné ji umístit do funkce. Takovýto blok kódu by též měl fungovat pokud možno co nejvíce samostatně.</p>
+<h2 id="funkce-v-jazyce-python"><a class="header" href="#funkce-v-jazyce-python">Funkce v jazyce Python</a></h2>
+<p>V jazyce Python je definice funkce do jisté míry podobná definici funkce v jiných jazycích s tím rozdílem, že neuvádíme návratový datový typ a ani neuvádíme datové typy argumentů funkce. Toto je dáno dynamickou typovostí jazyka. Uveďme si jednoduchý příklad pro výpočet mocniny čísla.</p>
+<pre><code class="language-python">def sqr(number):
+    return number**2
+
+sqr(3) #9
+</code></pre>
+<p>Pokud pomineme to, že v jazyce Python máme pro mocninu operátr <code>**</code>, měl by nám být zápis funkce celkem jasný. Definice funkce je uvozena klíčovým slovem <code>def</code> následovaným jménem funkce a v závorce uvedeným seznamem argumentů oddělených čárkou, což si za chvíli ukážeme. Volání funkce je pak provedeno jménem funkce s parametry uvedenými v kulatých závorkách tak, jak je to uvedeno na příkladu.</p>
+<p>Funkce nám také dovolují provádět generalizaci, což je zobecnění zadaného problému. Vezměme si výpočet mocniny čísla jako jednoduchý příklad. První ukázka funkce <code>sqr</code> umí vypočítat pouze druhou mocninu zadaného čísla <code>number</code>. My bychom však chtěli vytvořit obecnou funkci na výpočet jakékoli mocniny čísla. Taková funkce je v ukázce níže.</p>
+<pre><code class="language-python">def pow(number, exponent):
+    return number**exponent
+
+pow(2, 3) #8
+</code></pre>
+<p>Funkce <code>pow</code> má nyní 2 parametry s mocněncem <code>number</code> a mocnitelem <code>exponent</code>. Místo natvrdo nastavené hodnoty <code>2</code> pro výpočet druhé mocniny z předcházejícího příkladu je mocnitel zadán parametrem funkce. Máme tak zobecněný (generalizovaný) kód pro výpočet mocniny.</p>
+<h2 id="parametry-funkcí"><a class="header" href="#parametry-funkcí">Parametry funkcí</a></h2>
+<p>Z jazyka C znáte využití defaultního parametru funkce. I v jazyce Python je tato možnost zachována. Syntaxe je opět podobná jazyku C, kdy parametr funkce, který může nabývat defaultní hodnoty, má tuto hodnotu v definici funkce nastavenou pomocí rovnítka. <strong>Poznamenejme</strong>, že takovýchto parametrů může být více, ale musí být vždy uvedeny na konci seznamu argumentů funkce, jinak by interpret nedokázal rozlišit, které parametry má nastavit jako defaultní, a kterým přiřadit volanou hodnotu.</p>
+<p>Uveďme si tedy jednoduchý příklad, který nám opět generalizuje předchozí příklad tak, že pro výpočet druhé mocniny funkcí <code>pow</code> nebudeme muset zadávat hodnotu mocnitele.</p>
+<pre><code class="language-python">def pow(number, exponent=2):
+    return number**exponent
+
+pow(3) #9
+
+pow(3, 3) #27
+</code></pre>
+<h2 id="proměnlivý-počet-argumentů-funkce"><a class="header" href="#proměnlivý-počet-argumentů-funkce">Proměnlivý počet argumentů funkce</a></h2>
+<p>V jazyce C jste používali funkci <code>printf</code>, která slouží pro tisk na výstup. Její zajímavou vlastností je to, že do ní může vstupovat proměnlivý počet argumentů. Pojďme se podívat, jak takovou funkci vytvořit v jazyce Python.</p>
+<p>Proměnlivý počet argumentů funkce je možno vytvořit tak, že poslední argument funkce bude mít před svým jménem znak <code>*</code>. Jakmile pak zavoláme takovou funkci, bude v tomto parametru vždy uložen tuple, který bude obsahovat tolik hodnot, kolik se jich již nevešlo do standardních argumentů funkce. Z toho tedy plyne, že můžeme kombinovat různé typu argumentů funkce. Ukažme si jednoduchý příklad funkce s proměnlivým počtem argumentů.</p>
+<pre><code class="language-python">def va_args_function(a, *b):
+    print(a, b)
+
+va_args_function(1)
+#1 ()
+
+va_args_function(1, 2)
+#1 (2,)
+
+va_args_function(1, 3, 4)
+#1 (3, 4)
+
+va_args_function(1, 3, 4, "Ahoj")
+#1 (3, 4, 'Ahoj')
+
+va_args_function(1, 3, 4, "Ahoj", 5.3)
+#1 (3, 4, 'Ahoj', 5.3)
+</code></pre>
+<p>Na této ukázce vidíme, jak se tuple v argumentu <code>b</code> postupně zaplňuje více hodnotami podle toho, jak jich přibývá při volání funkce. Také si všimněme, že je argument použit bez znaku <code>*</code>.</p>
+<p>Pokusme se nyní vytvořit funkci <code>super_print</code>, která bude akceptovat proměnlivý počet argumentů (předpokládejme typ <code>str</code>). Tyto argumenty budou vytištěny a jejich výpis bude ohraničen nahoře a dole znakem <code>=</code> v délce celé sekvence. V kódu jsme využili metodu <code>join</code> na objektu <code>str</code><label for="sn-funkce-1" class="margin-toggle"><sup>1</sup></label><input type="checkbox" id="sn-funkce-1" class="margin-toggle"/><span class="sidenote"><sup class="sidenote-number">1</sup> http://docs.python.org/library/stdtypes.html#str.join</span>.</p>
+<pre><code class="language-python">def super_print(*p):
+  s = " ".join(p)
+  print "-" * len(s)
+  print s
+  print "-" * len(s)
+
+super_print("Jedna", "dve", "3", "4")
+
+#=============
+#jedna dve 3 4
+#=============
+</code></pre>
+<h2 id="agrumenty-funkce-předané-klíčovými-slovy"><a class="header" href="#agrumenty-funkce-předané-klíčovými-slovy">Agrumenty funkce předané klíčovými slovy</a></h2>
+<p>Posledním typem argumentu funkce je ten, který je předáván jako slovník. Takovýto argument je v definici funkce nejčastěji podle konvence označován jako <code>**kw</code>. Argumenty jsou pak funkci předávány tak, že je jako argument funkce použito jméno argument, kterému je přiřazena hodnota pomocí rovnítka. Tyto argumenty jsou odděleny čárkou. Ukažme si jednoduchý příklad.</p>
+<pre><code class="language-python">def kw_function(a, **kw):
+    print a, kw
+
+kw_function("jedna", SPJA="Skriptovani", ALG="Algorimizace")
+#jedna {'ALG': 'Algorimizace', 'SPJA': 'Skriptovani'}
+</code></pre>
+<p>Na ukázce také vidíme, že se jednotlivé typy argumentů můžou kombinovat. Podstatnou částí však je, že argument <code>kw</code> se uvnitř funkce jeví jako slovník, jenž jsme si již probrali v kapitole <a href="promenne_a_typy.html#sec:dict">Slovník (<code>dict</code>)</a>. Pozoruhodnou vlastností funkcí, které používají předávaní argumentů klíčovými slovy je jejich rozšiřitelnost.</p>
+<p>Představme si, že pracujeme na větším softwarovém díle a potřebujeme změnit určitou komponentu. V takovém případě většinou musíme provést refactoring kódu s tím, že budeme takovou komponentu doplňovat o další parametry její funkce. V případě, že však takováto funkce má parametr předávaný klíčovými slovy, je její rozšíření jednoduché. Stačí pouze upravit operace práce se slovníkem <code>kw</code>. Ukažme si tedy typičtější práci s takovou funkcí. Mějme funkci, která filtruje města podle počtu obyvatel. Funkce <code>filtruj_mesta</code> s argumentem <code>gt</code> vrátí taková města, jejichž počet obyvatel je vyšší než zadaná hodnota.</p>
+<pre><code class="language-python">def filtruj_mesta(mesta, **kw):
+    """Funkce vrati seznam mest, ktere odpovidani svym
+    poctem obyvatel zadanym omezenim.
+    V **kw bude mozno predat argument:
+     'gt': jen mesta s poctem obyvatel vetsim nez hodnota argumentu.
+    Je mozne zadat zadny nebo jeden parametr.
+    Pokud nezadame zadny parametr, vrati se prazdny seznam.
+    """
+    flt = []
+    if 'gt' in kw:
+        lim = kw['gt']
+        flt = [ key for key in mesta if mesta[key] &gt; lim ]
+    return flt
+
+mesta = {"Ostrava": 336000, "Praha": 1249000,
+         "Brno": 405000, "Olomouc": 101000,
+         "Karvina": 63000, "Havirov": 82000}
+
+filtruj_mesta(mesta, gt=100000)
+#['Ostrava', 'Praha', 'Brno', 'Olomouc']
+</code></pre>
+<p>Pokud bychom chtěli rozšířit funkcionalitu výše zmíněné funkce o to, aby také uměla vrátit města s počtem obyvatel nižším než bude zadaná hodnota, provedeme to pomocí následujícího kódu.</p>
+<pre><code class="language-python">def filtruj_mesta(mesta, **kw):
+    """Funkce vrati seznam mest, ktere odpovidani svym
+    poctem obyvatel zadanym omezenim.
+    V **kw bude mozno predat argument:
+     'gt': jen mesta s poctem obyvatel vetsim nez hodnota argumentu,
+     'lt': jen mesta s poctem obyvatel mensim nez hodnota argumentu.
+    Je mozne zadat zadny, jeden nebo oba parametry nejednou.
+    Pokud nezadame zadny parametr, vrati se prazdny seznam.
+    """
+    flt = []
+    if 'gt' in kw:
+        lim = kw['gt']
+        flt = [ key for key in mesta if mesta[key] &gt; lim ]
+    if 'lt' in kw:
+        lim = kw['lt']
+        flt += [ key for key in mesta if mesta[key] &lt; lim ]
+    return flt
+
+mesta = {"Ostrava": 336000, "Praha": 1249000,
+         "Brno": 405000, "Olomouc": 101000,
+         "Karvina": 63000, "Havirov": 82000}
+
+filtruj_mesta(mesta, gt=1000000, lt=70000)
+#['Praha', 'Karvina']
+</code></pre>
+<p>Při porovnání obou kódů vidíme, že API dané funkce se nezměnilo a ani její funkce není nijak narušena, pokud je zavolána jen s původním argumentem <code>gt</code>.</p>
+<p><strong>Poznámka:</strong></p>
+<p>V kódu jsme použili list comprehension<label for="sn-funkce-2" class="margin-toggle"><sup>2</sup></label><input type="checkbox" id="sn-funkce-2" class="margin-toggle"/><span class="sidenote"><sup class="sidenote-number">2</sup> http://docs.python.org/tutorial/datastructures.html#list-comprehensions</span>, který je popsán v kapitole <a href="funkce.html#sec:list-comprehension">List comprehension</a>.</p>
+<p><strong>Cvičení:</strong></p>
+<p>Promyslete si sami, jak by vypadala varianta rozšíření funkce bez použití předávaní argumentů klíčovými slovy.</p>
+<h2 id="funkce-jako-argument-funkce"><a class="header" href="#funkce-jako-argument-funkce">Funkce jako argument funkce</a></h2>
+<p>Funkce je v jazyce Python objekt jako každý jiný, což je poněkud jiný přístup, než na jaký jsme zvyklí z jazyka Java. Pokud je funkce objektem, můžeme ji uložit do námi zvolené proměnné, tak jak to zobrazuje následující příklad.</p>
+<pre><code class="language-python">def pow(number, exponent=2):
+    return number**exponent
+
+sqr = pow
+
+pow(3) #9
+
+sqr(3) #9
+</code></pre>
+<p>Pokud je však funkce objekt, můžeme jej stejně jako jiné objekty poslat funkci jako její argument. Když je toto v jazyce možné, říkáme, že jsou funkce "first class object". Tato vlastnost je též základním prvkem funkcionálních jazyků. Ukažme si tedy příklad.</p>
+<pre><code class="language-python">def sqr_lst(fun, lst):
+    ret_lst = []
+    for item in lst:
+        ret_lst.append(fun(item))
+    return ret_lst
+
+sqr_lst(sqr, [1, 2, 3])
+#[1, 4, 9]
+</code></pre>
+<p>V ukázce jsme využili již naprogramované funkce <code>sqr</code>. Funkce <code>sqr_lst</code> dostane dva parametry. Prvním parametrem je funkce, která se bude aplikovat na každý prvek ze seznamu, který je předán jako druhý argument. Uvnitř funkce je tedy smyčka <code>for</code>, která postupně vybírá prvky ze seznamu s čísly a každé takové číslo pošle jako argument funkce <code>fun</code>. Výsledek každého volání je pak přidán do výstupního seznamu. V našem případě jsme funkci <code>sqr_lst</code> předali funkci <code>sqr</code>, která nám z každého čísla vrátí jeho druhou mocninu.</p>
+<p>Pokud pomineme název funkce <code>sqr_lst</code>, máme poměrně obecnou funkci, která umí na všechny prvky jakékoli sekvence aplikovat funkci, kterou předáme v parametru. Samozřejmě jsme nyní nevymysleli nic nového. Pouze jsme se relativně nenáročnou cestou dostali k dobře známému konceptu funkce <code>map</code>.</p>
+<p>Poznamenejme, že v jazycích C/C++ a C# je funkci také možno použít jako argument funkce.</p>
+<h2 id="funkce-map"><a class="header" href="#funkce-map">Funkce <code>map</code></a></h2>
+<p>Funkce <code>map</code> je dlouhou dobu známa z funkcionálních jazyků a v současné době se začíná objevovat i v klasičtějších jazycích. Funkce přijímá dva parametry. Prvním je funkce a druhým pak sekvence. Na kazdý prvek ze sekvence je aplikována funkce. Výsledek je pak seznam, který má stejnou délku jako vstupní sekvence a obsahuje výsledky funkce pro korespondující prvky ze vstupní sekvence.</p>
+<h2 id="anonymní-funkce"><a class="header" href="#anonymní-funkce">Anonymní funkce</a></h2>
+<p>Při používání funkce <code>map</code> se často setkáváme s tím, že funkce kterou chceme aplikovat na prvky sekvence je použita pouze jednou, popřípadě si nechceme do jmenného prostoru umisťovat jednoúčelové funkce. V takovém případě se nám bude hodit koncept anonymní funkce <code>lambda</code>. Syntaxi lambda funkcí by měla osvětlit následující ukázka.</p>
+<pre><code class="language-python">sqr = lambda x: x**2
+
+sqr(2) #4
+
+sqr(5) #25
+
+pow = lambda number, exponent: number**exponent
+
+pow(2, 3) #8
+</code></pre>
+<p>Vidíme, že do proměnné <code>sqr</code> jsme přiřadili anonymní funkci s jedním parametrem. Z něj se počítá druhá mocnina. Anonymní funkce též mohou mít více parametrů jako v příkladu funkce <code>pow</code>. Pokud bychom anonymní funkci nikam nepřiřadili, nemohli bychom ji později použít. Pro úplnost uvedeme příklad, kdy takto vytvořenou funkci, která není nikde uložena okamžitě zavoláme a získáme tak její návratovou hodnotu. Poznamenejme, že toto použití není příliš časté.</p>
+<pre><code class="language-python">(lambda x, y: x**y)(2, 3) #8
+</code></pre>
+<h2 id="anonymní-funkce-jako-parametry-funkcí"><a class="header" href="#anonymní-funkce-jako-parametry-funkcí">Anonymní funkce jako parametry funkcí</a></h2>
+<p>Řekli jsme si, že anonymní funkce můžeme použít pro velmi malé úseky kódu, pro které nemá často význam vytvářet speciální funkce. Častým využitím anonymních funkcí je jejich předávaní jako argumentů jiných funkcí. Velmi časté je proto použití lambda funkce s funkcí <code>map</code>. Uveďme si tedy opět ukázku na výpočet druhé mocniny seznamu čísel.</p>
+<pre><code class="language-python">map(lambda x: x**2, [2, 3, 4]) #[4, 9, 16]
+</code></pre>
+<p>Vidíme, že se nám původní příklad funkce <code>sqr_lst</code> podařilo zkrátit na jeden řádek.</p>
+<p>Nezapomeňme také, že v sekvencích, které mohou vstupovat do funkce <code>map</code> se mohou objevit složitější objekty. V lambda funkci pak můžeme volat jejich metody. Následující ukázka převede všechny řetězce na velká písmena.</p>
+<pre><code class="language-python">map(lambda x: x.upper(), ["ahoj", "svete"])
+#['AHOJ', 'SVETE']
+</code></pre>
+<p><a id="sec:list-comprehension"></a></p>
+<h2 id="list-comprehension"><a class="header" href="#list-comprehension">List comprehension</a></h2>
+<p>List comprehension je způsob jak vytvářet nové listy. Doposud jsme je byli schopni vytvářet pomocí funkce <code>map</code>. List comprehension navíc umožňuje aplikovat na prvky vstupní sekvence predikát. Pokud je predikát vyhodnocen jako logická hodnota <code>True</code>, potom je prvek podroben funkci, která je předána jako parametr. Jinak je prvek vyřazen z výstupního seznamu. Syntakticky je list comprehension čitelnější než funkce <code>map</code>. Ukažme si několik příkladů.</p>
+<pre><code class="language-python">lst = [1, 2, 3, 4]
+ships = ['Daru Mozu' , 'Cloud 9' , 'Galactica' ]
+
+squares = [ x**2 for x in lst ]
+#[1, 4, 9, 16]
+
+squares = [ x**2 for x in lst if x &gt; 2 ]
+#[9, 16]
+
+new_ships = [ x.upper() for x in ships ]
+#[ 'DARU MOZU', 'CLOUD 9', 'GALACTICA' ]
+
+new_ships = [ x.upper() for x in ships if len(x) &gt; 7 ]
+#[ 'DARU MOZU', 'GALACTICA' ]
+</code></pre>
+<p>Na první pohled vidíme, že oproti funkci <code>map</code> není pro aplikování požadované funkce na prvky sekvence zapotřebí vytvoření anonymní funkce. Predikát, který je nepovinný se nalézá na konci zápisu.</p>
+<p>Zápis pomocí list comprehension je v současné době preferovaným způsobem zápisu pro generování nových seznamů. Je také zajímavé, že funkce <code>filter</code> <label for="sn-funkce-3" class="margin-toggle"><sup>3</sup></label><input type="checkbox" id="sn-funkce-3" class="margin-toggle"/><span class="sidenote"><sup class="sidenote-number">3</sup> <a href="http://docs.python.org/library/functions.html?highlight=filter#filter">http://docs.python.org/library/functions.html?highlight=filter#filter</a></span> je plně nahraditelná právě tímto zápisem.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="objektově-orientované-programování-oop"><a class="header" href="#objektově-orientované-programování-oop">Objektově orientované programování (OOP)</a></h1>
+<p>Naši cestu za objektově orientovaným programováním započneme citátem Alana Kaye, spoluautora jednoho z prvních objektově orientovaných programovacích jazyků jménem Smalltalk:</p>
+<p>"Actually I made up the term 'object-oriented', and I can tell you I did not have C++ in mind."</p>
+<p>The Computer Revolution hasn’t happend yet – Keynote, OOPSLA 1997</p>
+<p>V této kapitole si představíme objektově orientované programovaní (OOP) v jazyce Python. Objektově orientované programování není v programování novým pojmem, stále však je přechod od procedurálního programování k objektovému někdy obtížný. Někdy může být na překážku statická typovost některých jazyků. My si ukážeme, že je OOP velmi jednoduchý a příjemný způsob programování. Nepodlehněme však představě, že je OOP vše řešící technika.</p>
+<h2 id="co-jsou-objekty"><a class="header" href="#co-jsou-objekty">Co jsou objekty</a></h2>
+<p>Z dosavadní práce v jazyce by nám již mělo být dostatečně jasné, že vše v jazyce Python je objektem. Např. listy obsahující prvky jsou objekty a také elementy v nich jsou samy objekty. I přes tuto skutečnost nám není jazykem objektový model nějak extrémně vnucován. Můžeme se de facto setkat pouze s klasickou tečkovou notací pro volání metod objektů, např. <code>lst.append(1)</code> pro přidání objektu typu <code>int</code> do objektu typu <code>list</code> (proměnná <code>lst</code>). Tak, jak jsme zvyklí z jazyka C++, i v Pythonu můžeme volání metod nebo atributů zřetězit, např. <code>instance_tridy.metoda().atribut</code>. Tečková notace také nerozlišuje mezi voláním metod nebo přístupu k atributům. Toto je rozlišeno pouze kulatými závorkami u volání metod.</p>
+<h2 id="motivace-k-zavedení-objektů"><a class="header" href="#motivace-k-zavedení-objektů">Motivace k zavedení objektů</a></h2>
+<p>Pokud jste programovali v jazyce C, většina programů nejprve využívala funkce, které měly parametry. Jak program nabýval na složitosti, parametrů u funkcí mohlo přibývat. Takovýto proces je více, či méně nevyhnutelný. Pokud jste pracovali dále, možná jste se rozhodli, že si vytvoříte jednoduchou strukturu, do které si uložíte hodnoty parametrů. Tímto způsobem jste dosáhli toho, že jste nahradili mnoho parametrů jedním. Díky tomu jste byli schopni centralizovat data. Kolem těchto dat jste vytvořili funkce, které např. přijímaly danou strukturu jako svůj argument a vracely vám hodnotu, popřípadě upravovaly danou strukturu.</p>
+<p>Toto je již docela zajímavý způsob, jak si zjednodušit práci s daty v jazyce C. Problém však nastává v situaci, kdy bychom chtěli mít jednu funkci (myšleno z pohledu API), která by se chovala pouze podle toho, jakou strukturu jí pošleme jako argument. V takovém případě musíme nejprve v takové funkci zjistit o jakou strukturu se jedná a podle toho patřičně reagovat (spustit patřičný kód). Ukázka takového přístupu je se zjednodušeními ukázána níže (poznámka: nejedná se o konkrétní programovací jazyk).</p>
+<pre><code class="language-python">struct {
+    name = '';
+} Dog;
+
+struct {
+    name = '';
+} Cat;
+
+make_sound( struct ) {
+    if type( struct ) == Dog {
+        print struct.name + 'Haf!';
+    }
+    else if type( struct ) == Cat {
+        print struct.name + 'Minau!';
+    }
+}
+
+struct dog = Dog( "Lassie" );
+struct cat = Cat( "Tom" );
+
+make_sound( dog ); // 'Lassie: Haf!'
+make_sound( cat ); // 'Tom: Minau!'
+</code></pre>
+<p>V příkladu jsme vytvořili funkci <code>make_sound</code>, která přijímá jeden argument v podobě struktury. Danou strukturou může být buď struktura <code>Dog</code> nebo <code>Cat</code>. Evidentně po funkci <code>make_sound</code> chceme, aby vytiskla typický zvuk pro dané zvíře. Toho docílíme tak, že se zeptáme, jakého typu je argument a podle něj již patřičně zareagujeme. Tento přístup není obecně špatný, avšak při větším množství struktur se stává značně nepřehledným. Výše popsaný příklad se také snaží o to, aby jedna funkce byla schopna reagovat na více datových typů. Zde bychom již měli vidět, že to, co po funkci požadujeme, je de facto polymorfismus (samozřejmě ještě stále zjednodušený).</p>
+<h2 id="objektový-přístup-k-motivačnímu-problému"><a class="header" href="#objektový-přístup-k-motivačnímu-problému">Objektový přístup k motivačnímu problému</a></h2>
+<p>Z předchozích kurzů víte, že OOP se skládá ze tří pilířů, kterými jsou: polymorfismus, dědičnost a zapouzdření. Věnujme se nyní primárně nejpodstatnějšímu pojmu, kterým je polymorfismus. V předchozím příkladu chceme funkčnost, kterou bychom mohli vágně popsat následovně: "Jakémukoli objektu pošleme zprávu a dostaneme adekvátní odpověď". Toto je hodně obecný koncept, který je třeba si přiblížit. Zasílání zpráv je v moderním konceptu OOP jen voláním metod objektu, který je nám již důvěrně znám pomocí tečkové notace. OOP za nás zajistí vše ostatní. Ukažme si tedy předchozí příklad v jazyce Python.</p>
+<pre><code class="language-python">class Dog(object):
+    def __init__(self, name):
+        self.name = name
+
+    def make_sound(self):
+        print("{0}: Haf!".format(self.name))
+
+class Cat(object):
+    def __init__(self, name):
+        self.name = name
+
+    def make_sound(self):
+        print("{0}: Minau!".format(self.name))
+
+animals = [ Dog("Lassie"), Cat("Tom") ]
+
+for animal in animals:
+     animal.make_sound()
+
+# Lassie: Haf!
+# Tom: Minau!
+</code></pre>
+<p>Na chvíli ještě pomiňme syntaxi pro tvorbu tříd. Vidíme však, že oproti předchozímu příkladu je funkce <code>make_sound</code> přítomna v obou třídách a je implementována podle toho, ke které třídě patří.</p>
+<p>Dále vidíme, že jsme si vytvořili list <code>animals</code>, který obsahuje instance tříd <code>Dog</code> a <code>Cat</code>. Nakonec projdeme tento list a na každém jeho prvku zavoláme metodu <code>make_sound</code>.</p>
+<p>Vidíme, že při volání metody <code>make_sound</code> již do ní neposíláme žádný parametr (jako v předchozím případě strukturu, <code>self</code> teď nepočítejme). Posun od procedurálního programování k OOP je tedy již docela markantní. V cyklu <code>for</code> pak voláme na jednotlivých instancích metodu</p>
+<p><code>make_sound</code> bez toho, aniž bychom primárně věděli, o který typ se jedná. Toto je také nejdůležitějším prvkem OOP – volání metod na objektech a nestarání se o jejich vnitřní implementaci.</p>
+<p>Dále si v příkladu všimněme, že list <code>animals</code> obsahuje instance tříd <code>Dog</code> a <code>Cat</code>. Na rozdíl od jazyka C++ nebo Java jsme však nemuseli vytvářet společnou nadtřídu, popřípadě interface. Toto je dáno dynamickou typovostí jazyka, se kterou jsme se setkali již dříve. List mohl obsahovat integery, floaty, stringy, apod. Není tedy problém, aby obsahoval i instance námi vytvořených tříd. V dynamicky typovaných jazycích také můžeme volat jakoukoli metodu na jakémkoli objektu. Pokud však objekt neumí na metodu reagovat (metoda není vůbec implementována), je vyhozena výjimka, kterou musíme zpracovat.</p>
+<h2 id="třídy-a-instance"><a class="header" href="#třídy-a-instance">Třídy a instance</a></h2>
+<p>Jazyk Python pracuje s objektovým modelem podobně jako C++ nebo Java. Třídy jsou obecným předpisem pro popis objektů světa. Instance jsou pak konkrétními objekty, které mají svou třídu jako předpis. Toto bychom si mohli představit i tak, že automobilka produkuje auta podle předpisu (výrobního postupu). Automobilka má tedy sadu tříd, podle kterých se ve výrobě vytvářejí automobily, které jsou již instancemi tříd.</p>
+<h2 id="definice-třídy-a-konstrukce-objektu"><a class="header" href="#definice-třídy-a-konstrukce-objektu">Definice třídy a konstrukce objektu</a></h2>
+<p>Rozeberme si na příkladu vytvoření objektu, speciálně syntaxi konstruktoru, která je lehce odlišná od C++ nebo Javy.</p>
+<pre><code class="language-python">class Battlestar(object):
+
+    def __init__(self, name, commander): # constructor
+        self.name = name                 # instance variable
+        self.commander = commander
+
+    def identify(self):                  # method
+        return 'This is Battlestar {0}, \
+                commanded by {1}.'.format(self.name, \
+                self.commander)
+
+galactica = Battlestar('Galactica', 'Bill Adama')
+pegasus = Battlestar('Pegasus', 'Helena Cain')
+
+print(galactica.identify())
+# This is Battlestar Galactica, commanded by Bill Adama.
+
+print(pegasus.identify())
+# This is Battlestar Pegasus, commanded by Helena Cain.
+</code></pre>
+<p>Definice přídy je uvozena klíčovým slovem <code>class</code> následována jménem. Pokud chce definovaná třída dědit z jiných tříd, je toto uvedeno v kulatých závorkách. Naše třídy budou vždy dědit z třídy reprezentující objekt (<code>object</code>).</p>
+<p>Konstruktor třídy je vždy metoda s názvem <code>__init__</code>, která přijímá jako svůj první argument proměnnou, která je tradičně nazývána <code>self</code>. Pak následuje seznam argumentů, které chceme konstruktoru předat. Proměnná <code>self</code> nám reprezentuje instanci podobně, jako je tomu v jazyce C++ nebo Java slovem <code>this</code>. Instanční proměnné jsou vytvořeny tak, že je přidáme do instance pomocí tečkové notace. Dostatečný příklad je uveden v konstruktoru. Pokud se nám zdá syntaxe metod nepříjemná v tom smyslu, že musíme uvádět proměnnou <code>self</code>, tak se zamysleme nad tím, kde se vezme v C++ nebo Javě proměnná <code>this</code>. Tato proměnná je ve skutečnosti do zdrojového kódu "vpašována" překladačem daného jazyka.</p>
+<p>Metody třídy obdobně přijímají první argument v podobě proměnné <code>self</code>. Přístup k instančním proměnným je možný opět pouze s použitím oné proměnné.</p>
+<p>Vytvoření objektu je velmi podobné jako v jiných jazycích, které známe. Jediným rozdílem je to, že nepoužíváme klíčového slova <code>new</code>. Jazyk Python (stejně jako téměř ve všech případech Java) totiž na rozdíl od jazyka C++ neumožňuje vytvořit instanci objektu na zásobníku, ale pouze na haldě.</p>
+<h2 id="třídní-proměnné"><a class="header" href="#třídní-proměnné">Třídní proměnné</a></h2>
+<p>Instanční proměnné by pro nás již neměly být problémem. Každá instance třídy si udržuje své vlastní hodnoty v instančních proměnný. Existují však i jiné proměnné, které nazýváme třídní proměnné a ty jsou pro všechny instance společné. Tyto proměnné jsou dosti podobné globálním proměnným, na které jsme zvyklí ať už z jazyka C nebo z Pythonu. Otázkou však je, jak takové proměnné v Pythonu deklarovat a využít.</p>
+<p>Představme si, že bychom chtěli vytvořit internetový vyhledávač. Pomiňme nyní relativně velkou složitost tohoto problému a soustřeďme se na to, jak bychom reprezentovali jednotlivé webové stránky v našem systému.</p>
+<pre><code class="language-python">class Document(object):
+
+    def __init__(self, content):
+        self.content = content
+
+    def index(self, db):
+        pass
+</code></pre>
+<p>Třída <code>Document</code> tedy reprezentuje stránku pomocí instanční proměnné <code>content</code>. Metoda <code>index</code> pak danou stránku zaindexuje do databáze <code>db</code>. Její implementaci však nebudeme řešit. Dříve nebo později bychom však chtěli vědět, kolik dokumentů v našem systému je. Jednou z možností je zeptat se databáze. Druhou možností je pak využít třídní proměnné tak, jak je ukázáno na následujícím příkladu.</p>
+<pre><code class="language-python">class Document(object):
+
+    no_of_documents = 0
+
+    def __init__(self, content):
+        self.content = content
+        Document.no_of_documents += 1
+
+    def index(self, db):
+        pass
+
+d1 = Document("Text")
+print(d1.no_of_documents) # 1
+
+d2 = Document("Another text")
+print(d1.no_of_documents) # 2
+print(d2.no_of_documents) # 2
+
+print(Document.no_of_documents) # 2
+</code></pre>
+<p>Pokaždé, kdy vytvoříme novou instanci dokumentu, je třídní proměnná <code>no_of_documents</code> inkrementována. Na počet dokumentů se tak můžeme zeptat jakékoli instance, protože je třídní proměnná sdílená. K třídní proměnné přistupujeme přes jméno třídy. Nemůžeme tak použít notaci přes <code>self</code>, poněvadž <code>self</code> referuje na instanci a nikoli na třídu. Nakonec k třídní proměnné můžeme přistoupit i tak, že se zeptáme přímo třídy samotné. V naší ukázce je to poslední řádek kódu.</p>
+<h2 id="statické-metody"><a class="header" href="#statické-metody">Statické metody</a></h2>
+<p>Již dříve jsme si řekli, že v OOP reprezentujeme objekty reálného světa. Jejich atributy jsou instanční proměnné a pro jejich manipulaci máme metody, které jsou svázány s objekty, což je zajištěno tím, že jsou definovány u dané třídy. Někdy však potřebujeme to, abychom byli schopni volat metodu aniž bychom měli k dispozici konkrétní instanci. Chceme však využít toho, že metoda má implementovánu funkcionalitu, která se nějakým způsobem váže k dané třídě. Využijme tedy opět našeho příkladu pro vyhledávač. Nyní bychom chtěli vědět průměrnou délku stránek, které indexujeme.</p>
+<pre><code class="language-python">class Document(object):
+
+    no_of_documents = 0
+    total_length = 0
+
+    def __init__(self, content):
+        self.content = content
+        Document.no_of_documents += 1
+        Document.total_length += len(self.content)
+
+    def index(self, db):
+        pass
+
+    @staticmethod
+    def get_average_length():
+        return Document.total_length / Document.no_of_documents
+
+d1 = Document("Text")
+d2 = Document("Another text")
+
+print(Document.get_average_length()) # 8
+print(d1.get_average_length()) # 8
+</code></pre>
+<p>Na první pohled vidíme oproti běžné metodě dva rozdíly. Prvním je to, že metoda je uvozena dekorátorem <code>@staticmethod</code>. Tento dekorátor nám nezajistí ani tak to, že bude metoda statická, jako spíše to, že ji jako statickou bude možno volat na intanci, což je v jiných jazycích problematické. Toto je ukázáno na posledním řádku příkladu. <strong>Podstatným rozdílem</strong> je však to, že metoda nemá jako svůj první argument proměnnou <code>self</code>. Je tedy explicitně řečeno, že metoda nemůže být volána na objektu (již víme, že objekt je předán jako argument metody v podobě proměnné <code>self</code>). Dále je samozřejmé, že statická metoda nemůže přistupovat k instančním proměnný. Logiku tohoto tvrzení ponechme na čtenáři.</p>
+<p><strong>Cvičení:</strong></p>
+<p>Zkuste odstranit dekorátor a spustit příklad, případně proveďte další úpravy.</p>
+<h2 id="vlastnosti-properties"><a class="header" href="#vlastnosti-properties">Vlastnosti (Properties)</a></h2>
+<p>Další vlastností OOP je zapouzdření. Jazyk Python nepodporuje skrývání instančních proměnný tak, jak to například dovoluje Java pomocí modifikátorů <code>private</code> nebo <code>protected</code>. Naproti tomu je v Pythonu sada doporučení, jak se k zapouzdření zachovat. S takovýmto přístupem se můžeme setkat i u jiných jazyků. Vzpomeňme si, že je třeba při ředění kyseliny nalévat kyselinu do vody a nikoli opačně. Toto je také doporučení a nikdo nám nebrání to udělat obráceně. Následky však mohou být dosti nepříjemné.</p>
+<p>Přímá manipulace s atributy třídy je sice možná, ale pokud nejsme přímými autory těchto tříd, je dosti pravděpodobné, že takovouto neopatrnou manipulací způsobíme nekonzistenci dat. Standardní způsob manipulace s atributy tříd je přes metody, které jsou přímo určeny k zápisu nebo čtení hodnot těchto atributů. Způsob práce je podobný jako v jazyce C++ nebo Java. Ukažme si tedy příklad.</p>
+<pre><code class="language-python">class Document(object):
+
+    no_of_documents = 0
+    total_length = 0
+
+    def __init__(self, content):
+        self.content = content
+        Document.no_of_documents += 1
+        Document.total_length += len(self.content)
+
+    def set_content(self, content):
+        Document.total_length -= len(self.content)
+        self.content = content
+        Document.total_length += len(self.content)
+
+    def get_content(self):
+        return self.content
+
+    def index(self, db):
+        pass
+
+    @staticmethod
+    def get_average_length():
+        return Document.total_length / Document.no_of_documents
+
+d1 = Document("Text")
+d2 = Document("Another text")
+
+print(Document.get_average_length()) # 8
+
+d2.set_content("This is a bit longer text")
+
+print(Document.get_average_length()) # 14
+</code></pre>
+<p>V metodě <code>set_content</code> do instanční proměnné <code>content</code> uložíme nový obsah stránky. Je však také nutné přepočítat průměrnou délku dokumentů, které máme v našem systému. Toto nám metoda <code>set_content</code> zajistí. Pokud bychom však přímo manipulovali s obsahem proměnné <code>content</code>, toto by zajisté zajištěno nebylo. Metoda <code>get_content</code> pak jen vrací obsah proměnné <code>content</code>. Na tomto příkladu bychom měli jasně vidět proč je vhodné používat tzv. setry a getry.</p>
+<p><strong>Cvičení:</strong></p>
+<p>Jako cvičení si zkuste přímou manipulaci s proměnnými a zjistěte, kdy nastává nekonzistence dat a jak se projevuje.</p>
+<p>V Pythonu však můžeme ještě využít tzv. <strong>properties</strong>. Ty se používají u atributů, které jsou pro nás zajímavé a vytvářejí iluzi přímé manipulace. Následující ukázka ilustruje jejich použití.</p>
+<pre><code class="language-python">class Document(object):
+
+    no_of_documents = 0
+    total_length = 0
+
+    def __init__(self, content):
+        self._content = content
+        Document.no_of_documents += 1
+        Document.total_length += len(self.content)
+
+    def set_content(self, content):
+        Document.total_length -= len(self._content)
+        self._content = content
+        Document.total_length += len(self._content)
+
+    def get_content(self):
+        return self._content
+
+    def index(self, db):
+        pass
+
+    @staticmethod
+    def get_average_length():
+        return Document.total_length / Document.no_of_documents
+
+    content = property(get_content, set_content)
+
+d1 = Document("Text")
+d2 = Document("Another text")
+
+print(Document.get_average_length()) # 8
+
+d2.content = "This is a bit longer text"
+
+print(d2.content) # "This is a bit longer text"
+print(Document.get_average_length()) # 14
+</code></pre>
+<p>Naši původní proměnnou <code>content</code> jsme přejmenovali na <code>_content</code>, což výsledek nijak neovlivňuje (toto jsme museli udělat proto, že jinak by docházelo ke kolizi jmen mezi property a proměnnou, která by vyústila v nekonečnou rekurzi, o čemž se můžete přesvědčit, pokud si příklad náležitě upravíte). Nakonec jsme pomocí funkce <code>property</code> řekli, že chceme zpřístupnit data pod názvem <code>content</code>, která se čtou a nastavují pomocí funkcí <code>get_content</code> a <code>set_content</code>. Ve výsledku můžeme jakoby přímo zapisovat do proměnné <code>content</code> a přitom je zajištěna konzistence dat. Další výhodou je to, že pokud později změníme set nebo get metody, kód který používá properties se nemusí měnit. Tím máme pěkně zajištěnu dopřednou kompatibilitu.</p>
+<h2 id="operátory"><a class="header" href="#operátory">Operátory</a></h2>
+<p>V průběhu naší práce jsme se setkali s operátory a nepřišlo nám to nijak složité. Např. jsme mohli sčítat čísla pomocí operátoru <code>+</code> nebo spojovat řetězce tím samým operátorem. Problémem těchto operátorů však je to, že je tvůrci naučili pracovat pouze s vestavěnými typy, např. <code>int</code>, <code>str</code>, apod.</p>
+<p>Pokud vytvoříme svou vlastní třídu, ta se stává novým datovým typem (toto obecně nazýváme abstraktní datové typy). Problém však je, že nyní standardní operátory nemohou tušit, jak s našimi vlastními typy pracovat. A právě k tomu nám slouží přetěžování operátorů. Seznam operátorů, které můžeme přetížit je relativně dlouhý, a proto se odkážeme na dokumentaci <a href="reference.html#python-operator-overloading">Seznam operátorů a jejich použití</a>. Nám aktuálně postačí to, že operátory jsou v třídách realizovány jako metody, které vždy začínají a končí znaky dvou podtržítek <code>__</code>. Mezi nimi je pak jméno operátoru. Pozorný čtenář již tuší, že konstruktor je také jen operátorem.</p>
+<p>Jako příklad přetížení operátoru si ukážeme, jak naimplementovat třídu <code>Vector</code>, která reprezentuje vektor libovolné délky. Budeme chtít sčítat dva různé vektory a také budeme chtít tisknout jejich obsah pomocí příkazu <code>print</code>.</p>
+<pre><code class="language-python">class Vector(object):
+    def __init__(self, vec):
+        #warning: vec will be tuple, immutable
+        self.vec = vec
+
+    def __add__(self, other):
+        vec = []
+        for no, item in enumerate(self.vec):
+            vec.append(item + other.vec[no])
+
+        return Vector(tuple(vec))
+
+    def __str__(self):
+        #content = ", ".join([str(i) for i in self.vec])
+        #return "({})".format(content)
+        return str(self.vec)
+
+v1 = Vector((1, 2, 3, 4))
+print(v1)
+
+v2 = Vector((5, 6, 7, 8))
+print(v2)
+
+v3 = v1 + v2
+print(v3)
+</code></pre>
+<p>V ukázce vidíme, že operátor <code>+</code> je realizován metodou <code>__add__</code>.</p>
+<p>Chceme přeci realizovat operaci <code>x + y</code>, proto <code>x</code> bude instance <code>self</code> a <code>y</code> bude argument <code>other.</code> V této metodě provedeme příslušnou operaci sečtení dvou vektorů a vrátíme novou instanci třídy <code>Vector</code>, která obsahuje výsledek.</p>
+<p>Dalším přetíženým operátorem je <code>__str__</code>, který nám vrací řetězec. Podrobně jako jsme používali funkci <code>int</code> nebo <code>float</code> pro získání příslušné hodnoty, i funkce <code>str</code> nám vrátí řetězec, který reprezentuje daný objekt. Pro náš typ vektoru chceme, aby se nám vrátily hodnoty vektoru v kulatých závorkách. Toho jsme docílili relativně jednoduchým trikem, kdy naše interní reprezentace vektoru je tuple, který již odpovídá naší zvolené reprezentaci. Pro jistotu však ještě v komentáři uvádíme plnou implementaci cílového chování metody. Tento operátor je vždy zavolán funkcí <code>str</code> a tato funkce je vždy volána při volání příkazu <code>print</code>. Proto není přímé použití na první pohled plně viditelné.</p>
+<p>Pomocí operátorů je možno značně ovlivnit chování našich typů. Na rozdíl od jiných jazyků jsme schopni ovlivňovat i průběh volání metod nebo průběh konstrukce objektů. Toto je však již docela pokročilé téma, které si necháme jako domácí cvičení.</p>
+<h2 id="kompozice"><a class="header" href="#kompozice">Kompozice</a></h2>
+<p>Vytváření samotných abstraktních datových typů (tříd) bez návaznosti na okolí by asi nebylo příliš zajímavé. Podívejme se tedy na to, jakým způsobem provádět kompozici a hlavně, kdy ji nahradit dědičností. Častokrát se totiž stává, že se rozhodneme špatně, což pak nese neblahé následky.</p>
+<p>Kompozici používáme pro spojení několika komponent do jednoho celku. Pokud si nejsme zcela jisti, zdali máme použít kompozici, stačí se zeptat: <strong>Je X součástí Y?</strong> Pokud je odpověď kladná, jedná se problém kompozice. Zkusme si tedy opět vylepšit náš vyhledávač reprezentovaný třídou <code>SearchEngine</code>. Tentokráte bychom chtěli vytvořit systém, ve kterém budou obsaženy dokumenty, které jsou reprezentovány třídou <code>Document</code>, kterou jsme si již uvedli. V příkladu opět pomiňme extrémní zjednodušení, která musíme zavést.</p>
+<pre><code class="language-python">class SearchEngine(object):
+
+    def __init__(self):
+        self.documents = []
+
+    def add_document(self, document):
+        self.documents.append(document)
+
+    def get_documents(self):
+        return self.documents
+
+    def search(self, query):
+        for doc in self.documents:
+            if doc.content.find(query) &gt;= 0:
+                return doc
+
+se = SearchEngine()
+se.add_document(Document("Text"))
+se.add_document(Document("Another text"))
+
+for doc in se.get_documents():
+    print doc.get_content()
+
+print(se.search("text").content)
+</code></pre>
+<p>Na začátku jsme si řekli, že chceme modelovat systém, který obsahuje dokumenty. Dokumenty jsou tedy součástí většího celku. Je tedy na místě využít kompozice. V konstruktoru třídy <code>SearchEngine</code> si vytvoříme instanční proměnnou typu <code>list</code>, která bude obsahovat všechny dokumenty, které bude náš vyhledávač indexovat. V metodě <code>add_document</code> pak do interního listu přidáme referenci na předaný dokument. Metoda <code>search</code> pak vyhledá patřičný dokument podle zadaného obsahu (samozřejmě je to naivní implementace, která navíc neošetřuje chybové stavy).</p>
+<p>Na tomto příkladu tedy vidíme, jak provést kompozici dvou komponent. Nic nám samozřejmě nebrání komponovat více systémů do sebe. Nezapomeňme však, že je třeba dodržovat jistá pravidla, o kterých se dozvíte v dalších předmětech jako je Softwarové inženýrství.</p>
+<h2 id="dědičnost"><a class="header" href="#dědičnost">Dědičnost</a></h2>
+<p>Poslední základní vlastností OOP je dědičnost, kterou také často nazýváme specializací. Podobně jako u kompozice, pokud si nejsme jisti, zda máme problém implementovat pomocí dědičnosti, můžeme se zeptat: <strong>X je Y?</strong> Je-li odpověď kladná, jedná se o dědičnost. Častokrát také dědičnost používáme pro převzetí kódu z nadtřídy, což je ovšem opět specializací.</p>
+<p>Ukažme si tedy příklad, kdy chceme implementovat informační systém obsahující studenty. Entita studenta je člověkem, tedy můžeme vytvořit nejprve obecnou třídu <code>Person</code>, ze které bude třída <code>Student</code> dědit.</p>
+<pre><code class="language-python">class Person(object):
+
+    def __init__(self, firstname, surname):
+        self.firstname = firstname
+        self.surname = surname
+
+    def get_firstname(self):
+        return self.firstname
+
+    def get_surname(self):
+        return self.surname
+
+    def __str__(self):
+        return " ".join((self.firstname, self.surname))
+
+class Student(Person):
+
+    next_id = 0
+
+    def __init__(self, firstname, surname):
+        Person.__init__(self, firstname, surname)
+        Student.next_id += 1
+        self.edison_id = Student.next_id
+
+    def get_id(self):
+        return self.edison_id
+
+s1 = Student("Sean", "Connery")
+print("ID:", s1.get_id(), "Student name:", s1)
+# ID: 1 Student name: Sean Connery
+print(s1.get_firstname(), s1.get_surname()) # Sean Connery
+
+s2 = Student("James", "Bond")
+print("ID:", s2.get_id(), "Student name:", s2)
+# ID: 2 Student name: James Bond
+</code></pre>
+<p>Ve třídě <code>Person</code> jsme naimplementovali základní funkcionalitu. Třída <code>Student</code> dědí z <code>Person</code>. Navíc přidává to, že je každé instanci přiřazeno jednoznačné <code>edison_id</code>, kterým se identifikuje v našem univerzitním IS. Také je implementována metoda <code>get_id</code>, která daný identifikátor vrací. Třída <code>Student</code> je tedy specializovanou třídou odvozenou z třídy <code>Person</code>. Důležitým prvkem je konstruktor odvozené třídy. Ten jako první vždy volá konstruktor třídy nadřazené jako statickou metodu, kde jako instanci vloží sebe sama. Toto je jedno z mála míst, kde přímo voláme operátor, jinak se tohoto volání snažíme vyvarovat.</p>
+<p><strong>Cvičení:</strong></p>
+<p>Do třídy <code>Person</code> doplňte metody pro práci s věkem člověka pomocí modulu <code>datetime</code>. Poté přetěžte takový oprátor, abyste mohli jednoduše zjistit, zda je člověk nebo student starší než nějaký jiný. Také zkuste mezi sebou porovnat instance studenta a člověka.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="standardní-knihovna-jazyka-python"><a class="header" href="#standardní-knihovna-jazyka-python">Standardní knihovna jazyka Python</a></h1>
+<p>Standardní knihovna jazyka Python obsahuje velké množství užitečných funkcí. Vysvětleme si nejprve co je a k čemu takováto knihovna slouží. Programovací jazyky obecně slouží ke konstrukci algoritmů, které poté jejich kompilátor nebo interpret převede do spustitelné podoby, která daný algoritmus vykonává. Programovací jazyk obsahuje jen velice málo funkcí, které programátor může použít. Standardní knihovna je ihned dispozici po nainstalování příslušného programovacího jazyka. Většinou ji stačí k našemu programu jednoduše připojit.</p>
+<p>Knihovny slouží jako úložná místa s již vytvořenými funkcemi, které programátorovi usnadňují každodenní práci. Velkým skokem kupředu v oblasti standardní knihovny se stal v minulosti programovací jazyk Java. Ten oproti jazyku C s sebou přinesl velkou sadu funkcí, které jinak museli programátoři jazyka C pracně vyhledávat, popřípadě vytvářet sami.</p>
+<p>Programovací jazyk Python jde v ohledu ke standardní knihovně v podobném stylu jako jazyk Java. Python disponuje širokou škálou knihoven od práce s regulárními výrazy, přes práci se sítí, až po webové služby. Příjemné též je to, že i vaše vlastní knihovna se může stát součástí standardní knihovny Pythonu, pokud bude dostatečně užitečná, kvalitně napsaná a zdokumentovaná.</p>
+<h2 id="použití-standardní-knihovny"><a class="header" href="#použití-standardní-knihovny">Použití standardní knihovny</a></h2>
+<p>Na začátek je třeba si říci, jak se v jazyce Python používá standardní knihovna. Instalace interpretu Pythonu v sobě obsahuje mnoho modulů (knihoven), které se k našemu skriptu dají připojit pomocí klíčového slova import, následovaného jménem modulu. Tímto příkazem se k našemu skriptu připojí modul a dále můžeme používat funkce, které jsou v něm obsaženy pomocí syntaxe <code>jméno_modulu.funkce()</code>. Existují i jiné způsoby práce s funkcemi z modulu, tato je však jedna z nejpřehlednějších. Uveďme si krátký příklad, kdy pomocí modulu <code>os</code> ze standardní knihovny vytiskneme obsah aktuálního adresáře:</p>
+<pre><code class="language-python">&gt;&gt;&gt; import os
+&gt;&gt;&gt; os.listdir(".")
+["text.tex", "text.pdf", "text.aux", "text.toc"]
+</code></pre>
+<p>Modul <code>os</code> obsahuje mnoho užitečných funkcí pro práci s operačním systémem. V našem případě chceme vytisknout obsah aktuálního adresáře (tedy soubory a adresáře v něm obsažené). Funkce, která slouží pro výpis obsahu adresáře se jmenuje <code>listdir()</code> a její parametr je cesta k adresáři, ve kterém chceme tuto operaci provést. Aktuální adresář tedy bude řetězec <code>"."</code>. K funkci <code>listdir()</code> pak přistoupíme jednoduše pomocí příkazu <code>os.listdir(".")</code>.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="vzdálené-volání-funkcí-pomocí-xml-rpc"><a class="header" href="#vzdálené-volání-funkcí-pomocí-xml-rpc">Vzdálené volání funkcí pomocí XML-RPC</a></h1>
+<p>Vzdálené volání funkcí slouží, jak už název napovídá, k volání funkcí na nějakém vzdáleném místě (v tomto případě počítači připojenému do počítačové sítě). V současné chvíli je nám zcela jasné, jak provádět volání funkcí v rámci našeho skriptu, volání funkcí z modulů nebo volání metod tříd.</p>
+<p>V praxi však často dochází k tomu, že náš softwarový produkt je umístěn na více počítačích, které jsou spolu propojeny počítačovou sítí. Každý takovýto počítač je vybaven programy, které složí k jinému účelu. Tyto počítače by však měly ve výsledku tvořit kompaktní celek. Z tohoto důvodu spolu musí komunikovat (předávat si zprávy).</p>
+<p>Jedním ze způsobů komunikace je tzv. vzdálené volaní funkcí (nebo procedur). V princip se jedná o komunikaci pomocí architektury klient/server, kde se komunikující programy dělí na klienta a server.</p>
+<p><strong>Klient</strong> je program, který bude požadovat vykonání funkce na vzdáleném serveru. Při požadavku serveru předá potřebné parametry a po vykonání vzdálené funkce serverem také obdrží výsledek.</p>
+<p><strong>Server</strong> je program, který očekává požadavky od klientů. Pokud takový požadavek obdrží, vykoná jej prostřednictvím volaní své vnitřní funkce a výsledek pak předá klientovi.</p>
+<p>My se konkrétně budeme zabývat technologií XML-RPC, tedy vzdáleným voláním funkcí za pomoci XML. Na první pohled to může vypadat velice složitě, avšak díky standardní knihovně Pythonu bude práce s touto technologií velice jednoduchá. Pro praktické použití nebudeme potřebovat ani dva počítače, pokud budou server i klient komunikovat přes lokální síťové rozhraní počítače.</p>
+<p>Nyní se pokusme vytvořit jednoduchou kalkulačku pomocí vzdáleného volání funkcí. Server bude poskytovat funkce pro sčítání a odčítání čísel, klient bude tyto funkce využívat.</p>
+<pre><code class="language-python">import SimpleXMLRPCServer
+
+def add(a, b):
+    return a + b
+
+def subtract(a, b):
+    return a - b
+
+# simple server
+server = SimpleXMLRPCServer.SimpleXMLRPCServer(\
+("localhost", 8000))
+print "Listening at the port 8000..."
+
+server.register_function(add, 'plus')
+server.register_function(subtract, 'minus')
+
+server.serve_forever()
+</code></pre>
+<p>Nyní si ve stručnosti projděme zdrojový kód serveru. Standardní knihovna Pythonu obsahuje modul <code>SimpleXMLRPCServer</code>, který poskytuje funkcionalitu serveru pro vzdálená volání. Na prvním řádku si tento modul připojíme. Dále definuje dvě funkce pro sčítání a odečítání dvou čísel. Zbylá část kódu jen inicializuje server. Nejprve si vytvoříme objekt serveru, který bude naslouchat na lokálním síťovém rozhraní počítače (konkrétně na portu <code>8000</code>). Dále je nutné tzv. registrovat funkce, které bude server navenek poskytovat klientům. Jak je vidět z výpisu. Funkce <code>add</code> a <code>subtract</code> se budou navenek tvářit jako funkce <code>plus</code> a <code>minus</code>. Toto je užitečná metoda jak zachovat vnitřní konvenci pojmenovávání funkcí a přitom je navenek propagovat pod jiným jménem. Nakonec náš server spustíme a budeme čekat na volání od klientů.</p>
+<p>Všimněme si důležitého faktu, že funkce které chceme zpřístupnit pro vzdálené volání jsou zcela totožné z hlediska syntaxe s funkcemi, které již dobře známe.</p>
+<p>Klientská část vypadá následovně:</p>
+<pre><code class="language-python">import xmlrpclib
+
+remote_server = xmlrpclib.ServerProxy("http://localhost:8000/")
+print remote_server.plus(7, 3) # 10
+print remote_server.minus(7, 3) # 4
+</code></pre>
+<p>Pro klienta využijeme modul <code>xmlrpclib</code>, který obsahuje funkce pro zpřístupnění vzdáleného volání funkcí na nějakém serveru. Pro aktuální zpřístupnění funkcí na serveru si nejprve vytvoříme objekt serveru zavoláním funkce <code>ServerProxy</code> z modulu <code>xmlrpclib</code>, kde parametrem bude síťová adresa serveru (v našem případě lokální adresa a port použitý v kódu serveru). Pomocí toho to objektu pak můžeme volat funkce definované na serveru tak, jako by byly definované uvnitř nějakého objektu, který jsme si vytvořili sami. V našem případě tedy příkaz <code>remote_server.plus(7, 3)</code> zavolá funkci <code>add</code> na serveru.</p>
+<p>Jak je z tohoto příkladu vidět, vzdálené volání v Pythonu za použití standardní knihovny je velice jednoduché. Při tom si všimněte, že jsme se nikde nesetkali s XML, které je použito ve vnitřní implementaci celého mechanizmu.</p>
+<p><strong>Cvičení:</strong></p>
+<p>Vyzkoušejte si uvedený příklad a doplňte server o další funkce.</p>
+<p><strong>Cvičení:</strong></p>
+<p>Naimplementujte server, který bude provádět jednoduché výpočetní operace. Při implementaci serveru použijte třídu, jejíž metody budou přístupné klientům. Všimněte si rozdílu v registraci funkcí na serveru. V dokumentaci k jazyku Python je tento případ dobře popsán<label for="sn-vzdálené-volání-funkcí-pomocí-xml-rpc-1" class="margin-toggle"><sup>1</sup></label><input type="checkbox" id="sn-vzdálené-volání-funkcí-pomocí-xml-rpc-1" class="margin-toggle"/><span class="sidenote"><sup class="sidenote-number">1</sup> <a href="http://docs.python.org/2/library/simplexmlrpcserver.html#simplexmlrpcserver-example">http://docs.python.org/2/library/simplexmlrpcserver.html#simplexmlrpcserver-example</a></span>.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="vestavěný-webový-server"><a class="header" href="#vestavěný-webový-server">Vestavěný webový server</a></h1>
+<p>V dnešní době je většina informací dostupná na Internetu. Přiznejme si, kolik zajímavých informací jsme se dověděli díky webovým stránkám jako je wikipedia.org. Čtenáře jistě napadá jak takový Internet funguje a jakým způsobem se k nám informace dostávají. Nebudeme se zde zabývat jak Internet funguje, ale přiblížíme si nutné detaily k tomu, abychom byli schopni poskytovat informace na Internetu prostřednictvím jazyka Python.</p>
+<p>Pro prohlížení Internetových stránek používáme nějaký klientský program, který nazýváme prohlížeč. K těmto programům patří Mozilla Firefox, Microsoft Internet Explorer, Opera a jiné. Tyto prohlížeče nám zobrazují obsah, který je získáván z webového serveru na základě našich požadavků (zadáním webové adresy, klikáním na odkazy). Naprogramovat prohlížeč webových stránek je pro nás v současné chvíli přeci jen obtížný úkol, avšak naprogramovat webový server za použití standardní knihovny jazyka Python se jeví jako celkem jednoduchá úloha.</p>
+<h2 id="princip-webového-serveru"><a class="header" href="#princip-webového-serveru">Princip webového serveru</a></h2>
+<p>V jednoduchosti si přibližme práci webového serveru. Takovýto server reaguje na požadavky, které dostává od klienta (prohlížeče). Tyto požadavky jsou mapovány na tzv. metody. V standardu pro web servery je definováno mnoho metod, pro jednoduchost se však omezíme na metodu GET, kterou klient požaduje nějakou stránku z web serveru. Když klient použije tuto metodu, jako parametr zadává URL s požadovanou stránkou, kterou chce zobrazit, např.: http://muj-server.cz/index.html.</p>
+<p>Z pohledu webového serveru situace vypadá následovně:</p>
+<ol>
+<li>
+<p>Server přijme požadavek spolu se specifikací metody a jejího parametru,</p>
+</li>
+<li>
+<p>pokud je metoda typu GET, server ví, že bude vracet nějaký soubor, který je uveden v parametru metody,</p>
+</li>
+<li>
+<p>server zjistí hodnotu parametru metody, v našem příkladu tedy <code>index.html</code>,</p>
+</li>
+<li>
+<p><code>index.html</code> je pro server jednoduchým souborem na disku počítače, server jej proto načte a pošle zpět klientovi,</p>
+</li>
+<li>
+<p>komunikace s klientem končí až do chvíle dalšího požadavku.</p>
+</li>
+</ol>
+<p>Na tomto místě si uveďme poznámku, že se zabýváme webovým serverem, který poskytuje statický obsah. Takový obsah je na serveru pevně dán a nemění se v čase. V současné době jsme zvyklí na dynamicky generované stránky. I tento způsob generování stránek je možné v jazyce Python vytvořit.</p>
+<h2 id="vlastní-webový-server"><a class="header" href="#vlastní-webový-server">Vlastní webový server</a></h2>
+<p>Z výše uvedeného vyplývá, že náš server slouží k jednoduchému poskytování souborů. Takovýto server nachází uplatnění v situaci, kdy chceme někomu zpřístupnit naše soubory, nebo pro vývoj velmi jednoduché aplikace, poněvadž i takovýto server pro poskytování statického obsahu se dá přepsat na server poskytující dynamický obsah.</p>
+<p>Pro realizaci našeho vlastního webového serveru využijeme modul <code>BaseHTTPServer</code>. Tento modul v sobě obsahuje základní funkcionalitu serveru, jako je čekání na požadavky od klientů na síťovém rozhraní a vrácení patřičné odpovědi.</p>
+<p>V následujícím příkladu je uveden velice jednoduchý server, který poskytuje soubor <code>index.html</code> pokud si o něj prohlížeč požádá.</p>
+<pre><code class="language-python">from BaseHTTPServer import BaseHTTPRequestHandler
+
+class ObsluhaGet(BaseHTTPRequestHandler):
+
+    def do_GET(self):
+        if self.path == "/index.html":
+            self.send_response(200)
+            self.end_headers()
+            f = open("index.html", "rt")
+            self.wfile.write(f.read())
+            f.close()
+        return
+
+if __name__ == '__main__':
+    from BaseHTTPServer import HTTPServer
+    server = HTTPServer(('localhost', 8000), ObsluhaGet)
+    print 'Startuji server, stisknete &lt;Ctrl-C&gt; pro ukonceni'
+    server.serve_forever()
+</code></pre>
+<p>V příkladu vidíme, že z modulu <code>BaseHTTPServer</code> využijeme dvě třídy a to <code>BaseHTTPRequestHandler</code> a <code>HTTPServer</code>. První z nich slouží k obsluze jednotlivých požadavků od klientů. Druhá slouží k inicializaci webového serveru samotného.</p>
+<p>Důležitou částí je definování vlastní třídy <code>ObsluhaGet</code>, která dědí z třídy <code>BaseHTTPRequestHandler</code>. V metodách této třídy se bude dít hlavní část práce při obsluze požadavku klienta. Je důležité poznamenat, že jména metod v této třídě mají pevně dané schéma. Metody se jmenují vždy <code>do_NAZEV_METODY</code>, kde <code>NAZEV_METODY</code> je jméno metody, kterou chceme obsloužit. Pro jednoduché získávání webových stránek (souborů) nám stačí obsloužit metodu <code>GET</code>, existují však metody <code>POST</code>, <code>PUT</code>, <code>HEAD</code>, atd.</p>
+<p>V metodě <code>do_GET</code> si přečteme obsah instanční proměnné <code>path</code>, která obsahuje jméno souboru, který si prohlížeč vyžádal. Jak vidíme na příkladu, jednoduchým porovnáním obsahu proměnné <code>path</code> s nějakým řetězcem, který obsahuje jméno souboru uloženého na disku můžeme tento soubor načíst a poslat zpět prohlížeči. V tomto případě předpokládáme, že soubor <code>index.html</code> je umístěn ve stejném adresáři jako skript serveru. Pro správné zobrazení obsahu souboru však musíme ještě nastavit několik důležitých hlaviček odpovědi. Ty se nastavují pomocí metod <code>send_respo nse()</code> (hodnota <code>200</code> znamená, že vše je v pořádku a budeme odpovídat klientovi), <code>end_headers()</code> metoda informuje prohlížeč o ukončení hlaviček. Dále bude následovat samotná odpověď, která se skládá z načtení souboru z disku. Soubor nejprve otevřeme funkcí <code>open</code>, který bere dva parametry. První parametr je název souboru, který chceme otevřít, druhy je příznak, který specifikuje, zda chceme soubor otevřít pro zápis nebo čtení. Naši odpověď klientovi zašleme pomocí volání metody <code>write()</code> na atribudu <code>wfile</code>. Jako argument co klientovi zašleme, použijeme volání <code>read()</code> na právě otevřeném souboru.</p>
+<p>Takovýmto relativně jednoduchým způsobem můžeme vytvořit náš vlastní webový server. Na podobném principy pracují i jiné servery pro poskytování statického obsahu. V produkčním nasazení se však doporučuje používat nějaký osvědčený server a náš vlastní používat jen pro soukromé nebo testovací účely.</p>
+<p><strong>Cvičení:</strong></p>
+<p>Teď již víte jak vypsat obsah nějakého souboru. Pokuste se upravit příklad webového serveru tak, aby jako odpověď vracel obsah jakéhokoli souboru v aktuálním adresáři.</p>
+<p><strong>Cvičení:</strong></p>
+<p>Předešlé cvičení upravte tak, aby Váš webový server vracel pouze obsah souborů s příponou <code>html</code>.</p>
+<p><strong>Cvičení:</strong></p>
+<p>První cvičení upravte tak, aby Váš webový server vracel stránku 404 (nenalezeno), pokud zadaný soubor neexistuje. K řešení využijte výjimku, která bude vyvolána při snaze otevřít neexistující soubor.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="reference"><a class="header" href="#reference">Reference</a></h1>
+<p><a id="harms-mcdonald"></a></p>
+<ul>
+<li>Harms, D., McDonald, K.: Začínáme programovat v jazyce Python. Computer Press, a.s.</li>
+</ul>
+<p><a id="tut"></a></p>
+<ul>
+<li>Švec, J.: Učebnice jazyka Python (aneb Létající cirkus). URL: http://www.pythondocs.ic.cz/tut/tut.html</li>
+</ul>
+<p><a id="python-web"></a></p>
+<ul>
+<li>Oficiální webová stránka jazyka Python. URL: http://www.python.org</li>
+</ul>
+<p><a id="python-operator-overloading"></a></p>
+<ul>
+<li>Seznam oprátorů a jejich použití. URL: http://docs.python.org/reference/datamodel.html#special-method-names</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="grafická-uživatelská-rozhraní"><a class="header" href="#grafická-uživatelská-rozhraní">Grafická uživatelská rozhraní</a></h1>
+<p>Programovací jazyk Python je hodně využíván k tvorbě prototypů grafických uživatelských rozhraní (GUI). Je tedy velice vhodné si ukázat, jak tohoto dosáhnout.</p>
+<p>Pro konstrukci GUI je možno využít značné množství knihoven. My si ukážeme knihovnu Tk, která je ve s pojení s Pythonem často využívána. Vždyť i samotné rozhraní programu IDLE je napsáno prostřednictvím této knihovny.</p>
+<p>Tak jako i ostatní rozhraní, je knihovna Tk dostupná programátorovi v podobě modulu. Tento modul se jmenuje <code>Tkinter</code> a obsahuje všechny prvky GUI, které po většinu času potřebujeme.</p>
+<h3 id="jednoduchý-příklad"><a class="header" href="#jednoduchý-příklad">Jednoduchý příklad</a></h3>
+<p>Pro to, abychom si vyzkoušeli funkci knihovny Tk si napíšeme jednoduchý příklad, jehož kód je zobrazen níže:</p>
+<pre><code class="language-python">from Tkinter import *
+
+def f():
+    print "Ahoj svete"
+
+okno = Tk()
+
+tlacitko = Button(okno, text = "Pozdrav", command = f )
+tlacitko.pack()
+mainloop()
+</code></pre>
+<p>Tento příklad vytvoří jedno okno s tlačítkem, které po stisknutí na textovou konzoli (odkud byl skript spuštěn) vytiskne text <code>Ahoj svete</code>. Jedná se tedy o grafickou alternativu k dobře známému skriptu z textového prostředí.</p>
+<p>Jak jsme si již uvedli, knihovna Tk se nachází v modulu Tkinter, který je připojen na začátku ukázkového skriptu. Funkce <code>f</code> slouží k výpisu pozdravu <code>Ahoj svete</code>. Dále se již dostáváme k samotné knihovně Tk. Nejprve je třeba si vytvořit okno pro GUI aplikaci. Toto vytvoříme pomocí volání <code>Tk()</code>. Dále si vytvoříme tlačítko, které je v modulu <code>Tkinter</code> definováno jako <code>Button</code>. Nově vznikajícímu tlačítku dáme jako první parametr objekt okna aplikace, dále použijeme pojmenovaných atributů text, který bude uveden v popisku tlačítka a <code>command</code>, který specifikuje, co se má po stisknutí tlačítka provést. Jak je vidět z příkladu, po stisknutí tlačítka se zavolá funkce <code>f</code>, která provede náš požadovaný výstup. Vytvořené tlačítko se v okně zobrazí až když na něm zavoláme metodu <code>pack()</code>. Celou aplikaci spustíme zavoláním funkce <code>mainloop()</code>.</p>
+<p>Na tomto místě je dobré poznamenat, že u grafické aplikace vždy spouštíme tzv. hlavní smyčku. V této smyčce se provádí kontrola, zda nebylo stlačeno nějaké tlačítko a také se provádí vykreslování jednotlivých komponent.</p>
+<h3 id="filozofie-knihovny-tk"><a class="header" href="#filozofie-knihovny-tk">Filozofie knihovny Tk</a></h3>
+<p>Jak jsme již mohli vidět výše, aplikace s GUI se skládají z komponent, které se v angličtině nazývají widgets. Každý prvek z knihovny Tk je v Pythonu reprezentován svou vlastní třídou. Díky tomu velice snadno odlišujeme jednotlivé prvky na úrovni zdrojového kódu (v našem příkladu jsem zatím viděli dva prvky a to <code>Tk</code> a <code>Button</code>).</p>
+<p>Další důležitou vlastností je využití pojmenovaných atributů. Pojmenované atributy velice zjednodušují práci s komponentami. Princip je velice jednoduchý, pokud chceme změnit nějakou vlastnost komponenty, nalezneme příslušný atribut v dokumentaci knihovny Tk a přiřadíme mu požadovanou hodnotu. Pojmenované atributy jsme použili i v našem příkladu u komponenty <code>Button</code>.</p>
+<p>Pokud by pojmenované atributy neexistovaly, museli bychom všechny atributy zadávat na správné pozici a to jistě není jednoduché.</p>
+<p>Nakonec je třeba se seznámit s principem, jakým knihovna Tk umisťuje prvky do okna aplikace. Zde se nám nabízejí dvě možnosti jak umístit prvky do okna aplikace.</p>
+<p>Prvním způsobem je využití metody <code>pack</code>, kterou jsme využili v našem příkladu. Tato metoda řadí komponenty buď za sebe horizontálně nebo do čtyř směrů podle světových stran. Tento směr se opět určuje podle pojmenovaného atributu.</p>
+<p>Druhým způsobem umístění komponenty je využití metody <code>grid</code>. Jak už název napovídá, metoda rozděluje okno do tabulky. Pomocí specifikace řádku a sloupce můžeme komponentu přesně umístit na požadovanou pozici.</p>
+<p>U složitých aplikací se často setkáváme se situací, kdy nakonec použijeme oba způsoby umisťování komponent.</p>
+<h3 id="gui-aplikace-pro-řešení-kvadratické-rovnice"><a class="header" href="#gui-aplikace-pro-řešení-kvadratické-rovnice">GUI aplikace pro řešení kvadratické rovnice</a></h3>
+<p>V následujícím odstavci si ukážeme jednoduchou GUI aplikaci pro řešení kvadratické rovnice. Z výpisu zdrojového kódu příkladu je vidět, že byl použit <code>grid</code> pro umístění prvků. V aplikaci jsme také použili nové komponenty knihovny Tk. Popisky jsou tvořeny komponentou <code>Label</code>. Vstupní pole pak tvořeny komponentou <code>Entry</code>.</p>
+<p>Zajímavé je též použití komponenty <code>Label</code> jako informačního panelu o výsledku. V závislosti na vstupních hodnotách parametrů kvadratické rovnice se komponenta <code>Label</code> s výsledkem mění. Pro dosažení toho to efektu využijeme metodu <code>configure</code>. Tato metoda opět využívá pojmenovaných atributů, kterým můžeme změnit jejich hodnotu.</p>
+<p>Pro ukončení aplikace jsme přidali další tlačítko. To po svém stisknutí zavolá metodu <code>exit</code> z modulu <code>sys</code> a naši aplikaci ukončí.</p>
+<p>Poznámka k původnímu obrázku aplikace je uvedena níže.</p>
+<pre><code class="language-python">from Tkinter import *
+import sys
+import math
+
+def vypocet():
+    global vstA, vstB, vstC
+    a = float(vstA.get())
+    b = float(vstB.get())
+    c = float(vstC.get())
+
+    if a == 0.0:
+        vysl.configure(text="Vysledek: nelze delit nulou.\
+                       Zmente hodnotu A." )
+    D = b*b - 4*a*c
+
+    if D &gt; 0.0:
+        Dsqrt = math.sqrt(D)
+        x1 = (-b + Dsqrt) / (2*a)
+        x2 = (-b - Dsqrt) / (2*a)
+        vysl.configure(text="Vysledek: x1=%f, x2=%f"\
+                       % (x1, x2) )
+        return
+    else:
+        vysl.configure(text="Vysledek: zadane hodnoty\
+                       nemaji reseni")
+        return
+
+okno = Tk()
+
+labA = Label(okno, text="a:")
+labA.grid(row=0, column=0)
+
+vstA = Entry(okno)
+vstA.grid(row=0, column=1)
+
+labB = Label(okno, text="b:")
+labB.grid(row=1, column=0)
+
+vstB = Entry(okno)
+vstB.grid(row=1, column=1)
+
+labC = Label(okno, text="c:")
+labC.grid(row=2, column=0)
+
+vstC = Entry(okno)
+vstC.grid(row=2, column=1)
+
+vysl = Label(okno, text="Vysledek:")
+vysl.grid(row=3, column=0)
+
+vyp = Button(okno, text = "Vypocet", command = vypocet )
+vyp.grid(row=6, column=0)
+
+konec = Button(okno, text = "konec", command = sys.exit )
+konec.grid(row=6, column=1)
+
+mainloop()
+</code></pre>
+<p><a id="fig:tk2"></a></p>
+<p><em>Obrázek není v repozitáři k dispozici. Popisek: Aplikace pro výpočet koeficientů kvadratické rovnice.</em></p>
+<h3 id="závěrem-o-gui"><a class="header" href="#závěrem-o-gui">Závěrem o GUI</a></h3>
+<p>Tvorba GUI s sebou přináší jeden problém a to kvality návrhu rozhraní. Pro to, aby uživatel pracoval s GUI bez problémů, je nutné dodržovat zásady pro dobrý návrh aplikace. Toto je samozřejmě nad rámec toho to textu.</p>
+<p>Knihovna Tk je samozřejmě mnohem obsáhlejší než bylo uvedeno výše. Můžete s ní jednoduše vytvářet i rozsáhlé aplikace, poněvadž počet komponent je široký. Vždyť dokumentace ke knihovně přesahuje 350 stran textu.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="práce-se-soubory"><a class="header" href="#práce-se-soubory">Práce se soubory</a></h1>
+<p>V této kapitolo se ukážeme, jak je možno soubory číst a zapisovat. Práce se soubory je, co se týče otevírání a uzavírání, velmi podobná té, s níž jste se již seznámili v jazyce C.</p>
+<p>Mějme soubor, který obsahuje následující řádky:</p>
+<pre><code class="language-python">First line.
+Second line.
+Third line.
+</code></pre>
+<pre><code class="language-python">my_file = open('soubor.txt', 'rt')
+
+for line in my_file:
+    print line
+
+my_file.close()
+
+#First line.
+#
+#Second line.
+#
+#Third line.
+#
+</code></pre>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js"></script>
+        <script src="mark.min.js"></script>
+        <script src="searcher.js"></script>
+
+        <script src="clipboard.min.js"></script>
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+        <script>
+        window.addEventListener('load', function() {
+            window.setTimeout(window.print, 100);
+        });
+        </script>
+
+
+    </div>
+    </body>
+</html>

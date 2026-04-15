@@ -1,0 +1,318 @@
+<!DOCTYPE HTML>
+<html lang="en" class="light sidebar-visible" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Úvod - SKJ Skripta</title>
+
+
+        <!-- Custom HTML head -->
+
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" id="highlight-css" href="highlight.css">
+        <link rel="stylesheet" id="tomorrow-night-css" href="tomorrow-night.css">
+        <link rel="stylesheet" id="ayu-highlight-css" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="src/tufte.css">
+
+
+        <!-- Provide site root and default themes to javascript -->
+        <script>
+            const path_to_root = "";
+            const default_light_theme = "light";
+            const default_dark_theme = "navy";
+            window.path_to_searchindex_js = "searchindex.js";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="toc.js"></script>
+    </head>
+    <body>
+    <div id="mdbook-help-container">
+        <div id="mdbook-help-popup">
+            <h2 class="mdbook-help-title">Keyboard shortcuts</h2>
+            <div>
+                <p>Press <kbd>←</kbd> or <kbd>→</kbd> to navigate between chapters</p>
+                <p>Press <kbd>S</kbd> or <kbd>/</kbd> to search in the book</p>
+                <p>Press <kbd>?</kbd> to show this help</p>
+                <p>Press <kbd>Esc</kbd> to hide this help</p>
+            </div>
+        </div>
+    </div>
+    <div id="body-container">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                let theme = localStorage.getItem('mdbook-theme');
+                let sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
+            let theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            const html = document.documentElement;
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add("js");
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            let sidebar = null;
+            const sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+                sidebar_toggle.checked = false;
+            }
+            if (sidebar === 'visible') {
+                sidebar_toggle.checked = true;
+            } else {
+                html.classList.remove('sidebar-visible');
+            }
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="toc.html"></iframe>
+            </noscript>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="default_theme">Auto</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search (`/`)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="/ s" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">SKJ Skripta</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <div class="search-wrapper">
+                            <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                            <div class="spinner-wrapper">
+                                <i class="fa fa-spinner fa-spin"></i>
+                            </div>
+                        </div>
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="Úvod"><a class="header" href="#Úvod">Úvod</a></h1>
+<p>Tento text vznikl pro potřeby výuky předmětu Skriptovací jazyky. Studentům by měl sloužit pro získání nutného minima znalostí ke zvládnutí programování v jazyce kurzu – tedy jazyka Python<label for="sn-úvod-1" class="margin-toggle"><sup>1</sup></label><input type="checkbox" id="sn-úvod-1" class="margin-toggle"/><span class="sidenote"><sup class="sidenote-number">1</sup> http://www.python.org</span>. V žádném případě však není text plnohodnotnou náhradou za poslechy přednášek a návštěvy cvičení. Studentům je tudíž velmi doporučeno, aby přednášky a cvičení navštěvovali.</p>
+<p>Tento text si též neklade za cíl vytvořit kompletního průvodce jazykem Python. Pro takovýto účel lze doporučit některý knižní titul, např.: <a href="reference.html#harms-mcdonald">Harms, McDonald</a>.</p>
+<h2 id="Úvod-do-skriptovacích-jazyků"><a class="header" href="#Úvod-do-skriptovacích-jazyků">Úvod do skriptovacích jazyků</a></h2>
+<p>Skriptovací programovací jazyky tvoří protiváhu tzv. kompilovaným programovacím jazykům. Jednotlivé programy jsou tvořeny zdrojovými kódy (skripty), které jsou tzv. interpretovány, tj. čteny a spouštěny za běhu speciálním programem, tzv. interpretem.</p>
+<p>Typický skript těží z výhody, že se nemusí překládat, a často tvoří rozšiřitelnou (parametrickou) část nějakého softwarového projektu, která se může měnit, aniž by bylo potřeba pokaždé rekompilovat hlavní spustitelný soubor. Skripty tak najdeme u her (Quake), grafických uživatelských rozhraní (XULRunner v produktech Mozilla), složitějších softwarových řešení nebo jako hlavní součást dynamických webových stránek (YouTube, Instagram) a podobně.</p>
+<p><strong>Výhody:</strong></p>
+<ul>
+<li>Není nutné provádět po každé změně kódu kompilaci,</li>
+<li>snadnější údržba, vývoj a správa kódu,</li>
+<li>některé skripty umožňují interpretaci kódu z řetězce (jako například funkce eval() v Pythonu nebo PHP). Něco takového překládané programy bez použití speciálních technik nedokáží.</li>
+</ul>
+<p><strong>Nevýhody:</strong></p>
+<ul>
+<li>
+<p>Rychlost. Interpretace stojí určitý strojový čas a většinou nebývá tak rychlá jako běh přeloženého (a optimalizovaného) programu,</p>
+</li>
+<li>
+<p>vyšší paměťová náročnost. Interpret musí být spuštěn a tedy zabírá určitou část operační paměti,</p>
+</li>
+<li>
+<p>skriptovací jazyky mají většinou větší omezení než překládané programovací jazyky (např. co do přístupu do paměti, ovládání tzv. handlerů procesů, kontextových zařízení, apod.).</p>
+</li>
+</ul>
+<h2 id="programovací-jazyk-python"><a class="header" href="#programovací-jazyk-python">Programovací jazyk Python</a></h2>
+<p>Python je interpretovaný procedurální, objektově orientovaný a funkcionální programovací jazyk, který v roce 1990 navrhl Guido van Rossum. Python je vyvíjen jako open source projekt, který zdarma nabízí instalační balíky pro většinu běžných platforem (Unix, Windows, Mac OS); ve většině distribucí systému GNU/Linux je Python součástí základní instalace.</p>
+<p>Python je dynamický interpretovaný jazyk a také jej zařazujeme mezi skriptovací jazyky. Python byl navržen tak, aby umožňoval tvorbu rozsáhlých, plnohodnotných aplikací (včetně grafického uživatelského rozhraní).</p>
+<p>Python je hybridní jazyk (nebo také víceparadigmatický), to znamená, že umožňuje při psaní programů používat nejen objektově orientované paradigma, ale i procedurální a v omezené míře i funkcionální, podle toho komu co vyhovuje nebo co se pro danou úlohu nejlépe hodí. Python má díky tomu vynikající vyjadřovací schopnosti. Kód programu je ve srovnání s jinými jazyky krátký a dobře čitelný.</p>
+<p>K význačným vlastnostem jazyka Python patří jeho jednoduchost z hlediska učení a proto se jím budeme primárně zabývat v rámci našeho kurzu. Bývá dokonce považován za jeden z nejvhodnějších programovacích jazyků pro začátečníky. Python ale současně bourá zažitou představu, že jazyk vhodný pro výuku není vhodný pro praxi a naopak. Podstatnou měrou k tomu přispívá čistota a jednoduchost syntaxe, na kterou se při vývoji jazyka hodně dbá.</p>
+<p>Význačnou vlastností jazyka Python je produktivita z hlediska rychlosti psaní programů. Týká se to jak nejjednodušších programů, tak aplikací velmi rozsáhlých. U jednoduchých programů se tato vlastnost projevuje především stručností zápisu. U velkých aplikací je produktivita podpořena rysy, které se používají při programování ve velkém, jako jsou například přirozená podpora prostorů jmen, používání výjimek, standardně dodávané prostředky pro psaní testů (unit testing) a dalšími. S vysokou produktivitou souvisí dostupnost a snadná použitelnost široké škály knihovních modulů, umožňujících snadné řešení úloh z řady oblastí. V poslední době je Python též oblíben u komunity zabývající se výpočty na superpočítačích (HPC). K tomuto účelu vznikla speciální sada knihoven, která je protiváhou dobře známemu MATLABu – SciPy<label for="sn-úvod-2" class="margin-toggle"><sup>2</sup></label><input type="checkbox" id="sn-úvod-2" class="margin-toggle"/><span class="sidenote"><sup class="sidenote-number">2</sup> http://www.scipy.org/</span>.</p>
+<h2 id="vývojové-prostředí-jazyka-python"><a class="header" href="#vývojové-prostředí-jazyka-python">Vývojové prostředí jazyka Python</a></h2>
+<p>Pro práci v s jazykem Python je doporučováno mít nainstalován Python ve verzi 2.5, 2.6 nebo 2.7. Uživatelé Linuxových distribucí již mají Python nainstalován ve standardní instalaci. Uživatelé Windows si mohou stáhnout instalátor Pythonu z domovské stránky projektu <a href="reference.html#python-web">Oficiální webová stránka jazyka Python</a>, sekce Download.</p>
+<p>Skriptovací jazyky mají většinou tu vlastnost, že dovolují spouštění skriptů dvojím způsobem a to v <strong>interaktivním režimu</strong> a nebo spuštění skriptu ze souboru se zdrojovým kódem (<strong>dávkový režim</strong>).</p>
+<p><strong>Interaktivní režim</strong> lze spustit jednoduše spuštěním interpretu Pythonu z příkazové řádky nebo z programové nabídky. Tento režim slouží většinou k testování funkcionality kódu. Po spuštění interaktivního režimu se na obrazovce objeví následující výpis:</p>
+<pre><code class="language-text">Python 3.4.2 (default, Oct  8 2014, 10:45:20)
+GCC 4.9.1 on linux
+Type "help", "copyright", "credits" or "license"
+for more information.
+$&gt;&gt;&gt;$
+</code></pre>
+<p>Řádek se znaky <code>&gt;&gt;&gt;</code> je tzv. <strong>prompt</strong> (výzva). Tam již můžeme zadávat příkazy jazyka a pomocí klávesy Enter je spustit. Nyní tedy stačí do promptu napsat <code>print("Ahoj svete!")</code> a objeví se nám:</p>
+<pre><code class="language-python">&gt;&gt;&gt; print("Ahoj svete")
+Ahoj svete
+&gt;&gt;&gt;
+</code></pre>
+<p>Funkce <code>print</code> slouží pro tisk zadaných informací na výstup. Po volání této funkce vidíme výsledek na dalším řádku.</p>
+<p><strong>Dávkový režim</strong> slouží ke spouštění složitějších skriptů. Takovýto skript spustíme jednoduše na příkazové řádce pomocí příkazu ($ je promptem shellu operačního systému):</p>
+<pre><code class="language-text">$ python muj_skript.py
+</code></pre>
+<p><strong>Cvičení:</strong></p>
+<p>Vytvořte si jednoduchý skript, který vypíše na výstup řetězec "Ahoj svete" a ověřte jeho funkcionalitu.</p>
+<p><strong>Cvičení:</strong></p>
+<p>V interaktivním režimu si vyzkoušejte jednoduché počítání. Provádějte operace s čísly jako na kalkulátoru. Pokuste se použít proměnné a závorky.</p>
+<p><strong>Cvičení:</strong></p>
+<p>V interaktivním režimu si vyzkoušejte práci s řetězci. Použijte znaky pro uvození řetězců " a ' a sledujte jak se od sebe liší popřípadě, zda je možné je do sebe zanořit. Přistupujte k jednotlivým prvkům a podřetězcům řetězců pomocí indexů mezi znaky $[$ a $]$. Řetězce spojujte.</p>
+<p><strong>Cvičení:</strong></p>
+<p>V interaktivním režimu si vyzkoušejte práci s seznamy a n-ticemi (jsou popsány v 6. kapitole knihy). Opět přistupujte k jednotlivým prvkům seznamů a n-tic. Přidávejte prvky do již existujících seznamů.</p>
+<p><a id="sec:syntax"></a></p>
+<h2 id="syntaxe"><a class="header" href="#syntaxe">Syntaxe</a></h2>
+<p>Jazyk Python má relativně jednoduchou syntaxi nez množství různých "kudrlinek" (Anglicky je toto nazýváno pojmem "boilerplate"). Hlavní rysy, se kterými mají někdy začátečníci problémy, by se daly shrnout do následujících bodů:</p>
+<ul>
+<li>
+<p>nepoužívají se složené závorky <code>{}</code> pro označení bloku, používá se <strong>odsazení</strong>, který je uvozen dvojtečkou <code>:</code>,</p>
+</li>
+<li>
+<p>nepoužívají se složené závorky <code>{</code> a <code>}</code> pro označení bloku, používá se <strong>odsazení</strong>, který je uvozen dvojtečkou <code>:</code>,</p>
+</li>
+<li>
+<p>u podmínek příkazů <code>if</code> a <code>while</code> se nepoužívají kulaté závorky <code>(</code> a <code>)</code>,</p>
+</li>
+<li>
+<p>pro ukončení příkazu nepoužíváme středník <code>;</code>, ale jednoduše přejdeme na nový řádek a vložíme další příkaz.</p>
+</li>
+</ul>
+<p>Uveďme si nyní jednoduchý příklad, který shrnuje obě vlastnosti.</p>
+<pre><code class="language-python">if a &gt; 0:
+    print("Positive")
+elif a &lt; 0:
+    print("Negative")
+else:
+    print("Zero")
+</code></pre>
+<p>Na příkladu můžeme vidět, že bloky jednotlivých větví příkazu <code>if</code> jsou uvozeny dvojtečkou a jejich tělo (blok) je odsazen o 4 mezery doprava oproti korespondující větvi. Samozřejmě můžeme do bloku umístit více příkazů tak, že je postupně řadíme pod sebe se stejným odsazením. Též si povšimněme, že není použit znak středníku. Speciálně odsazení bloků je někdy problematické. V jazycích jako je C nebo Java však také běžně bloky odsazujeme proto, abychom je jednoduše vizuálně odlišili. Proto je v jazyce Python této dobře známé praktiky využito s tím, že není nutné psát označení bloků složenými závorkami. Také si povšimněme, že blok je uvozen dvojtečkou. Pro srovnání je ještě zobrazena stejná situace v jazyce C.</p>
+<pre><code class="language-python">if (a &gt; 0) {
+    printf( "Positive\n" );
+}
+else if (a &lt; 0) {
+    printf( "Negative\n" );
+}
+else {
+    printf( "Zero\n" );
+}
+</code></pre>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+
+                            <a rel="next prefetch" href="promenne_a_typy.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+
+                    <a rel="next prefetch" href="promenne_a_typy.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js"></script>
+        <script src="mark.min.js"></script>
+        <script src="searcher.js"></script>
+
+        <script src="clipboard.min.js"></script>
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+
+    </div>
+    </body>
+</html>

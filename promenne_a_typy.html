@@ -1,0 +1,518 @@
+<!DOCTYPE HTML>
+<html lang="en" class="light sidebar-visible" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Proměnné - SKJ Skripta</title>
+
+
+        <!-- Custom HTML head -->
+
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" id="highlight-css" href="highlight.css">
+        <link rel="stylesheet" id="tomorrow-night-css" href="tomorrow-night.css">
+        <link rel="stylesheet" id="ayu-highlight-css" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="src/tufte.css">
+
+
+        <!-- Provide site root and default themes to javascript -->
+        <script>
+            const path_to_root = "";
+            const default_light_theme = "light";
+            const default_dark_theme = "navy";
+            window.path_to_searchindex_js = "searchindex.js";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="toc.js"></script>
+    </head>
+    <body>
+    <div id="mdbook-help-container">
+        <div id="mdbook-help-popup">
+            <h2 class="mdbook-help-title">Keyboard shortcuts</h2>
+            <div>
+                <p>Press <kbd>←</kbd> or <kbd>→</kbd> to navigate between chapters</p>
+                <p>Press <kbd>S</kbd> or <kbd>/</kbd> to search in the book</p>
+                <p>Press <kbd>?</kbd> to show this help</p>
+                <p>Press <kbd>Esc</kbd> to hide this help</p>
+            </div>
+        </div>
+    </div>
+    <div id="body-container">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                let theme = localStorage.getItem('mdbook-theme');
+                let sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
+            let theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            const html = document.documentElement;
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add("js");
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            let sidebar = null;
+            const sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+                sidebar_toggle.checked = false;
+            }
+            if (sidebar === 'visible') {
+                sidebar_toggle.checked = true;
+            } else {
+                html.classList.remove('sidebar-visible');
+            }
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="toc.html"></iframe>
+            </noscript>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="default_theme">Auto</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search (`/`)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="/ s" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">SKJ Skripta</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <div class="search-wrapper">
+                            <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                            <div class="spinner-wrapper">
+                                <i class="fa fa-spinner fa-spin"></i>
+                            </div>
+                        </div>
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="proměnné"><a class="header" href="#proměnné">Proměnné</a></h1>
+<p>V dynamicky typovaných jazycích nedeklarujeme typy použitých proměnných jako třeba v jazycích C/C++, Java, apod. Nebuďme však uvedeni v omyl, že by proměnné neměly svůj typ! Typy jednotlivých proměnných jsou rozlišeny za běhu. V jazyce Python není možné, aby proměnná neměla přiřazen nějaký typ.</p>
+<p>Proměnnou vytvoříme jednoduchým přiřazením nějaké hodnoty do jejího jména. Na následujícím výpisu kódu je ukázáno, jak vytvořit proměnnou, zjistit její datový typ a dále do ní přiřadit jinou hodnotu jiného datového typu.</p>
+<pre><code class="language-python">In [1]: promenna
+-----------------------------------------------------------
+NameError                 Traceback (most recent call last)
+&lt;ipython-input-2-4c4614e58bc8&gt; in &lt;module&gt;()
+----&gt; 1 promenna
+
+NameError: name 'promenna' is not defined
+
+In [2]: promenna = 1
+
+In [3]: promenna
+Out[3]: 1
+
+In [4]: type(promenna)
+Out[4]: int
+
+In [5]: promenna = 1.0
+
+In [6]: type(promenna)
+Out[6]: float
+
+In [7]: promenna = "Toto je text."
+
+In [8]: type(promenna)
+Out[8]: str
+
+In [9]: promenna = True
+
+In [10]: type(promenna)
+Out[10]: bool
+
+In [11]: promenna = False
+
+In [12]: type(promenna)
+Out[12]: bool
+</code></pre>
+<p>Na výše uvedeném výpisu je použit interpret <strong>iPython</strong><label for="sn-proměnné-1" class="margin-toggle"><sup>1</sup></label><input type="checkbox" id="sn-proměnné-1" class="margin-toggle"/><span class="sidenote"><sup class="sidenote-number">1</sup> http://ipython.org/</span>, který poskytuje větší uživatelský komfort než standardní interpret. Řádek <code>1</code> demonstruje, že pokud do proměnné <code>promenna</code> neuložíme nějakou hodnotu, její jméno neexistuje a ani jej nemůžeme referovat. Také můžeme vidět, že tento příkaz vyhodil výjimku <code>NameError</code>. Pro teď nám bude stačit konstatovat, že všechny chyby v jazyce Python budou interpretem vyhodnoceny jako výjimky. Díky tomu je také můžeme jednoduše ošetřit. Na řádku <code>2</code> vidíme přiřazení hodnoty <code>1</code> do proměnné <code>promenna</code>. Na řádku <code>3</code> vidíme, že pokud použijeme jméno proměnné, dostaneme její hodnotu. Na řádku <code>4</code> se ptáme na typ proměnné pomocí funkce <code>type</code>. Na řádku <code>5</code> jsme přiřadili do proměnné hodnotu typu <code>float</code> a na řádku <code>7</code> hodnotu typu <code>str</code>, která je zkratkou pro typ string. Na řádcích <code>9</code> a <code>11</code> vidíme použití pravdivostní hodnoty <code>True</code> a <code>False</code>, které jsou datového typu <code>bool</code>.</p>
+<p>Na výše uvedeném výpisu programu můžeme vidět první základní vlastnost dynamicky typovaných jazyků a to tu, že proměnná, která má přiřazenu nějakou hodnotu a s ní nějaký datový typ může v průběhu programu tento typ změnit. Samozřejmě to není vlastnost jediná, ale je to vlastnost, která je nejčastěji vidět.</p>
+<p>V interpretu můžeme provádět klasické operace s proměnnými tak, jak jsme zvyklí z běžných jazyků (tím myslíme operace sčítání, násobení, apod.). Nezapomeňme, že dělení dvou celých čísel je opět celé číslo. Dělení celých čísel se tedy chová stejně jako v jazyce C.</p>
+<p>To, že proměnné nemají předem určený typ však neznamená, že bychom mohli provádět nedefinované operace. Uveďme si jednoduchý příklad.</p>
+<pre><code class="language-python">In [13]: 123 + "Ahoj"
+----------------------------------------------------------
+TypeError                Traceback (most recent call last)
+&lt;ipython-input-13-4d72da21761a&gt; in &lt;module&gt;()
+----&gt; 1 123 + "Ahoj"
+
+TypeError: unsupported operand type(s) for +: 'int' and 'str'
+
+In [14]: a = 123
+
+In [15]: b = "Ahoj"
+
+In [16]: a + b
+----------------------------------------------------------
+TypeError                Traceback (most recent call last)
+&lt;ipython-input-16-f96fb8f649b6&gt; in &lt;module&gt;()
+----&gt; 1 a + b
+
+TypeError: unsupported operand type(s) for +: 'int' and 'str'
+</code></pre>
+<p>Na příkladu můžeme vidět, že interpret poznal, že se snažíme o sečtení celého čísla a řetězce. Při takovéto operaci nevíme, jaký má být výsledný datový typ, a proto interpret vyhodil výjimku <code>TypeError</code>. Ve výpisu je provedena ukázka s použitím proměnných i bez nich, aby bylo vidět, že i jednotlivé literály jsou v jazyce Python objekty. K tématu objektů se vrátíme později.</p>
+<h1 id="jednoduché-datové-typy"><a class="header" href="#jednoduché-datové-typy">Jednoduché datové typy</a></h1>
+<p>Nyní si ve stručnosti ukážeme základní datové typy.</p>
+<p><strong>Čísla:</strong> <code>int, long, float, complex</code></p>
+<ul>
+<li><code>23 2345837934346901268 0x17 3.4 5.6+7.8j</code></li>
+<li>operátory: <code>+ - * ** / // % ~ &amp; | &lt;&lt; &gt;&gt;</code></li>
+<li>build-in funkce: <code>abs min max pow round sum</code></li>
+</ul>
+<p><strong>Cvičení:</strong></p>
+<p>V interaktivním režimu si vyzkoušejte práci s čísly. Vyzkoušejte si operátory, speciálně operátor <code>**</code>. Také si zkuste použití build-in funkcí, které jsou často užitečné.</p>
+<p><strong>Řetězce:</strong> jednoduché a Unicode</p>
+<ul>
+<li><code>'apostrofy' "uvozovky" r'raw' u"unicode" \n</code></li>
+<li>operátory: <code>+</code> (spojení, konkatenace), <code>*</code> (opakovaní), <code>%</code> (format)</li>
+<li>formátování podobné jako v jazyce C</li>
+<li>jsou neměnitelné (immutable) sekvence: <code>len</code>, <code>[]</code> (index/slice), <code>for</code></li>
+<li>objekt řetězce má mnoho metod</li>
+</ul>
+<p><strong>Cvičení:</strong></p>
+<p>Vyzkoušejte práci s řetězci. Použijte znaky pro uvození řetězců " a ' a sledujte jak se od sebe liší popřípadě, zda je možné je do sebe zanořit. Přistupujte k jednotlivým prvkům a podřetězcům řetězců pomocí indexů mezi znaky <code>[</code> a <code>]</code>. Řetězce spojujte.</p>
+<h1 id="kolekce"><a class="header" href="#kolekce">Kolekce</a></h1>
+<p>Jedním z důležitých prvků programovacích jazyků je práce s kolekcemi dat. Pod pojmem kolekce si budeme představovat nějakou datovou strukturu, která nám umožní vkládat jednotlivé (třeba i různé) prvky do jedné proměnné. Takováto proměnná se pak bude nazývat kolekcí (shromažďuje v sobě jiné prvky). S kolekcí jsme se již setkali v podobě řetězců, kde je řetězec znaků tvořen jednotlivými znaky, které jsou uloženy v jednotlivých prvcích seznamu. K jednotlivým znakům řetězce též můžeme přistoupit pomocí hranatých závorek uvedených za seznamem. Ukažme si to na příkladu:</p>
+<pre><code class="language-python">&gt;&gt;&gt; ret = "Ahoj"
+&gt;&gt;&gt; print(ret[0], ret[1], ret[2], ret[3])
+A h o j
+</code></pre>
+<p>Z uvedeného příkladu vyplývá, že seznamy se do určité míry chovají jako pole v jazyce C.</p>
+<p><a id="sec:list"></a></p>
+<h2 id="seznam-list"><a class="header" href="#seznam-list">Seznam (<code>list</code>)</a></h2>
+<p>Seznamy v jazyce Python jsou však univerzálnější. Mohou ve svých prvcích obsahovat jakékoli další prvky bez ohledu na datový typ (toto je důsledek dynamického typování jazyka). Uveďme si tedy další příklad:</p>
+<pre><code class="language-python">&gt;&gt;&gt; sez = ["Ahoj", 1, 2, [1, 2, 3]]
+&gt;&gt;&gt; print(sez[0], sez[1], sez[2], sez[3])
+"Ahoj" 1 2 [1, 2, 3]
+</code></pre>
+<h3 id="indexování-seznamu"><a class="header" href="#indexování-seznamu">Indexování seznamu</a></h3>
+<p>S poli v jazyce C bychom byli hotovi, v Pythonu však nikoli. Indexovat seznam můžeme i od konce:</p>
+<pre><code class="language-python">&gt;&gt;&gt; sez = ["Ahoj", 1, 2, [1, 2, 3]]
+&gt;&gt;&gt; print(sez[-1], sez[-2], sez[-3], sez[-4])
+[ 1, 2, 3] 2 1 "Ahoj"
+</code></pre>
+<p>Poslední prvek seznamu má index -1, předposlední -2, atd.</p>
+<p>Z nějakého seznamu můžeme vytvořit podseznam (subsekvenci). Tu vytvoříme tak, že do hranatých závorek vložíme index prvního a posledního prvku (bez tohoto prvku), které chceme ve výsledném podseznamu mít. Počátek a konec oddělíme dvojtečkou. Často může nastat případ, kdy chceme podseznam od začátku do nějakého indexu, nebo od nějakého indexu do konce seznamu. V takovémto případě se začátek nebo konec v rozsahu vynechá. Ukažme si příklady:</p>
+<pre><code class="language-python">&gt;&gt;&gt; sez = ["Ahoj", 1, 2, [1, 2, 3]]
+&gt;&gt;&gt; sez[2:4] # od 2. do 3. prvku
+[2, [1, 2, 3]]
+&gt;&gt;&gt; sez[:2] # od zacatku do 2. prvku
+['Ahoj', 1]
+&gt;&gt;&gt; sez[2:] # od 3. prvku do konce
+[2, [1, 2, 3]]
+</code></pre>
+<h3 id="modifikace-seznamu"><a class="header" href="#modifikace-seznamu">Modifikace seznamu</a></h3>
+<p>Seznam můžeme též modifikovat. Nejjednodušeji lze modifikovat určitý prvek seznamu tak, že jej indexujeme a do takto indexovaného prvku přiřadíme požadovanou hodnotu. Stávající hodnota se v seznamu přepíše hodnotou novou.</p>
+<pre><code class="language-python">&gt;&gt;&gt; sez = ["Ahoj", 1, 2, [1, 2, 3]]
+&gt;&gt;&gt; print(sez)
+['Ahoj', 1, 2, [1, 2, 3]]
+&gt;&gt;&gt; sez[1] = 5 # 2. prvek bude nahrazen cislem 5
+&gt;&gt;&gt; print(sez)
+['Ahoj', 5, 2, [1, 2, 3]]
+</code></pre>
+<p>Přidání prvku na konec seznamu se provede jednoduše zavoláním funkce <code>append</code> na objektu seznamu. Parametr této funkce je objekt, který se vloží na konec seznamu.</p>
+<pre><code class="language-python">&gt;&gt;&gt; sez = ["Ahoj", 1, 2, [1, 2, 3]]
+&gt;&gt;&gt; print(sez)
+['Ahoj', 1, 2, [1, 2, 3]]
+&gt;&gt;&gt; sez.append(5)
+&gt;&gt;&gt; print(sez)
+['Ahoj', 1, 2, [1, 2, 3], 5]
+</code></pre>
+<p>Samozřejmě přidávání prvků na konec seznamu není jedinou možností jak přidat do seznamu prvek. Pokud chceme na partikulární pozici v seznamu umístit nějaký objekt, použijeme funkci <code>insert</code>, která přijímá dva parametry. Prvním parametrem je pozice, na kterou se prvek vloží, druhým je prvek samotný. Opět si ukažme příklad:</p>
+<pre><code class="language-python">&gt;&gt;&gt; sez = ["Ahoj", 1, 2, [1, 2, 3]]
+&gt;&gt;&gt; print(sez)
+['Ahoj', 1, 2, [1, 2, 3]]
+&gt;&gt;&gt; sez.insert(0, 5)
+&gt;&gt;&gt; print(sez)
+[5, 'Ahoj', 1, 2, [1, 2, 3]]
+</code></pre>
+<p>Metoda <code>insert</code> tedy vloží prvek na zadanou pozici a ostatní prvky za ní o jednu posune.</p>
+<p>Odstranění prvku ze seznamu můžeme provézt dvěma různými způsoby. Pokud víme, na které pozici se prvek který chceme odstranit nachází, můžeme použít příkazu <code>del</code> a zadat seznam s indexem prvku k odstranění. Druhá možnost je ta, kdy neznáme pozici prvku v seznamu, ale známe jeho hodnotu. V takovémto případě zavoláme metodu <code>remove</code> s argumentem prvku k odstranění na našem seznamu (pokud je v seznamu více prvků, které vyhovují zadanému argumentu, odstraní se první prvek zleva). Příklad ukazuje použití obou metod:</p>
+<pre><code class="language-python">&gt;&gt;&gt; sez = ["Ahoj", 1, 2, [1, 2, 3]]
+&gt;&gt;&gt; print(sez)
+['Ahoj', 1, 2, [1, 2, 3]]
+&gt;&gt;&gt; del sez[1]
+&gt;&gt;&gt; print(sez)
+['Ahoj', 2, [1, 2, 3]]
+&gt;&gt;&gt; sez.remove("Ahoj")
+&gt;&gt;&gt; print(sez)
+[2, [1, 2, 3]]
+</code></pre>
+<h3 id="práce-se-seznamem"><a class="header" href="#práce-se-seznamem">Práce se seznamem</a></h3>
+<p>Čisté přidávání nebo odebírání prvků ze seznamu není zcela užitečnou operací. Nyní si ukážeme několik jednoduchých, avšak užitečných operací nad seznamem.</p>
+<p>Velice často se setkáváme s požadavkem, zda seznam obsahuje nějaký prvek či nikoli. Python obsahuje klíčové slovo <code>in</code>, které lze ve spojení se seznamem k takovémuto účelu využít. Ukažme si tedy jednoduchý příklad, kdy se budeme snažit zjistit, zda je nějaký prvek v našem seznamu:</p>
+<pre><code class="language-python">&gt;&gt;&gt; sez = ["Ahoj", 1, 2, [1, 2, 3]]
+&gt;&gt;&gt; print(sez)
+['Ahoj', 1, 2, [1, 2, 3]]
+&gt;&gt;&gt; "Ahoj" in sez
+True
+&gt;&gt;&gt; "Cau" in sez
+False
+</code></pre>
+<p>Tento jednoduchý způsob zjišťování obsahu seznamu se často používá ve webových aplikacích, kde se snažíme zjistit, jestli je v URL předáván nějaký parametr. Ve spojení s podmínkou <code>if</code> se pak můžeme rozhodnout, jak se k přijatému HTTP požadavku zachovat.</p>
+<p>Pro zjištění maxima nebo minima v seznamu můžeme využít vestavěnou funkci <code>min</code> a <code>max</code>, které budou brát jako argument seznam.</p>
+<pre><code class="language-python">&gt;&gt;&gt; sez = [8, 1, 2, 5]
+&gt;&gt;&gt; max(sez)
+8
+&gt;&gt;&gt; min(sez)
+1
+</code></pre>
+<h2 id="n-tice-tuple"><a class="header" href="#n-tice-tuple">N-tice (<code>tuple</code>)</a></h2>
+<p>Seznam má v Pythonu také nemodifikovatelný ekvivalent v podobě n-tice. Význam slova nemodifikovatelný je třeba chápat tak, že jakmile je n-tice vytvořena, nelze její prvky přidávat ani mazat. Další práce s n-ticí je však stejná jako se seznamem. Můžeme jednoduše vytvářet podn-tice pomocí stejné notace jako u seznamu. Zjišťování obsahu n-tice probíhá obdobným způsobem.</p>
+<p>Jak tedy odlišit n-tici od seznamu? Odpověď je velice jednoduchá. Seznam je vytvořen pomocí hranatých závorek, n-tice pomocí závorek kulatých. Pro názornost si opět uveďme jednoduchý příklad:</p>
+<pre><code class="language-python">&gt;&gt;&gt; tup = (8, 1, 2, 5)
+&gt;&gt;&gt; tup[2:3]
+(2, 5)
+&gt;&gt;&gt; max(tup)
+8
+&gt;&gt;&gt; min(tup)
+1
+</code></pre>
+<p>N-tice používáme hlavně tam, kde víme, že nepotřebujeme měnit jejich obsah. Slouží též jako základ pro konstrukci slovníků.</p>
+<p><a id="sec:dict"></a></p>
+<h2 id="slovník-dict"><a class="header" href="#slovník-dict">Slovník (<code>dict</code>)</a></h2>
+<p>Pokud chceme v seznamu nebo n-tici, které jsou obecně nesetřízené, nalézt nějakou položku, její vyhledání je v čase <code>O(n)</code>, kde <code>n</code> je počet prvků uložených v seznamu nebo n-tici. Pro velké kolekce dat je toto samozřejmě značně problematické. Tento problém řeší datový typ slovník. Slovník mapuje klíč (key) na hodnotu (value) pomocí hašovací tabulky. Vyhledání hodnoty pro zadaný klíč je pomocí slovníku v konstantním čase <code>O(1)</code>.</p>
+<p>Příklady, jako mohou vypadat slovníky:</p>
+<ul>
+<li><code>{}</code></li>
+<li><code>{'key': 12}</code></li>
+<li><code>{1: 'value'}</code></li>
+<li><code>{'key': 'value'}</code></li>
+<li><code>{'Galactica': 75, 'Pegasus': 62}</code></li>
+<li><code>dict(one=1, two=2)</code></li>
+</ul>
+<p>Příklad práce se slovníkem:</p>
+<pre><code class="language-python">In [1]: slovnik = {}
+
+In [2]: slovnik
+Out[2]: {}
+
+#ulozeni hodnoty pod klic 'SPJA'
+In [3]: slovnik['SPJA'] = "Skriptovaci jazyky"
+
+#ziskani hodnoty pro klic 'SPJA'
+In [4]: slovnik['SPJA']
+Out[4]: 'Skriptovaci jazyky'
+</code></pre>
+<p>Je jasné, že pro neexistující klíč není ve slovníku hodnota. Pokud bychom se tedy zeptali na neexistující klíč, obdržíme výjimku <code>KeyError</code> tak, jak už jsme z jazyka zvyklí.</p>
+<pre><code class="language-python"># pokus o ziskani hodnoty pro klic 460
+In [6]: slovnik[460]
+------------------------------------------------------------
+KeyError                   Traceback (most recent call last)
+&lt;ipython-input-6-ef73e3cb1ba9&gt; in &lt;module&gt;()
+----&gt; 1 slovnik[460]
+
+KeyError: 460
+
+#ulozeni hodnoty pod klic 460
+In [7]: slovnik[460] = 'Katedra informatiky'
+
+#ziskani hodnoty pro klic 460
+In [8]: slovnik[460]
+Out[8]: 'Katedra informatiky'
+</code></pre>
+<p>Pro zjištění, zda-li slovní obsahuje daný klíč můžeme použít klíčového slova <code>in</code>. Díky tomu můžeme předejít vyhození výjimky neexistujícího klíče. Použití je ukázáno na následujícím příkladu.</p>
+<pre><code class="language-python">In [29]: slovnik
+Out[29]:
+{460: 'Katedra informatiky',
+ 'SPJA': 'Skriptovaci jazyky'}
+
+In [30]: 470 in slovnik
+Out[30]: False
+
+In [31]: slovnik[470] = "Katedra aplikovane matematiky"
+
+In [32]: slovnik
+Out[32]:
+{460: 'Katedra informatiky',
+ 470: 'Katedra aplikovane matematiky',
+ 'SPJA': 'Skriptovaci jazyky'}
+
+In [33]: 470 in slovnik
+Out[33]: True
+</code></pre>
+<p><a id="sec:sequnces"></a></p>
+<h1 id="sekvence"><a class="header" href="#sekvence">Sekvence</a></h1>
+<p>Z výše uvedených datových typů jsou sekvencemi: řetězce (string), seznamy a n-tice. Sekvence můžeme sčítat (<code>c1 + c2</code>), opakovat (<code>c*N</code>). Všechny sekvence je také možno indexovat pomocí jednotného rozhraní: <code>c[i]</code>, <code>'ciao'[2] == 'a'</code>. Ze sekvencí též můžeme vybírat různé podsekvence pomocí tzv. slicingu: <code>c[i:j]</code>, <code>c[i:j:k]</code>, <code>'ciao'[3:1:-1] == 'oa'</code>. Více příkladů na toto téma jsme si ukázali v části <a href="promenne_a_typy.html#sec:list">Seznam (<code>list</code>)</a>.</p>
+<p>Sekvence také můžeme jednoduše procházet pomocí cyklu <code>for</code>, kdy v jednotlivých průchodech dostáváme hodnotu na dané pozici ze sekvence v řídící proměnné.</p>
+<p>Slovník má tu vlastnost, že není sekvencí, ale je možné jej procházet cyklem <code>for</code>. Více ukáže následující příklad.</p>
+<pre><code class="language-python">In [1]: slovnik = {}
+
+In [2]: slovnik['SPJA'] = "Skriptovaci jazyky"
+
+In [3]: slovnik[460] = "Katedra informatiky"
+
+In [4]: slovnik
+Out[4]: {460: 'Katedra informatiky',
+         'SPJA': 'Skriptovaci jazyky'}
+
+In [5]: for klic in slovnik:
+   ...:     print("Klic:", klic, "Hodnota:", slovnik[klic])
+   ...:
+
+Klic: 460 Hodnota: Katedra informatiky
+Klic: SPJA Hodnota: Skriptovaci jazyky
+</code></pre>
+<h1 id="porovnání-testy-pravdivost"><a class="header" href="#porovnání-testy-pravdivost">Porovnání, testy, pravdivost</a></h1>
+<p>Pro porovnání hodnot v jazyce Python používáme operátory <code>==</code> a <code>!=</code>. Pro porovnání identity pak operátory <code>is</code> a <code>is not</code>. Operátor identity funguje jinak než např. metoda <code>equals</code> v jazyce Java. V principu operátor identity neporovnává obsah nějakých proměnných, ale porovnává, zda jednotlivé proměnné ukazují na stejný objekt v paměti. Více nám osvětlí následující příklad.</p>
+<pre><code class="language-python">In [36]: 123435 is 123435
+Out[36]: True
+
+In [37]: 123435 == 123435
+Out[37]: True
+
+In [38]: a = 123456
+
+In [39]: a == 123456
+Out[39]: True
+
+In [40]: a is 123456
+Out[40]: False
+</code></pre>
+<p>Na posledním řádku je zřejmé, že proměnná <code>a</code> ukazuje na nějaké místo v paměti, které je odlišné od místa v paměti, které reprezentuje objekt čísla <code>12345</code>.</p>
+<p>K porovnání pořadí nám slouží operátory <code>&lt;</code>, <code>&gt;</code>, <code>&lt;=</code> a <code>&gt;=</code>.</p>
+<p>Členství nějaké hodnoty v sekvenci obstarají operátory <code>in</code> a <code>not in</code>.</p>
+<p>Boolovské hodnoty nám repzentuji singletony <code>True</code> a <code>False</code>.</p>
+<p>Speciálním singletonem je též typ <code>None</code>, který je do jisté míry ekvivalentní s hodnotou <code>null</code> v jazyce C.</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="uvod.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="rizeni_toku.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="uvod.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next prefetch" href="rizeni_toku.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js"></script>
+        <script src="mark.min.js"></script>
+        <script src="searcher.js"></script>
+
+        <script src="clipboard.min.js"></script>
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+
+    </div>
+    </body>
+</html>
