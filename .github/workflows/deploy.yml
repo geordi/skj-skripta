@@ -20,17 +20,6 @@ jobs:
       - name: Set up Rust
         uses: dtolnay/rust-toolchain@stable
 
-      - name: Install mdBook
-        run: cargo install mdbook --version "^0.4"
-
-      - name: Install mdBook-sidenote
-        run: |
-          wget -q "https://github.com/geordi/mdbook-sidenote/releases/download/release/mdbook-sidenote"
-          chmod +x mdbook-sidenote
-          mkdir -p ~/bin
-          mv mdbook-sidenote ~/bin/
-          echo "$HOME/bin" >> $GITHUB_PATH
-
       - name: Cache cargo
         uses: actions/cache@v4
         with:
@@ -40,6 +29,25 @@ jobs:
             ~/.cargo/git
           key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
     
+      - name: Install mdBook
+        uses: baptiste0928/cargo-install@v3
+        with:
+          crate: mdbook
+          version: "0.5"
+
+      #- name: Install mdBook
+        # If the cache already has 0.5, Cargo will instantly skip this.
+        # If the cache has 0.4, Cargo will see the version mismatch and overwrite it with 0.5.
+        #run: cargo install mdbook --version "^0.5" --force
+
+      - name: Install mdBook-sidenote
+        run: |
+          wget -q "https://github.com/geordi/mdbook-sidenote/releases/download/release/mdbook-sidenote"
+          chmod +x mdbook-sidenote
+          mkdir -p ~/bin
+          mv mdbook-sidenote ~/bin/
+          echo "$HOME/bin" >> $GITHUB_PATH
+
       #- name: Cache mdbook plugins
       #  uses: actions/cache@v4
       #  with:
@@ -58,9 +66,14 @@ jobs:
       #    cargo install mdbook-linkcheck
 
       - name: Build
-        run: mdbook build
+        run: RUST_BACKTRACE=1 mdbook build
         env:
           MDBOOK_OUTPUT__HTML__SITE_URL: /skj-skripta/
+
+      - name: Configure Git Identity
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@v4
@@ -68,3 +81,4 @@ jobs:
           branch: gh-pages
           folder: book
           clean: true
+          silent: true # do not print logs
