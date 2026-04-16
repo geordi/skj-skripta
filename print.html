@@ -13,24 +13,23 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="theme-color" content="#ffffff">
 
-        <link rel="icon" href="favicon.svg">
-        <link rel="shortcut icon" href="favicon.png">
-        <link rel="stylesheet" href="css/variables.css">
-        <link rel="stylesheet" href="css/general.css">
-        <link rel="stylesheet" href="css/chrome.css">
-        <link rel="stylesheet" href="css/print.css" media="print">
+        <link rel="icon" href="favicon-de23e50b.svg">
+        <link rel="shortcut icon" href="favicon-8114d1fc.png">
+        <link rel="stylesheet" href="css/variables-8adf115d.css">
+        <link rel="stylesheet" href="css/general-2459343d.css">
+        <link rel="stylesheet" href="css/chrome-ae938929.css">
+        <link rel="stylesheet" href="css/print-9e4910d8.css" media="print">
 
         <!-- Fonts -->
-        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
-        <link rel="stylesheet" href="fonts/fonts.css">
+        <link rel="stylesheet" href="fonts/fonts-9644e21d.css">
 
         <!-- Highlight.js Stylesheets -->
-        <link rel="stylesheet" id="highlight-css" href="highlight.css">
-        <link rel="stylesheet" id="tomorrow-night-css" href="tomorrow-night.css">
-        <link rel="stylesheet" id="ayu-highlight-css" href="ayu-highlight.css">
+        <link rel="stylesheet" id="mdbook-highlight-css" href="highlight-493f70e1.css">
+        <link rel="stylesheet" id="mdbook-tomorrow-night-css" href="tomorrow-night-4c0ae647.css">
+        <link rel="stylesheet" id="mdbook-ayu-highlight-css" href="ayu-highlight-3fdfc3ac.css">
 
         <!-- Custom theme stylesheets -->
-        <link rel="stylesheet" href="src/tufte.css">
+        <link rel="stylesheet" href="src/tufte-e32c6a52.css">
 
 
         <!-- Provide site root and default themes to javascript -->
@@ -38,10 +37,10 @@
             const path_to_root = "";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex.js";
+            window.path_to_searchindex_js = "searchindex-e69c1b7b.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="toc.js"></script>
+        <script src="toc-7b20ffa7.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -55,7 +54,7 @@
             </div>
         </div>
     </div>
-    <div id="body-container">
+    <div id="mdbook-body-container">
         <!-- Work around some values being stored in localStorage wrapped in quotes -->
         <script>
             try {
@@ -84,12 +83,12 @@
             html.classList.add("js");
         </script>
 
-        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+        <input type="checkbox" id="mdbook-sidebar-toggle-anchor" class="hidden">
 
         <!-- Hide / unhide sidebar before it is displayed -->
         <script>
             let sidebar = null;
-            const sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            const sidebar_toggle = document.getElementById("mdbook-sidebar-toggle-anchor");
             if (document.body.clientWidth >= 1080) {
                 try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
                 sidebar = sidebar || 'visible';
@@ -104,39 +103,39 @@
             }
         </script>
 
-        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+        <nav id="mdbook-sidebar" class="sidebar" aria-label="Table of contents">
             <!-- populated by js -->
             <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
             <noscript>
                 <iframe class="sidebar-iframe-outer" src="toc.html"></iframe>
             </noscript>
-            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+            <div id="mdbook-sidebar-resize-handle" class="sidebar-resize-handle">
                 <div class="sidebar-resize-indicator"></div>
             </div>
         </nav>
 
-        <div id="page-wrapper" class="page-wrapper">
+        <div id="mdbook-page-wrapper" class="page-wrapper">
 
             <div class="page">
-                <div id="menu-bar-hover-placeholder"></div>
-                <div id="menu-bar" class="menu-bar sticky">
+                <div id="mdbook-menu-bar-hover-placeholder"></div>
+                <div id="mdbook-menu-bar" class="menu-bar sticky">
                     <div class="left-buttons">
-                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
-                            <i class="fa fa-bars"></i>
+                        <label id="mdbook-sidebar-toggle" class="icon-button" for="mdbook-sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="mdbook-sidebar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"/></svg></span>
                         </label>
-                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
-                            <i class="fa fa-paint-brush"></i>
+                        <button id="mdbook-theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="mdbook-theme-list">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M371.3 367.1c27.3-3.9 51.9-19.4 67.2-42.9L600.2 74.1c12.6-19.5 9.4-45.3-7.6-61.2S549.7-4.4 531.1 9.6L294.4 187.2c-24 18-38.2 46.1-38.4 76.1L371.3 367.1zm-19.6 25.4l-116-104.4C175.9 290.3 128 339.6 128 400c0 3.9 .2 7.8 .6 11.6c1.8 17.5-10.2 36.4-27.8 36.4H96c-17.7 0-32 14.3-32 32s14.3 32 32 32H240c61.9 0 112-50.1 112-112c0-2.5-.1-5-.2-7.5z"/></svg></span>
                         </button>
-                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
-                            <li role="none"><button role="menuitem" class="theme" id="default_theme">Auto</button></li>
-                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
-                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
-                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
-                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
-                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        <ul id="mdbook-theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-default_theme">Auto</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-ayu">Ayu</button></li>
                         </ul>
-                        <button id="search-toggle" class="icon-button" type="button" title="Search (`/`)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="/ s" aria-controls="searchbar">
-                            <i class="fa fa-search"></i>
+                        <button id="mdbook-search-toggle" class="icon-button" type="button" title="Search (`/`)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="/ s" aria-controls="mdbook-searchbar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352c79.5 0 144-64.5 144-144s-64.5-144-144-144S64 128.5 64 208s64.5 144 144 144z"/></svg></span>
                         </button>
                     </div>
 
@@ -144,43 +143,43 @@
 
                     <div class="right-buttons">
                         <a href="print.html" title="Print this book" aria-label="Print this book">
-                            <i id="print-button" class="fa fa-print"></i>
+                            <span class=fa-svg id="print-button"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M128 0C92.7 0 64 28.7 64 64v96h64V64H354.7L384 93.3V160h64V93.3c0-17-6.7-33.3-18.7-45.3L400 18.7C388 6.7 371.7 0 354.7 0H128zM384 352v32 64H128V384 368 352H384zm64 32h32c17.7 0 32-14.3 32-32V256c0-35.3-28.7-64-64-64H64c-35.3 0-64 28.7-64 64v96c0 17.7 14.3 32 32 32H64v64c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V384zm-16-88c-13.3 0-24-10.7-24-24s10.7-24 24-24s24 10.7 24 24s-10.7 24-24 24z"/></svg></span>
                         </a>
 
                     </div>
                 </div>
 
-                <div id="search-wrapper" class="hidden">
-                    <form id="searchbar-outer" class="searchbar-outer">
+                <div id="mdbook-search-wrapper" class="hidden">
+                    <form id="mdbook-searchbar-outer" class="searchbar-outer">
                         <div class="search-wrapper">
-                            <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                            <input type="search" id="mdbook-searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="mdbook-searchresults-outer" aria-describedby="searchresults-header">
                             <div class="spinner-wrapper">
-                                <i class="fa fa-spinner fa-spin"></i>
+                                <span class=fa-svg id="fa-spin"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M304 48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zm0 416c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM48 304c26.5 0 48-21.5 48-48s-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48zm464-48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM142.9 437c18.7-18.7 18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zm0-294.2c18.7-18.7 18.7-49.1 0-67.9S93.7 56.2 75 75s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zM369.1 437c18.7 18.7 49.1 18.7 67.9 0s18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9z"/></svg></span>
                             </div>
                         </div>
                     </form>
-                    <div id="searchresults-outer" class="searchresults-outer hidden">
-                        <div id="searchresults-header" class="searchresults-header"></div>
-                        <ul id="searchresults">
+                    <div id="mdbook-searchresults-outer" class="searchresults-outer hidden">
+                        <div id="mdbook-searchresults-header" class="searchresults-header"></div>
+                        <ul id="mdbook-searchresults">
                         </ul>
                     </div>
                 </div>
 
                 <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
                 <script>
-                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
-                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
-                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                    document.getElementById('mdbook-sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('mdbook-sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#mdbook-sidebar a')).forEach(function(link) {
                         link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
                     });
                 </script>
 
-                <div id="content" class="content">
+                <div id="mdbook-content" class="content">
                     <main>
-                        <h1 id="Úvod"><a class="header" href="#Úvod">Úvod</a></h1>
-<p>Tento text vznikl pro potřeby výuky předmětu Skriptovací jazyky. Studentům by měl sloužit pro získání nutného minima znalostí ke zvládnutí programování v jazyce kurzu – tedy jazyka Python<label for="sn-úvod-1" class="margin-toggle"><sup>1</sup></label><input type="checkbox" id="sn-úvod-1" class="margin-toggle"/><span class="sidenote"><sup class="sidenote-number">1</sup> http://www.python.org</span>. V žádném případě však není text plnohodnotnou náhradou za poslechy přednášek a návštěvy cvičení. Studentům je tudíž velmi doporučeno, aby přednášky a cvičení navštěvovali.</p>
-<p>Tento text si též neklade za cíl vytvořit kompletního průvodce jazykem Python. Pro takovýto účel lze doporučit některý knižní titul, např.: <a href="reference.html#harms-mcdonald">Harms, McDonald</a>.</p>
-<h2 id="Úvod-do-skriptovacích-jazyků"><a class="header" href="#Úvod-do-skriptovacích-jazyků">Úvod do skriptovacích jazyků</a></h2>
+                        <h1 id="úvod"><a class="header" href="#úvod">Úvod</a></h1>
+<p>Tento text vznikl pro potřeby výuky předmětu Skriptovací jazyky. Studentům by měl sloužit pro získání nutného minima znalostí ke zvládnutí programování v jazyce kurzu – tedy jazyka Python<label for="sn-úvod-1" class="margin-toggle"><sup>1</sup></label><input type="checkbox" id="sn-úvod-1" class="margin-toggle" /><span class="sidenote"><sup class="sidenote-number">1</sup> http://www.python.org</span>. V žádném případě však není text plnohodnotnou náhradou za poslechy přednášek a návštěvy cvičení. Studentům je tudíž velmi doporučeno, aby přednášky a cvičení navštěvovali.</p>
+<p>Tento text si též neklade za cíl vytvořit kompletního průvodce jazykem Python. Pro takovýto účel lze doporučit některý knižní titul, např.: <a href="#harms-mcdonald">Harms, McDonald</a>.</p>
+<h2 id="úvod-do-skriptovacích-jazyků"><a class="header" href="#úvod-do-skriptovacích-jazyků">Úvod do skriptovacích jazyků</a></h2>
 <p>Skriptovací programovací jazyky tvoří protiváhu tzv. kompilovaným programovacím jazykům. Jednotlivé programy jsou tvořeny zdrojovými kódy (skripty), které jsou tzv. interpretovány, tj. čteny a spouštěny za běhu speciálním programem, tzv. interpretem.</p>
 <p>Typický skript těží z výhody, že se nemusí překládat, a často tvoří rozšiřitelnou (parametrickou) část nějakého softwarového projektu, která se může měnit, aniž by bylo potřeba pokaždé rekompilovat hlavní spustitelný soubor. Skripty tak najdeme u her (Quake), grafických uživatelských rozhraní (XULRunner v produktech Mozilla), složitějších softwarových řešení nebo jako hlavní součást dynamických webových stránek (YouTube, Instagram) a podobně.</p>
 <p><strong>Výhody:</strong></p>
@@ -206,9 +205,9 @@
 <p>Python je dynamický interpretovaný jazyk a také jej zařazujeme mezi skriptovací jazyky. Python byl navržen tak, aby umožňoval tvorbu rozsáhlých, plnohodnotných aplikací (včetně grafického uživatelského rozhraní).</p>
 <p>Python je hybridní jazyk (nebo také víceparadigmatický), to znamená, že umožňuje při psaní programů používat nejen objektově orientované paradigma, ale i procedurální a v omezené míře i funkcionální, podle toho komu co vyhovuje nebo co se pro danou úlohu nejlépe hodí. Python má díky tomu vynikající vyjadřovací schopnosti. Kód programu je ve srovnání s jinými jazyky krátký a dobře čitelný.</p>
 <p>K význačným vlastnostem jazyka Python patří jeho jednoduchost z hlediska učení a proto se jím budeme primárně zabývat v rámci našeho kurzu. Bývá dokonce považován za jeden z nejvhodnějších programovacích jazyků pro začátečníky. Python ale současně bourá zažitou představu, že jazyk vhodný pro výuku není vhodný pro praxi a naopak. Podstatnou měrou k tomu přispívá čistota a jednoduchost syntaxe, na kterou se při vývoji jazyka hodně dbá.</p>
-<p>Význačnou vlastností jazyka Python je produktivita z hlediska rychlosti psaní programů. Týká se to jak nejjednodušších programů, tak aplikací velmi rozsáhlých. U jednoduchých programů se tato vlastnost projevuje především stručností zápisu. U velkých aplikací je produktivita podpořena rysy, které se používají při programování ve velkém, jako jsou například přirozená podpora prostorů jmen, používání výjimek, standardně dodávané prostředky pro psaní testů (unit testing) a dalšími. S vysokou produktivitou souvisí dostupnost a snadná použitelnost široké škály knihovních modulů, umožňujících snadné řešení úloh z řady oblastí. V poslední době je Python též oblíben u komunity zabývající se výpočty na superpočítačích (HPC). K tomuto účelu vznikla speciální sada knihoven, která je protiváhou dobře známemu MATLABu – SciPy<label for="sn-úvod-2" class="margin-toggle"><sup>2</sup></label><input type="checkbox" id="sn-úvod-2" class="margin-toggle"/><span class="sidenote"><sup class="sidenote-number">2</sup> http://www.scipy.org/</span>.</p>
+<p>Význačnou vlastností jazyka Python je produktivita z hlediska rychlosti psaní programů. Týká se to jak nejjednodušších programů, tak aplikací velmi rozsáhlých. U jednoduchých programů se tato vlastnost projevuje především stručností zápisu. U velkých aplikací je produktivita podpořena rysy, které se používají při programování ve velkém, jako jsou například přirozená podpora prostorů jmen, používání výjimek, standardně dodávané prostředky pro psaní testů (unit testing) a dalšími. S vysokou produktivitou souvisí dostupnost a snadná použitelnost široké škály knihovních modulů, umožňujících snadné řešení úloh z řady oblastí. V poslední době je Python též oblíben u komunity zabývající se výpočty na superpočítačích (HPC). K tomuto účelu vznikla speciální sada knihoven, která je protiváhou dobře známemu MATLABu – SciPy<label for="sn-úvod-2" class="margin-toggle"><sup>2</sup></label><input type="checkbox" id="sn-úvod-2" class="margin-toggle" /><span class="sidenote"><sup class="sidenote-number">2</sup> http://www.scipy.org/</span>.</p>
 <h2 id="vývojové-prostředí-jazyka-python"><a class="header" href="#vývojové-prostředí-jazyka-python">Vývojové prostředí jazyka Python</a></h2>
-<p>Pro práci v s jazykem Python je doporučováno mít nainstalován Python ve verzi 2.5, 2.6 nebo 2.7. Uživatelé Linuxových distribucí již mají Python nainstalován ve standardní instalaci. Uživatelé Windows si mohou stáhnout instalátor Pythonu z domovské stránky projektu <a href="reference.html#python-web">Oficiální webová stránka jazyka Python</a>, sekce Download.</p>
+<p>Pro práci v s jazykem Python je doporučováno mít nainstalován Python ve verzi 2.5, 2.6 nebo 2.7. Uživatelé Linuxových distribucí již mají Python nainstalován ve standardní instalaci. Uživatelé Windows si mohou stáhnout instalátor Pythonu z domovské stránky projektu <a href="#python-web">Oficiální webová stránka jazyka Python</a>, sekce Download.</p>
 <p>Skriptovací jazyky mají většinou tu vlastnost, že dovolují spouštění skriptů dvojím způsobem a to v <strong>interaktivním režimu</strong> a nebo spuštění skriptu ze souboru se zdrojovým kódem (<strong>dávkový režim</strong>).</p>
 <p><strong>Interaktivní režim</strong> lze spustit jednoduše spuštěním interpretu Pythonu z příkazové řádky nebo z programové nabídky. Tento režim slouží většinou k testování funkcionality kódu. Po spuštění interaktivního režimu se na obrazovce objeví následující výpis:</p>
 <pre><code class="language-text">Python 3.4.2 (default, Oct  8 2014, 10:45:20)
@@ -227,16 +226,16 @@ Ahoj svete
 <pre><code class="language-text">$ python muj_skript.py
 </code></pre>
 <p><strong>Cvičení:</strong></p>
-<p>Vytvořte si jednoduchý skript, který vypíše na výstup řetězec "Ahoj svete" a ověřte jeho funkcionalitu.</p>
+<p>Vytvořte si jednoduchý skript, který vypíše na výstup řetězec “Ahoj svete” a ověřte jeho funkcionalitu.</p>
 <p><strong>Cvičení:</strong></p>
 <p>V interaktivním režimu si vyzkoušejte jednoduché počítání. Provádějte operace s čísly jako na kalkulátoru. Pokuste se použít proměnné a závorky.</p>
 <p><strong>Cvičení:</strong></p>
-<p>V interaktivním režimu si vyzkoušejte práci s řetězci. Použijte znaky pro uvození řetězců " a ' a sledujte jak se od sebe liší popřípadě, zda je možné je do sebe zanořit. Přistupujte k jednotlivým prvkům a podřetězcům řetězců pomocí indexů mezi znaky $[$ a $]$. Řetězce spojujte.</p>
+<p>V interaktivním režimu si vyzkoušejte práci s řetězci. Použijte znaky pro uvození řetězců “ a ’ a sledujte jak se od sebe liší popřípadě, zda je možné je do sebe zanořit. Přistupujte k jednotlivým prvkům a podřetězcům řetězců pomocí indexů mezi znaky $[$ a $]$. Řetězce spojujte.</p>
 <p><strong>Cvičení:</strong></p>
 <p>V interaktivním režimu si vyzkoušejte práci s seznamy a n-ticemi (jsou popsány v 6. kapitole knihy). Opět přistupujte k jednotlivým prvkům seznamů a n-tic. Přidávejte prvky do již existujících seznamů.</p>
 <p><a id="sec:syntax"></a></p>
 <h2 id="syntaxe"><a class="header" href="#syntaxe">Syntaxe</a></h2>
-<p>Jazyk Python má relativně jednoduchou syntaxi nez množství různých "kudrlinek" (Anglicky je toto nazýváno pojmem "boilerplate"). Hlavní rysy, se kterými mají někdy začátečníci problémy, by se daly shrnout do následujících bodů:</p>
+<p>Jazyk Python má relativně jednoduchou syntaxi nez množství různých “kudrlinek” (Anglicky je toto nazýváno pojmem “boilerplate”). Hlavní rysy, se kterými mají někdy začátečníci problémy, by se daly shrnout do následujících bodů:</p>
 <ul>
 <li>
 <p>nepoužívají se složené závorky <code>{}</code> pro označení bloku, používá se <strong>odsazení</strong>, který je uvozen dvojtečkou <code>:</code>,</p>
@@ -270,7 +269,8 @@ else {
     printf( "Zero\n" );
 }
 </code></pre>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="proměnné"><a class="header" href="#proměnné">Proměnné</a></h1>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="proměnné"><a class="header" href="#proměnné">Proměnné</a></h1>
 <p>V dynamicky typovaných jazycích nedeklarujeme typy použitých proměnných jako třeba v jazycích C/C++, Java, apod. Nebuďme však uvedeni v omyl, že by proměnné neměly svůj typ! Typy jednotlivých proměnných jsou rozlišeny za běhu. V jazyce Python není možné, aby proměnná neměla přiřazen nějaký typ.</p>
 <p>Proměnnou vytvoříme jednoduchým přiřazením nějaké hodnoty do jejího jména. Na následujícím výpisu kódu je ukázáno, jak vytvořit proměnnou, zjistit její datový typ a dále do ní přiřadit jinou hodnotu jiného datového typu.</p>
 <pre><code class="language-python">In [1]: promenna
@@ -309,7 +309,7 @@ In [11]: promenna = False
 In [12]: type(promenna)
 Out[12]: bool
 </code></pre>
-<p>Na výše uvedeném výpisu je použit interpret <strong>iPython</strong><label for="sn-proměnné-1" class="margin-toggle"><sup>1</sup></label><input type="checkbox" id="sn-proměnné-1" class="margin-toggle"/><span class="sidenote"><sup class="sidenote-number">1</sup> http://ipython.org/</span>, který poskytuje větší uživatelský komfort než standardní interpret. Řádek <code>1</code> demonstruje, že pokud do proměnné <code>promenna</code> neuložíme nějakou hodnotu, její jméno neexistuje a ani jej nemůžeme referovat. Také můžeme vidět, že tento příkaz vyhodil výjimku <code>NameError</code>. Pro teď nám bude stačit konstatovat, že všechny chyby v jazyce Python budou interpretem vyhodnoceny jako výjimky. Díky tomu je také můžeme jednoduše ošetřit. Na řádku <code>2</code> vidíme přiřazení hodnoty <code>1</code> do proměnné <code>promenna</code>. Na řádku <code>3</code> vidíme, že pokud použijeme jméno proměnné, dostaneme její hodnotu. Na řádku <code>4</code> se ptáme na typ proměnné pomocí funkce <code>type</code>. Na řádku <code>5</code> jsme přiřadili do proměnné hodnotu typu <code>float</code> a na řádku <code>7</code> hodnotu typu <code>str</code>, která je zkratkou pro typ string. Na řádcích <code>9</code> a <code>11</code> vidíme použití pravdivostní hodnoty <code>True</code> a <code>False</code>, které jsou datového typu <code>bool</code>.</p>
+<p>Na výše uvedeném výpisu je použit interpret <strong>iPython</strong><label for="sn-proměnné-1" class="margin-toggle"><sup>1</sup></label><input type="checkbox" id="sn-proměnné-1" class="margin-toggle" /><span class="sidenote"><sup class="sidenote-number">1</sup> http://ipython.org/</span>, který poskytuje větší uživatelský komfort než standardní interpret. Řádek <code>1</code> demonstruje, že pokud do proměnné <code>promenna</code> neuložíme nějakou hodnotu, její jméno neexistuje a ani jej nemůžeme referovat. Také můžeme vidět, že tento příkaz vyhodil výjimku <code>NameError</code>. Pro teď nám bude stačit konstatovat, že všechny chyby v jazyce Python budou interpretem vyhodnoceny jako výjimky. Díky tomu je také můžeme jednoduše ošetřit. Na řádku <code>2</code> vidíme přiřazení hodnoty <code>1</code> do proměnné <code>promenna</code>. Na řádku <code>3</code> vidíme, že pokud použijeme jméno proměnné, dostaneme její hodnotu. Na řádku <code>4</code> se ptáme na typ proměnné pomocí funkce <code>type</code>. Na řádku <code>5</code> jsme přiřadili do proměnné hodnotu typu <code>float</code> a na řádku <code>7</code> hodnotu typu <code>str</code>, která je zkratkou pro typ string. Na řádcích <code>9</code> a <code>11</code> vidíme použití pravdivostní hodnoty <code>True</code> a <code>False</code>, které jsou datového typu <code>bool</code>.</p>
 <p>Na výše uvedeném výpisu programu můžeme vidět první základní vlastnost dynamicky typovaných jazyků a to tu, že proměnná, která má přiřazenu nějakou hodnotu a s ní nějaký datový typ může v průběhu programu tento typ změnit. Samozřejmě to není vlastnost jediná, ale je to vlastnost, která je nejčastěji vidět.</p>
 <p>V interpretu můžeme provádět klasické operace s proměnnými tak, jak jsme zvyklí z běžných jazyků (tím myslíme operace sčítání, násobení, apod.). Nezapomeňme, že dělení dvou celých čísel je opět celé číslo. Dělení celých čísel se tedy chová stejně jako v jazyce C.</p>
 <p>To, že proměnné nemají předem určený typ však neznamená, že bychom mohli provádět nedefinované operace. Uveďme si jednoduchý příklad.</p>
@@ -353,7 +353,7 @@ TypeError: unsupported operand type(s) for +: 'int' and 'str'
 <li>objekt řetězce má mnoho metod</li>
 </ul>
 <p><strong>Cvičení:</strong></p>
-<p>Vyzkoušejte práci s řetězci. Použijte znaky pro uvození řetězců " a ' a sledujte jak se od sebe liší popřípadě, zda je možné je do sebe zanořit. Přistupujte k jednotlivým prvkům a podřetězcům řetězců pomocí indexů mezi znaky <code>[</code> a <code>]</code>. Řetězce spojujte.</p>
+<p>Vyzkoušejte práci s řetězci. Použijte znaky pro uvození řetězců “ a ’ a sledujte jak se od sebe liší popřípadě, zda je možné je do sebe zanořit. Přistupujte k jednotlivým prvkům a podřetězcům řetězců pomocí indexů mezi znaky <code>[</code> a <code>]</code>. Řetězce spojujte.</p>
 <h1 id="kolekce"><a class="header" href="#kolekce">Kolekce</a></h1>
 <p>Jedním z důležitých prvků programovacích jazyků je práce s kolekcemi dat. Pod pojmem kolekce si budeme představovat nějakou datovou strukturu, která nám umožní vkládat jednotlivé (třeba i různé) prvky do jedné proměnné. Takováto proměnná se pak bude nazývat kolekcí (shromažďuje v sobě jiné prvky). S kolekcí jsme se již setkali v podobě řetězců, kde je řetězec znaků tvořen jednotlivými znaky, které jsou uloženy v jednotlivých prvcích seznamu. K jednotlivým znakům řetězce též můžeme přistoupit pomocí hranatých závorek uvedených za seznamem. Ukažme si to na příkladu:</p>
 <pre><code class="language-python">&gt;&gt;&gt; ret = "Ahoj"
@@ -516,7 +516,7 @@ Out[33]: True
 </code></pre>
 <p><a id="sec:sequnces"></a></p>
 <h1 id="sekvence"><a class="header" href="#sekvence">Sekvence</a></h1>
-<p>Z výše uvedených datových typů jsou sekvencemi: řetězce (string), seznamy a n-tice. Sekvence můžeme sčítat (<code>c1 + c2</code>), opakovat (<code>c*N</code>). Všechny sekvence je také možno indexovat pomocí jednotného rozhraní: <code>c[i]</code>, <code>'ciao'[2] == 'a'</code>. Ze sekvencí též můžeme vybírat různé podsekvence pomocí tzv. slicingu: <code>c[i:j]</code>, <code>c[i:j:k]</code>, <code>'ciao'[3:1:-1] == 'oa'</code>. Více příkladů na toto téma jsme si ukázali v části <a href="promenne_a_typy.html#sec:list">Seznam (<code>list</code>)</a>.</p>
+<p>Z výše uvedených datových typů jsou sekvencemi: řetězce (string), seznamy a n-tice. Sekvence můžeme sčítat (<code>c1 + c2</code>), opakovat (<code>c*N</code>). Všechny sekvence je také možno indexovat pomocí jednotného rozhraní: <code>c[i]</code>, <code>'ciao'[2] == 'a'</code>. Ze sekvencí též můžeme vybírat různé podsekvence pomocí tzv. slicingu: <code>c[i:j]</code>, <code>c[i:j:k]</code>, <code>'ciao'[3:1:-1] == 'oa'</code>. Více příkladů na toto téma jsme si ukázali v části <a href="#sec:list">Seznam (<code>list</code>)</a>.</p>
 <p>Sekvence také můžeme jednoduše procházet pomocí cyklu <code>for</code>, kdy v jednotlivých průchodech dostáváme hodnotu na dané pozici ze sekvence v řídící proměnné.</p>
 <p>Slovník má tu vlastnost, že není sekvencí, ale je možné jej procházet cyklem <code>for</code>. Více ukáže následující příklad.</p>
 <pre><code class="language-python">In [1]: slovnik = {}
@@ -557,8 +557,9 @@ Out[40]: False
 <p>Členství nějaké hodnoty v sekvenci obstarají operátory <code>in</code> a <code>not in</code>.</p>
 <p>Boolovské hodnoty nám repzentuji singletony <code>True</code> a <code>False</code>.</p>
 <p>Speciálním singletonem je též typ <code>None</code>, který je do jisté míry ekvivalentní s hodnotou <code>null</code> v jazyce C.</p>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="Řízení-toku"><a class="header" href="#Řízení-toku">Řízení toku</a></h1>
-<p>Nejznámější příkaz pro řízeni toku <code>if</code>, jsme si již uvedli v kapitole <a href="uvod.html#sec:syntax">Syntaxe</a>. Schématicky si jej proto pouze připomeneme:</p>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="řízení-toku"><a class="header" href="#řízení-toku">Řízení toku</a></h1>
+<p>Nejznámější příkaz pro řízeni toku <code>if</code>, jsme si již uvedli v kapitole <a href="#sec:syntax">Syntaxe</a>. Schématicky si jej proto pouze připomeneme:</p>
 <ul>
 <li>
 <p><code>if</code> &lt;výraz&gt;: &lt;vnořený blok&gt;</p>
@@ -589,7 +590,7 @@ In [2]: while i &lt; 5:
 4
 </code></pre>
 <h2 id="cyklus-for"><a class="header" href="#cyklus-for">Cyklus <code>for</code></a></h2>
-<p>Cyklus <code>for</code> je v jazyce Python poněkud odlišný od svého ekvivalentu v jazyce C. Jeho sémantika je podobná jako u příkazu <code>foreach</code> v jazycích Java nebo C#. Cyklus <code>for</code> je schopen procházet pouze sekvence, o kterých jsme si něco řekli v části <a href="promenne_a_typy.html#sec:sequnces">Sekvence</a>. Podstatným rozdílem oproti cyklu <code>for</code> z jazyka C je to, že řídící proměnná cyklu postupně nabývá jednotlivých hodnot v zadané sekvenci. Odpadá tak nutnost přistupovat k prvkům sekvence pomocí nějaké jiné proměnné. Zápis je také podstatně jednodušší. Ukažme si proto jednoduchý příklad na součet prvků v seznamu.</p>
+<p>Cyklus <code>for</code> je v jazyce Python poněkud odlišný od svého ekvivalentu v jazyce C. Jeho sémantika je podobná jako u příkazu <code>foreach</code> v jazycích Java nebo C#. Cyklus <code>for</code> je schopen procházet pouze sekvence, o kterých jsme si něco řekli v části <a href="#sec:sequnces">Sekvence</a>. Podstatným rozdílem oproti cyklu <code>for</code> z jazyka C je to, že řídící proměnná cyklu postupně nabývá jednotlivých hodnot v zadané sekvenci. Odpadá tak nutnost přistupovat k prvkům sekvence pomocí nějaké jiné proměnné. Zápis je také podstatně jednodušší. Ukažme si proto jednoduchý příklad na součet prvků v seznamu.</p>
 <pre><code class="language-python">seznam = [1, 2, 5, 10, 100]
 
 sum = 0
@@ -610,7 +611,8 @@ for prvek in seznam:
 
 sum # 13.5
 </code></pre>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="funkce"><a class="header" href="#funkce">Funkce</a></h1>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="funkce"><a class="header" href="#funkce">Funkce</a></h1>
 <p>V této kapitole si probereme funkce, které na rozdíl od jazyků C, Java a C# disponují v jazyce Python většími možnostmi použití a definic.</p>
 <p>Asi bychom byli schopni naše programy psát tak, abychom nepotřebovali použít funkce. Toto by nám však vystačilo na velmi krátké programy, poněvadž bychom jinak museli všechen znovupoužitelný kód psát znovu a znovu.</p>
 <p>Základní vlastností funkcí je jejich znovupoužitelnost. Pokud tedy máme úlohu, kterou víme, že budeme požívat více než jednou, je vhodné ji umístit do funkce. Takovýto blok kódu by též měl fungovat pokud možno co nejvíce samostatně.</p>
@@ -661,7 +663,7 @@ va_args_function(1, 3, 4, "Ahoj", 5.3)
 #1 (3, 4, 'Ahoj', 5.3)
 </code></pre>
 <p>Na této ukázce vidíme, jak se tuple v argumentu <code>b</code> postupně zaplňuje více hodnotami podle toho, jak jich přibývá při volání funkce. Také si všimněme, že je argument použit bez znaku <code>*</code>.</p>
-<p>Pokusme se nyní vytvořit funkci <code>super_print</code>, která bude akceptovat proměnlivý počet argumentů (předpokládejme typ <code>str</code>). Tyto argumenty budou vytištěny a jejich výpis bude ohraničen nahoře a dole znakem <code>=</code> v délce celé sekvence. V kódu jsme využili metodu <code>join</code> na objektu <code>str</code><label for="sn-funkce-1" class="margin-toggle"><sup>1</sup></label><input type="checkbox" id="sn-funkce-1" class="margin-toggle"/><span class="sidenote"><sup class="sidenote-number">1</sup> http://docs.python.org/library/stdtypes.html#str.join</span>.</p>
+<p>Pokusme se nyní vytvořit funkci <code>super_print</code>, která bude akceptovat proměnlivý počet argumentů (předpokládejme typ <code>str</code>). Tyto argumenty budou vytištěny a jejich výpis bude ohraničen nahoře a dole znakem <code>=</code> v délce celé sekvence. V kódu jsme využili metodu <code>join</code> na objektu <code>str</code><label for="sn-funkce-1" class="margin-toggle"><sup>1</sup></label><input type="checkbox" id="sn-funkce-1" class="margin-toggle" /><span class="sidenote"><sup class="sidenote-number">1</sup> http://docs.python.org/library/stdtypes.html#str.join</span>.</p>
 <pre><code class="language-python">def super_print(*p):
   s = " ".join(p)
   print "-" * len(s)
@@ -682,7 +684,7 @@ super_print("Jedna", "dve", "3", "4")
 kw_function("jedna", SPJA="Skriptovani", ALG="Algorimizace")
 #jedna {'ALG': 'Algorimizace', 'SPJA': 'Skriptovani'}
 </code></pre>
-<p>Na ukázce také vidíme, že se jednotlivé typy argumentů můžou kombinovat. Podstatnou částí však je, že argument <code>kw</code> se uvnitř funkce jeví jako slovník, jenž jsme si již probrali v kapitole <a href="promenne_a_typy.html#sec:dict">Slovník (<code>dict</code>)</a>. Pozoruhodnou vlastností funkcí, které používají předávaní argumentů klíčovými slovy je jejich rozšiřitelnost.</p>
+<p>Na ukázce také vidíme, že se jednotlivé typy argumentů můžou kombinovat. Podstatnou částí však je, že argument <code>kw</code> se uvnitř funkce jeví jako slovník, jenž jsme si již probrali v kapitole <a href="#sec:dict">Slovník (<code>dict</code>)</a>. Pozoruhodnou vlastností funkcí, které používají předávaní argumentů klíčovými slovy je jejich rozšiřitelnost.</p>
 <p>Představme si, že pracujeme na větším softwarovém díle a potřebujeme změnit určitou komponentu. V takovém případě většinou musíme provést refactoring kódu s tím, že budeme takovou komponentu doplňovat o další parametry její funkce. V případě, že však takováto funkce má parametr předávaný klíčovými slovy, je její rozšíření jednoduché. Stačí pouze upravit operace práce se slovníkem <code>kw</code>. Ukažme si tedy typičtější práci s takovou funkcí. Mějme funkci, která filtruje města podle počtu obyvatel. Funkce <code>filtruj_mesta</code> s argumentem <code>gt</code> vrátí taková města, jejichž počet obyvatel je vyšší než zadaná hodnota.</p>
 <pre><code class="language-python">def filtruj_mesta(mesta, **kw):
     """Funkce vrati seznam mest, ktere odpovidani svym
@@ -733,7 +735,7 @@ filtruj_mesta(mesta, gt=1000000, lt=70000)
 </code></pre>
 <p>Při porovnání obou kódů vidíme, že API dané funkce se nezměnilo a ani její funkce není nijak narušena, pokud je zavolána jen s původním argumentem <code>gt</code>.</p>
 <p><strong>Poznámka:</strong></p>
-<p>V kódu jsme použili list comprehension<label for="sn-funkce-2" class="margin-toggle"><sup>2</sup></label><input type="checkbox" id="sn-funkce-2" class="margin-toggle"/><span class="sidenote"><sup class="sidenote-number">2</sup> http://docs.python.org/tutorial/datastructures.html#list-comprehensions</span>, který je popsán v kapitole <a href="funkce.html#sec:list-comprehension">List comprehension</a>.</p>
+<p>V kódu jsme použili list comprehension<label for="sn-funkce-2" class="margin-toggle"><sup>2</sup></label><input type="checkbox" id="sn-funkce-2" class="margin-toggle" /><span class="sidenote"><sup class="sidenote-number">2</sup> http://docs.python.org/tutorial/datastructures.html#list-comprehensions</span>, který je popsán v kapitole <a href="#sec:list-comprehension">List comprehension</a>.</p>
 <p><strong>Cvičení:</strong></p>
 <p>Promyslete si sami, jak by vypadala varianta rozšíření funkce bez použití předávaní argumentů klíčovými slovy.</p>
 <h2 id="funkce-jako-argument-funkce"><a class="header" href="#funkce-jako-argument-funkce">Funkce jako argument funkce</a></h2>
@@ -747,7 +749,7 @@ pow(3) #9
 
 sqr(3) #9
 </code></pre>
-<p>Pokud je však funkce objekt, můžeme jej stejně jako jiné objekty poslat funkci jako její argument. Když je toto v jazyce možné, říkáme, že jsou funkce "first class object". Tato vlastnost je též základním prvkem funkcionálních jazyků. Ukažme si tedy příklad.</p>
+<p>Pokud je však funkce objekt, můžeme jej stejně jako jiné objekty poslat funkci jako její argument. Když je toto v jazyce možné, říkáme, že jsou funkce “first class object”. Tato vlastnost je též základním prvkem funkcionálních jazyků. Ukažme si tedy příklad.</p>
 <pre><code class="language-python">def sqr_lst(fun, lst):
     ret_lst = []
     for item in lst:
@@ -805,10 +807,11 @@ new_ships = [ x.upper() for x in ships if len(x) &gt; 7 ]
 #[ 'DARU MOZU', 'GALACTICA' ]
 </code></pre>
 <p>Na první pohled vidíme, že oproti funkci <code>map</code> není pro aplikování požadované funkce na prvky sekvence zapotřebí vytvoření anonymní funkce. Predikát, který je nepovinný se nalézá na konci zápisu.</p>
-<p>Zápis pomocí list comprehension je v současné době preferovaným způsobem zápisu pro generování nových seznamů. Je také zajímavé, že funkce <code>filter</code> <label for="sn-funkce-3" class="margin-toggle"><sup>3</sup></label><input type="checkbox" id="sn-funkce-3" class="margin-toggle"/><span class="sidenote"><sup class="sidenote-number">3</sup> <a href="http://docs.python.org/library/functions.html?highlight=filter#filter">http://docs.python.org/library/functions.html?highlight=filter#filter</a></span> je plně nahraditelná právě tímto zápisem.</p>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="objektově-orientované-programování-oop"><a class="header" href="#objektově-orientované-programování-oop">Objektově orientované programování (OOP)</a></h1>
+<p>Zápis pomocí list comprehension je v současné době preferovaným způsobem zápisu pro generování nových seznamů. Je také zajímavé, že funkce <code>filter</code> <label for="sn-funkce-3" class="margin-toggle"><sup>3</sup></label><input type="checkbox" id="sn-funkce-3" class="margin-toggle" /><span class="sidenote"><sup class="sidenote-number">3</sup> <a href="http://docs.python.org/library/functions.html?highlight=filter#filter">http://docs.python.org/library/functions.html?highlight=filter#filter</a></span> je plně nahraditelná právě tímto zápisem.</p>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="objektově-orientované-programování-oop"><a class="header" href="#objektově-orientované-programování-oop">Objektově orientované programování (OOP)</a></h1>
 <p>Naši cestu za objektově orientovaným programováním započneme citátem Alana Kaye, spoluautora jednoho z prvních objektově orientovaných programovacích jazyků jménem Smalltalk:</p>
-<p>"Actually I made up the term 'object-oriented', and I can tell you I did not have C++ in mind."</p>
+<p>“Actually I made up the term ‘object-oriented’, and I can tell you I did not have C++ in mind.”</p>
 <p>The Computer Revolution hasn’t happend yet – Keynote, OOPSLA 1997</p>
 <p>V této kapitole si představíme objektově orientované programovaní (OOP) v jazyce Python. Objektově orientované programování není v programování novým pojmem, stále však je přechod od procedurálního programování k objektovému někdy obtížný. Někdy může být na překážku statická typovost některých jazyků. My si ukážeme, že je OOP velmi jednoduchý a příjemný způsob programování. Nepodlehněme však představě, že je OOP vše řešící technika.</p>
 <h2 id="co-jsou-objekty"><a class="header" href="#co-jsou-objekty">Co jsou objekty</a></h2>
@@ -841,7 +844,7 @@ make_sound( cat ); // 'Tom: Minau!'
 </code></pre>
 <p>V příkladu jsme vytvořili funkci <code>make_sound</code>, která přijímá jeden argument v podobě struktury. Danou strukturou může být buď struktura <code>Dog</code> nebo <code>Cat</code>. Evidentně po funkci <code>make_sound</code> chceme, aby vytiskla typický zvuk pro dané zvíře. Toho docílíme tak, že se zeptáme, jakého typu je argument a podle něj již patřičně zareagujeme. Tento přístup není obecně špatný, avšak při větším množství struktur se stává značně nepřehledným. Výše popsaný příklad se také snaží o to, aby jedna funkce byla schopna reagovat na více datových typů. Zde bychom již měli vidět, že to, co po funkci požadujeme, je de facto polymorfismus (samozřejmě ještě stále zjednodušený).</p>
 <h2 id="objektový-přístup-k-motivačnímu-problému"><a class="header" href="#objektový-přístup-k-motivačnímu-problému">Objektový přístup k motivačnímu problému</a></h2>
-<p>Z předchozích kurzů víte, že OOP se skládá ze tří pilířů, kterými jsou: polymorfismus, dědičnost a zapouzdření. Věnujme se nyní primárně nejpodstatnějšímu pojmu, kterým je polymorfismus. V předchozím příkladu chceme funkčnost, kterou bychom mohli vágně popsat následovně: "Jakémukoli objektu pošleme zprávu a dostaneme adekvátní odpověď". Toto je hodně obecný koncept, který je třeba si přiblížit. Zasílání zpráv je v moderním konceptu OOP jen voláním metod objektu, který je nám již důvěrně znám pomocí tečkové notace. OOP za nás zajistí vše ostatní. Ukažme si tedy předchozí příklad v jazyce Python.</p>
+<p>Z předchozích kurzů víte, že OOP se skládá ze tří pilířů, kterými jsou: polymorfismus, dědičnost a zapouzdření. Věnujme se nyní primárně nejpodstatnějšímu pojmu, kterým je polymorfismus. V předchozím příkladu chceme funkčnost, kterou bychom mohli vágně popsat následovně: “Jakémukoli objektu pošleme zprávu a dostaneme adekvátní odpověď”. Toto je hodně obecný koncept, který je třeba si přiblížit. Zasílání zpráv je v moderním konceptu OOP jen voláním metod objektu, který je nám již důvěrně znám pomocí tečkové notace. OOP za nás zajistí vše ostatní. Ukažme si tedy předchozí příklad v jazyce Python.</p>
 <pre><code class="language-python">class Dog(object):
     def __init__(self, name):
         self.name = name
@@ -894,7 +897,7 @@ print(pegasus.identify())
 # This is Battlestar Pegasus, commanded by Helena Cain.
 </code></pre>
 <p>Definice přídy je uvozena klíčovým slovem <code>class</code> následována jménem. Pokud chce definovaná třída dědit z jiných tříd, je toto uvedeno v kulatých závorkách. Naše třídy budou vždy dědit z třídy reprezentující objekt (<code>object</code>).</p>
-<p>Konstruktor třídy je vždy metoda s názvem <code>__init__</code>, která přijímá jako svůj první argument proměnnou, která je tradičně nazývána <code>self</code>. Pak následuje seznam argumentů, které chceme konstruktoru předat. Proměnná <code>self</code> nám reprezentuje instanci podobně, jako je tomu v jazyce C++ nebo Java slovem <code>this</code>. Instanční proměnné jsou vytvořeny tak, že je přidáme do instance pomocí tečkové notace. Dostatečný příklad je uveden v konstruktoru. Pokud se nám zdá syntaxe metod nepříjemná v tom smyslu, že musíme uvádět proměnnou <code>self</code>, tak se zamysleme nad tím, kde se vezme v C++ nebo Javě proměnná <code>this</code>. Tato proměnná je ve skutečnosti do zdrojového kódu "vpašována" překladačem daného jazyka.</p>
+<p>Konstruktor třídy je vždy metoda s názvem <code>__init__</code>, která přijímá jako svůj první argument proměnnou, která je tradičně nazývána <code>self</code>. Pak následuje seznam argumentů, které chceme konstruktoru předat. Proměnná <code>self</code> nám reprezentuje instanci podobně, jako je tomu v jazyce C++ nebo Java slovem <code>this</code>. Instanční proměnné jsou vytvořeny tak, že je přidáme do instance pomocí tečkové notace. Dostatečný příklad je uveden v konstruktoru. Pokud se nám zdá syntaxe metod nepříjemná v tom smyslu, že musíme uvádět proměnnou <code>self</code>, tak se zamysleme nad tím, kde se vezme v C++ nebo Javě proměnná <code>this</code>. Tato proměnná je ve skutečnosti do zdrojového kódu “vpašována” překladačem daného jazyka.</p>
 <p>Metody třídy obdobně přijímají první argument v podobě proměnné <code>self</code>. Přístup k instančním proměnným je možný opět pouze s použitím oné proměnné.</p>
 <p>Vytvoření objektu je velmi podobné jako v jiných jazycích, které známe. Jediným rozdílem je to, že nepoužíváme klíčového slova <code>new</code>. Jazyk Python (stejně jako téměř ve všech případech Java) totiž na rozdíl od jazyka C++ neumožňuje vytvořit instanci objektu na zásobníku, ale pouze na haldě.</p>
 <h2 id="třídní-proměnné"><a class="header" href="#třídní-proměnné">Třídní proměnné</a></h2>
@@ -1039,7 +1042,7 @@ print(Document.get_average_length()) # 14
 <p>Naši původní proměnnou <code>content</code> jsme přejmenovali na <code>_content</code>, což výsledek nijak neovlivňuje (toto jsme museli udělat proto, že jinak by docházelo ke kolizi jmen mezi property a proměnnou, která by vyústila v nekonečnou rekurzi, o čemž se můžete přesvědčit, pokud si příklad náležitě upravíte). Nakonec jsme pomocí funkce <code>property</code> řekli, že chceme zpřístupnit data pod názvem <code>content</code>, která se čtou a nastavují pomocí funkcí <code>get_content</code> a <code>set_content</code>. Ve výsledku můžeme jakoby přímo zapisovat do proměnné <code>content</code> a přitom je zajištěna konzistence dat. Další výhodou je to, že pokud později změníme set nebo get metody, kód který používá properties se nemusí měnit. Tím máme pěkně zajištěnu dopřednou kompatibilitu.</p>
 <h2 id="operátory"><a class="header" href="#operátory">Operátory</a></h2>
 <p>V průběhu naší práce jsme se setkali s operátory a nepřišlo nám to nijak složité. Např. jsme mohli sčítat čísla pomocí operátoru <code>+</code> nebo spojovat řetězce tím samým operátorem. Problémem těchto operátorů však je to, že je tvůrci naučili pracovat pouze s vestavěnými typy, např. <code>int</code>, <code>str</code>, apod.</p>
-<p>Pokud vytvoříme svou vlastní třídu, ta se stává novým datovým typem (toto obecně nazýváme abstraktní datové typy). Problém však je, že nyní standardní operátory nemohou tušit, jak s našimi vlastními typy pracovat. A právě k tomu nám slouží přetěžování operátorů. Seznam operátorů, které můžeme přetížit je relativně dlouhý, a proto se odkážeme na dokumentaci <a href="reference.html#python-operator-overloading">Seznam operátorů a jejich použití</a>. Nám aktuálně postačí to, že operátory jsou v třídách realizovány jako metody, které vždy začínají a končí znaky dvou podtržítek <code>__</code>. Mezi nimi je pak jméno operátoru. Pozorný čtenář již tuší, že konstruktor je také jen operátorem.</p>
+<p>Pokud vytvoříme svou vlastní třídu, ta se stává novým datovým typem (toto obecně nazýváme abstraktní datové typy). Problém však je, že nyní standardní operátory nemohou tušit, jak s našimi vlastními typy pracovat. A právě k tomu nám slouží přetěžování operátorů. Seznam operátorů, které můžeme přetížit je relativně dlouhý, a proto se odkážeme na dokumentaci <a href="#python-operator-overloading">Seznam operátorů a jejich použití</a>. Nám aktuálně postačí to, že operátory jsou v třídách realizovány jako metody, které vždy začínají a končí znaky dvou podtržítek <code>__</code>. Mezi nimi je pak jméno operátoru. Pozorný čtenář již tuší, že konstruktor je také jen operátorem.</p>
 <p>Jako příklad přetížení operátoru si ukážeme, jak naimplementovat třídu <code>Vector</code>, která reprezentuje vektor libovolné délky. Budeme chtít sčítat dva různé vektory a také budeme chtít tisknout jejich obsah pomocí příkazu <code>print</code>.</p>
 <pre><code class="language-python">class Vector(object):
     def __init__(self, vec):
@@ -1143,7 +1146,8 @@ print("ID:", s2.get_id(), "Student name:", s2)
 <p>Ve třídě <code>Person</code> jsme naimplementovali základní funkcionalitu. Třída <code>Student</code> dědí z <code>Person</code>. Navíc přidává to, že je každé instanci přiřazeno jednoznačné <code>edison_id</code>, kterým se identifikuje v našem univerzitním IS. Také je implementována metoda <code>get_id</code>, která daný identifikátor vrací. Třída <code>Student</code> je tedy specializovanou třídou odvozenou z třídy <code>Person</code>. Důležitým prvkem je konstruktor odvozené třídy. Ten jako první vždy volá konstruktor třídy nadřazené jako statickou metodu, kde jako instanci vloží sebe sama. Toto je jedno z mála míst, kde přímo voláme operátor, jinak se tohoto volání snažíme vyvarovat.</p>
 <p><strong>Cvičení:</strong></p>
 <p>Do třídy <code>Person</code> doplňte metody pro práci s věkem člověka pomocí modulu <code>datetime</code>. Poté přetěžte takový oprátor, abyste mohli jednoduše zjistit, zda je člověk nebo student starší než nějaký jiný. Také zkuste mezi sebou porovnat instance studenta a člověka.</p>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="standardní-knihovna-jazyka-python"><a class="header" href="#standardní-knihovna-jazyka-python">Standardní knihovna jazyka Python</a></h1>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="standardní-knihovna-jazyka-python"><a class="header" href="#standardní-knihovna-jazyka-python">Standardní knihovna jazyka Python</a></h1>
 <p>Standardní knihovna jazyka Python obsahuje velké množství užitečných funkcí. Vysvětleme si nejprve co je a k čemu takováto knihovna slouží. Programovací jazyky obecně slouží ke konstrukci algoritmů, které poté jejich kompilátor nebo interpret převede do spustitelné podoby, která daný algoritmus vykonává. Programovací jazyk obsahuje jen velice málo funkcí, které programátor může použít. Standardní knihovna je ihned dispozici po nainstalování příslušného programovacího jazyka. Většinou ji stačí k našemu programu jednoduše připojit.</p>
 <p>Knihovny slouží jako úložná místa s již vytvořenými funkcemi, které programátorovi usnadňují každodenní práci. Velkým skokem kupředu v oblasti standardní knihovny se stal v minulosti programovací jazyk Java. Ten oproti jazyku C s sebou přinesl velkou sadu funkcí, které jinak museli programátoři jazyka C pracně vyhledávat, popřípadě vytvářet sami.</p>
 <p>Programovací jazyk Python jde v ohledu ke standardní knihovně v podobném stylu jako jazyk Java. Python disponuje širokou škálou knihoven od práce s regulárními výrazy, přes práci se sítí, až po webové služby. Příjemné též je to, že i vaše vlastní knihovna se může stát součástí standardní knihovny Pythonu, pokud bude dostatečně užitečná, kvalitně napsaná a zdokumentovaná.</p>
@@ -1154,7 +1158,8 @@ print("ID:", s2.get_id(), "Student name:", s2)
 ["text.tex", "text.pdf", "text.aux", "text.toc"]
 </code></pre>
 <p>Modul <code>os</code> obsahuje mnoho užitečných funkcí pro práci s operačním systémem. V našem případě chceme vytisknout obsah aktuálního adresáře (tedy soubory a adresáře v něm obsažené). Funkce, která slouží pro výpis obsahu adresáře se jmenuje <code>listdir()</code> a její parametr je cesta k adresáři, ve kterém chceme tuto operaci provést. Aktuální adresář tedy bude řetězec <code>"."</code>. K funkci <code>listdir()</code> pak přistoupíme jednoduše pomocí příkazu <code>os.listdir(".")</code>.</p>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="vzdálené-volání-funkcí-pomocí-xml-rpc"><a class="header" href="#vzdálené-volání-funkcí-pomocí-xml-rpc">Vzdálené volání funkcí pomocí XML-RPC</a></h1>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="vzdálené-volání-funkcí-pomocí-xml-rpc"><a class="header" href="#vzdálené-volání-funkcí-pomocí-xml-rpc">Vzdálené volání funkcí pomocí XML-RPC</a></h1>
 <p>Vzdálené volání funkcí slouží, jak už název napovídá, k volání funkcí na nějakém vzdáleném místě (v tomto případě počítači připojenému do počítačové sítě). V současné chvíli je nám zcela jasné, jak provádět volání funkcí v rámci našeho skriptu, volání funkcí z modulů nebo volání metod tříd.</p>
 <p>V praxi však často dochází k tomu, že náš softwarový produkt je umístěn na více počítačích, které jsou spolu propojeny počítačovou sítí. Každý takovýto počítač je vybaven programy, které složí k jinému účelu. Tyto počítače by však měly ve výsledku tvořit kompaktní celek. Z tohoto důvodu spolu musí komunikovat (předávat si zprávy).</p>
 <p>Jedním ze způsobů komunikace je tzv. vzdálené volaní funkcí (nebo procedur). V princip se jedná o komunikaci pomocí architektury klient/server, kde se komunikující programy dělí na klienta a server.</p>
@@ -1194,8 +1199,9 @@ print remote_server.minus(7, 3) # 4
 <p><strong>Cvičení:</strong></p>
 <p>Vyzkoušejte si uvedený příklad a doplňte server o další funkce.</p>
 <p><strong>Cvičení:</strong></p>
-<p>Naimplementujte server, který bude provádět jednoduché výpočetní operace. Při implementaci serveru použijte třídu, jejíž metody budou přístupné klientům. Všimněte si rozdílu v registraci funkcí na serveru. V dokumentaci k jazyku Python je tento případ dobře popsán<label for="sn-vzdálené-volání-funkcí-pomocí-xml-rpc-1" class="margin-toggle"><sup>1</sup></label><input type="checkbox" id="sn-vzdálené-volání-funkcí-pomocí-xml-rpc-1" class="margin-toggle"/><span class="sidenote"><sup class="sidenote-number">1</sup> <a href="http://docs.python.org/2/library/simplexmlrpcserver.html#simplexmlrpcserver-example">http://docs.python.org/2/library/simplexmlrpcserver.html#simplexmlrpcserver-example</a></span>.</p>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="vestavěný-webový-server"><a class="header" href="#vestavěný-webový-server">Vestavěný webový server</a></h1>
+<p>Naimplementujte server, který bude provádět jednoduché výpočetní operace. Při implementaci serveru použijte třídu, jejíž metody budou přístupné klientům. Všimněte si rozdílu v registraci funkcí na serveru. V dokumentaci k jazyku Python je tento případ dobře popsán<label for="sn-vzdálené-volání-funkcí-pomocí-xml-rpc-1" class="margin-toggle"><sup>1</sup></label><input type="checkbox" id="sn-vzdálené-volání-funkcí-pomocí-xml-rpc-1" class="margin-toggle" /><span class="sidenote"><sup class="sidenote-number">1</sup> <a href="http://docs.python.org/2/library/simplexmlrpcserver.html#simplexmlrpcserver-example">http://docs.python.org/2/library/simplexmlrpcserver.html#simplexmlrpcserver-example</a></span>.</p>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="vestavěný-webový-server"><a class="header" href="#vestavěný-webový-server">Vestavěný webový server</a></h1>
 <p>V dnešní době je většina informací dostupná na Internetu. Přiznejme si, kolik zajímavých informací jsme se dověděli díky webovým stránkám jako je wikipedia.org. Čtenáře jistě napadá jak takový Internet funguje a jakým způsobem se k nám informace dostávají. Nebudeme se zde zabývat jak Internet funguje, ale přiblížíme si nutné detaily k tomu, abychom byli schopni poskytovat informace na Internetu prostřednictvím jazyka Python.</p>
 <p>Pro prohlížení Internetových stránek používáme nějaký klientský program, který nazýváme prohlížeč. K těmto programům patří Mozilla Firefox, Microsoft Internet Explorer, Opera a jiné. Tyto prohlížeče nám zobrazují obsah, který je získáván z webového serveru na základě našich požadavků (zadáním webové adresy, klikáním na odkazy). Naprogramovat prohlížeč webových stránek je pro nás v současné chvíli přeci jen obtížný úkol, avšak naprogramovat webový server za použití standardní knihovny jazyka Python se jeví jako celkem jednoduchá úloha.</p>
 <h2 id="princip-webového-serveru"><a class="header" href="#princip-webového-serveru">Princip webového serveru</a></h2>
@@ -1252,7 +1258,8 @@ if __name__ == '__main__':
 <p>Předešlé cvičení upravte tak, aby Váš webový server vracel pouze obsah souborů s příponou <code>html</code>.</p>
 <p><strong>Cvičení:</strong></p>
 <p>První cvičení upravte tak, aby Váš webový server vracel stránku 404 (nenalezeno), pokud zadaný soubor neexistuje. K řešení využijte výjimku, která bude vyvolána při snaze otevřít neexistující soubor.</p>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="grafická-uživatelská-rozhraní"><a class="header" href="#grafická-uživatelská-rozhraní">Grafická uživatelská rozhraní</a></h1>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="grafická-uživatelská-rozhraní"><a class="header" href="#grafická-uživatelská-rozhraní">Grafická uživatelská rozhraní</a></h1>
 <p>Programovací jazyk Python je hodně využíván k tvorbě prototypů grafických uživatelských rozhraní (GUI). Je tedy velice vhodné si ukázat, jak tohoto dosáhnout.</p>
 <p>Pro konstrukci GUI je možno využít značné množství knihoven. My si ukážeme knihovnu Tk, která je ve s pojení s Pythonem často využívána. Vždyť i samotné rozhraní programu IDLE je napsáno prostřednictvím této knihovny.</p>
 <p>Tak jako i ostatní rozhraní, je knihovna Tk dostupná programátorovi v podobě modulu. Tento modul se jmenuje <code>Tkinter</code> a obsahuje všechny prvky GUI, které po většinu času potřebujeme.</p>
@@ -1348,7 +1355,8 @@ mainloop()
 <h3 id="závěrem-o-gui"><a class="header" href="#závěrem-o-gui">Závěrem o GUI</a></h3>
 <p>Tvorba GUI s sebou přináší jeden problém a to kvality návrhu rozhraní. Pro to, aby uživatel pracoval s GUI bez problémů, je nutné dodržovat zásady pro dobrý návrh aplikace. Toto je samozřejmě nad rámec toho to textu.</p>
 <p>Knihovna Tk je samozřejmě mnohem obsáhlejší než bylo uvedeno výše. Můžete s ní jednoduše vytvářet i rozsáhlé aplikace, poněvadž počet komponent je široký. Vždyť dokumentace ke knihovně přesahuje 350 stran textu.</p>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="práce-se-soubory"><a class="header" href="#práce-se-soubory">Práce se soubory</a></h1>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="práce-se-soubory"><a class="header" href="#práce-se-soubory">Práce se soubory</a></h1>
 <p>V této kapitolo se ukážeme, jak je možno soubory číst a zapisovat. Práce se soubory je, co se týče otevírání a uzavírání, velmi podobná té, s níž jste se již seznámili v jazyce C.</p>
 <p>Mějme soubor, který obsahuje následující řádky:</p>
 <pre><code class="language-python">First line.
@@ -1369,7 +1377,8 @@ my_file.close()
 #Third line.
 #
 </code></pre>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="reference"><a class="header" href="#reference">Reference</a></h1>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="reference"><a class="header" href="#reference">Reference</a></h1>
 <p><a id="harms-mcdonald"></a></p>
 <ul>
 <li>Harms, D., McDonald, K.: Začínáme programovat v jazyce Python. Computer Press, a.s.</li>
@@ -1404,6 +1413,11 @@ my_file.close()
 
         </div>
 
+        <template id=fa-eye><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM432 256c0 79.5-64.5 144-144 144s-144-64.5-144-144s64.5-144 144-144s144 64.5 144 144zM288 192c0 35.3-28.7 64-64 64c-11.5 0-22.3-3-31.6-8.4c-.2 2.8-.4 5.5-.4 8.4c0 53 43 96 96 96s96-43 96-96s-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6z"/></svg></span></template>
+        <template id=fa-eye-slash><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M38.8 5.1C28.4-3.1 13.3-1.2 5.1 9.2S-1.2 34.7 9.2 42.9l592 464c10.4 8.2 25.5 6.3 33.7-4.1s6.3-25.5-4.1-33.7L525.6 386.7c39.6-40.6 66.4-86.1 79.9-118.4c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C465.5 68.8 400.8 32 320 32c-68.2 0-125 26.3-169.3 60.8L38.8 5.1zM223.1 149.5C248.6 126.2 282.7 112 320 112c79.5 0 144 64.5 144 144c0 24.9-6.3 48.3-17.4 68.7L408 294.5c5.2-11.8 8-24.8 8-38.5c0-53-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6c0 10.2-2.4 19.8-6.6 28.3l-90.3-70.8zm223.1 298L373 389.9c-16.4 6.5-34.3 10.1-53 10.1c-79.5 0-144-64.5-144-144c0-6.9 .5-13.6 1.4-20.2L83.1 161.5C60.3 191.2 44 220.8 34.5 243.7c-3.3 7.9-3.3 16.7 0 24.6c14.9 35.7 46.2 87.7 93 131.1C174.5 443.2 239.2 480 320 480c47.8 0 89.9-12.9 126.2-32.5z"/></svg></span></template>
+        <template id=fa-copy><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M502.6 70.63l-61.25-61.25C435.4 3.371 427.2 0 418.7 0H255.1c-35.35 0-64 28.66-64 64l.0195 256C192 355.4 220.7 384 256 384h192c35.2 0 64-28.8 64-64V93.25C512 84.77 508.6 76.63 502.6 70.63zM464 320c0 8.836-7.164 16-16 16H255.1c-8.838 0-16-7.164-16-16L239.1 64.13c0-8.836 7.164-16 16-16h128L384 96c0 17.67 14.33 32 32 32h47.1V320zM272 448c0 8.836-7.164 16-16 16H63.1c-8.838 0-16-7.164-16-16L47.98 192.1c0-8.836 7.164-16 16-16H160V128H63.99c-35.35 0-64 28.65-64 64l.0098 256C.002 483.3 28.66 512 64 512h192c35.2 0 64-28.8 64-64v-32h-47.1L272 448z"/></svg></span></template>
+        <template id=fa-play><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z"/></svg></span></template>
+        <template id=fa-clock-rotate-left><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M75 75L41 41C25.9 25.9 0 36.6 0 57.9V168c0 13.3 10.7 24 24 24H134.1c21.4 0 32.1-25.9 17-41l-30.8-30.8C155 85.5 203 64 256 64c106 0 192 86 192 192s-86 192-192 192c-40.8 0-78.6-12.7-109.7-34.4c-14.5-10.1-34.4-6.6-44.6 7.9s-6.6 34.4 7.9 44.6C151.2 495 201.7 512 256 512c141.4 0 256-114.6 256-256S397.4 0 256 0C185.3 0 121.3 28.7 75 75zm181 53c-13.3 0-24 10.7-24 24V256c0 6.4 2.5 12.5 7 17l72 72c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-65-65V152c0-13.3-10.7-24-24-24z"/></svg></span></template>
 
 
 
@@ -1412,13 +1426,13 @@ my_file.close()
         </script>
 
 
-        <script src="elasticlunr.min.js"></script>
-        <script src="mark.min.js"></script>
-        <script src="searcher.js"></script>
+        <script src="elasticlunr-ef4e11c1.min.js"></script>
+        <script src="mark-09e88c2c.min.js"></script>
+        <script src="searcher-c2a407aa.js"></script>
 
-        <script src="clipboard.min.js"></script>
-        <script src="highlight.js"></script>
-        <script src="book.js"></script>
+        <script src="clipboard-1626706a.min.js"></script>
+        <script src="highlight-abc7f01d.js"></script>
+        <script src="book-a0b12cfe.js"></script>
 
         <!-- Custom JS scripts -->
 
